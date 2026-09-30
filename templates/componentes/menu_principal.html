@@ -1,0 +1,17 @@
+<ul class="site-nav__lista {% if lista_classe %}{{ lista_classe }}{% endif %}">
+<li class="site-nav__item"><a class="site-nav__link {% if request.path == '/' %}site-nav__link--ativo{% endif %}" href="{% url 'paginas:inicio' %}" {% if request.path == '/' %}aria-current="page"{% endif %}>Início</a></li>
+<li class="site-nav__item"><a class="site-nav__link {% if '/sobre-mim/' in request.path %}site-nav__link--ativo{% endif %}" href="{% url 'paginas:sobre_mim' %}" {% if '/sobre-mim/' in request.path %}aria-current="page"{% endif %}>Sobre Mim</a></li>
+<li class="site-nav__item"><details class="site-nav__dropdown"><summary class="site-nav__link">Avaliações Psicológicas</summary><ul class="site-nav__submenu">
+<li><a href="{% url 'servicos:avaliacao' %}" {% if request.path == '/servicos/avaliacao/' %}aria-current="page"{% endif %}>Todas as avaliações e documentos</a></li>
+<li><a href="{% url 'servicos:avaliacao_especifica' slug='burnout' %}" {% if request.path == '/servicos/avaliacao/burnout/' %}aria-current="page"{% endif %}>Burnout</a></li>
+<li><a href="{% url 'servicos:avaliacao_especifica' slug='cirurgia-bariatrica' %}" {% if request.path == '/servicos/avaliacao/cirurgia-bariatrica/' %}aria-current="page"{% endif %}>Cirurgia bariátrica</a></li>
+<li><a href="{% url 'servicos:avaliacao_especifica' slug='esterilizacao' %}" {% if request.path == '/servicos/avaliacao/esterilizacao/' %}aria-current="page"{% endif %}>Laqueadura e vasectomia</a></li>
+<li><a href="{% url 'servicos:avaliacao_especifica' slug='ansiedade-depressao' %}" {% if request.path == '/servicos/avaliacao/ansiedade-depressao/' %}aria-current="page"{% endif %}>Ansiedade e depressão</a></li>
+<li><a href="{% url 'servicos:avaliacao_especifica' slug='processos-judiciais' %}" {% if request.path == '/servicos/avaliacao/processos-judiciais/' %}aria-current="page"{% endif %}>Processos judiciais</a></li>
+<li><a href="{% url 'servicos:avaliacao_especifica' slug='inss' %}" {% if request.path == '/servicos/avaliacao/inss/' %}aria-current="page"{% endif %}>INSS</a></li>
+</ul></details></li>
+<li class="site-nav__item"><a class="site-nav__link {% if '/psicologia/' in request.path %}site-nav__link--ativo{% endif %}" href="{% url 'servicos:psicologia' %}" {% if '/psicologia/' in request.path %}aria-current="page"{% endif %}>Psicoterapia</a></li>
+<li class="site-nav__item"><a class="site-nav__link {% if '/credenciamento/' in request.path %}site-nav__link--ativo{% endif %}" href="{% url 'paginas:credenciamento' %}" {% if '/credenciamento/' in request.path %}aria-current="page"{% endif %}>Credenciamento de Psicólogos</a></li>
+<li class="site-nav__item"><a class="site-nav__link {% if '/conteudos/' in request.path %}site-nav__link--ativo{% endif %}" href="{% url 'conteudos:index' %}" {% if '/conteudos/' in request.path %}aria-current="page"{% endif %}>Blog</a></li>
+<li class="site-nav__item"><a class="site-nav__link {% if '/contato/' in request.path %}site-nav__link--ativo{% endif %}" href="{% url 'contato:index' %}" {% if '/contato/' in request.path %}aria-current="page"{% endif %}>Contato</a></li>
+</ul>

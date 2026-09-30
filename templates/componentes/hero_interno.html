@@ -1,0 +1,92 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- COMPONENTE: HERO INTERNO EDITORIAL                           -->
+<!-- Usado de forma consistente em todas as páginas internas       -->
+<!-- ============================================================ -->
+<section class="hero-interno {% if modifier_classe %}{{ modifier_classe }}{% endif %}" aria-label="{{ titulo_hero|default:'Cabeçalho da Página' }}">
+    <div class="site-container">
+        <!-- Breadcrumb Semântico e Acessível -->
+        {% if breadcrumb %}
+        <nav class="breadcrumb" aria-label="Caminho de navegação">
+            <ol class="breadcrumb__lista">
+                <li class="breadcrumb__item">
+                    <a href="{% url 'paginas:inicio' %}" class="breadcrumb__link">Início</a>
+                    <span class="breadcrumb__separador" aria-hidden="true">›</span>
+                </li>
+                {% for item in breadcrumb %}
+                    {% if forloop.last %}
+                        <li class="breadcrumb__item breadcrumb__item--ativo" aria-current="page">
+                            <span class="breadcrumb__atual">{{ item.titulo }}</span>
+                        </li>
+                    {% else %}
+                        <li class="breadcrumb__item">
+                            {% if item.url %}
+                                <a href="{{ item.url }}" class="breadcrumb__link">{{ item.titulo }}</a>
+                            {% else %}
+                                <span class="breadcrumb__texto">{{ item.titulo }}</span>
+                            {% endif %}
+                            <span class="breadcrumb__separador" aria-hidden="true">›</span>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </nav>
+        {% endif %}
+
+        <div class="hero-interno__grid {% if not imagem_url and not placeholder_codigo %}hero-interno__grid--somente-texto{% endif %}">
+            <!-- Conteúdo Textual -->
+            <div class="hero-interno__conteudo">
+                {% if eyebrow %}
+                    <span class="eyebrow hero-interno__eyebrow">{{ eyebrow }}</span>
+                {% endif %}
+
+                <h1 class="hero-interno__titulo">{{ titulo_hero }}</h1>
+
+                {% if descricao_hero %}
+                    <p class="hero-interno__descricao">{{ descricao_hero }}</p>
+                {% endif %}
+
+                {% if cta_texto and cta_url %}
+                    <div class="hero-interno__acoes">
+                        <a href="{{ cta_url }}" class="btn btn--primario hero-interno__btn" {% if 'wa.me' in cta_url or 'http' in cta_url %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                            <span>{{ cta_texto }}</span>
+                        </a>
+                        {% if cta_secundario_texto and cta_secundario_url %}
+                            <a href="{{ cta_secundario_url }}" class="btn btn--secundario hero-interno__btn" {% if 'wa.me' in cta_secundario_url or 'http' in cta_secundario_url %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                                <span>{{ cta_secundario_texto }}</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Moldura Visual / Fotografia ou Placeholder -->
+            {% if imagem_url or placeholder_codigo %}
+            <div class="hero-interno__visual">
+                <div class="media-frame {{ imagem_ratio|default:'ratio-4-3' }} hero-interno__frame">
+                    {% if imagem_url %}
+                        <img src="{{ imagem_url }}"
+                             alt="{{ imagem_alt|default:titulo_hero }}"
+                             loading="eager"
+                             fetchpriority="high"
+                             decoding="async"
+                             class="hero-interno__img">
+                    {% elif placeholder_codigo %}
+                        <div class="placeholder-imagem hero-interno__placeholder">
+                            <span class="placeholder-imagem__codigo">{{ placeholder_codigo }}</span>
+                            <span class="placeholder-imagem__descricao">{{ placeholder_descricao|default:titulo_hero }}</span>
+                            <span class="placeholder-imagem__ratio">{{ placeholder_ratio|default:'Proporção 4:3' }}</span>
+                        </div>
+                    {% endif %}
+
+                    {% if badge_texto %}
+                        <div class="hero-interno__badge">
+                            <span>{{ badge_texto }}</span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

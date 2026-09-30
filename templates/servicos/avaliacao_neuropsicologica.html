@@ -1,0 +1,153 @@
+{% extends "base/base.html" %}
+{% load static seo_tags %}
+
+{% block title %}{{ titulo_pagina }}{% endblock title %}
+{% block meta_description %}{{ meta_descricao }}{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paginas_internas.css' %}">
+{% endblock extra_head %}
+
+{% block structured_data %}
+{{ block.super }}
+{% render_service_schema servico "Avaliação Neuropsicológica Clínica" %}
+{% render_breadcrumbs_schema breadcrumb %}
+{% endblock structured_data %}
+
+{% block content %}
+<!-- ============================================================ -->
+<!-- 1. HERO INTERNO: AVALIAÇÃO NEUROPSICOLÓGICA                  -->
+<!-- ============================================================ -->
+{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="PERFIL COGNITIVO" titulo_hero="Avaliação Neuropsicológica" descricao_hero=servico.resumo|default:"Mapeamento minucioso do perfil cognitivo e funcional por meio de procedimentos técnicos e instrumentos padronizados no contexto da Neuropsicologia." cta_texto="Agendar atendimento" cta_url=WHATSAPP_LINK|default:"/contato/" imagem_url=imagem_url imagem_alt="Avaliação Neuropsicológica — Instituto Mente em Foco" imagem_ratio="ratio-16-9" placeholder_codigo="IMG-012" placeholder_descricao="Fotografia Editorial — Avaliação Neuropsicológica" placeholder_ratio="Proporção 16:9" badge_texto="Perfil Cognitivo & Funcional" %}
+
+<!-- ============================================================ -->
+<!-- 2. O CONTEXTO DA NEUROPSICOLOGIA NA AVALIAÇÃO                -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Contexto da Avaliação Neuropsicológica">
+    <div class="site-container">
+        <div class="split-editorial">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">INVESTIGAÇÃO CIENTÍFICA</span>
+                <h2 class="titulo-secao">Compreender a relação entre o cérebro e o cotidiano</h2>
+
+                <p>
+                    A <strong>Avaliação Neuropsicológica</strong> tem como objetivo investigar o funcionamento cognitivo e suas repercussões no comportamento, nas emoções e na capacidade de realização das atividades do dia a dia.
+                </p>
+
+                <p>
+                    {{ servico.descricao|default:"O processo possibilita traçar um panorama detalhado de forças cognitivas e áreas que demandam atenção, subsidiando intervenções individualizadas, adaptações no trabalho ou estudos e orientações para a família e outros profissionais de saúde." }}
+                </p>
+
+                <div class="bloco-citacao-editorial">
+                    <blockquote class="bloco-citacao-editorial__texto">
+                        “O mapa cognitivo oferece clareza para que cada pessoa compreenda seu próprio funcionamento e encontre estratégias mais eficientes para viver bem.”
+                    </blockquote>
+                    <span class="bloco-citacao-editorial__autor">Instituto Mente em Foco</span>
+                </div>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-012</span>
+                        <span class="placeholder-imagem__descricao">Avaliação Neuropsicológica Editorial</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. ASPECTOS INVESTIGADOS CONFORME A DEMANDA                   -->
+<!-- ============================================================ -->
+<section class="secao-aspectos-cognitivos" aria-labelledby="titulo-aspectos-neuro">
+    <div class="site-container">
+        <div class="secao-editorial__cabecalho secao-editorial__cabecalho--centro">
+            <span class="eyebrow">DIMENSÕES COGNITIVAS</span>
+            <h2 class="titulo-secao" id="titulo-aspectos-neuro">O que pode ser investigado</h2>
+            <p class="secao-editorial__subtitulo">
+                A seleção das funções a serem examinadas varia conforme a queixa inicial, a faixa etária e as necessidades de cada indivíduo.
+            </p>
+        </div>
+
+        <ul class="grid-aspectos-cognitivos" role="list">
+            {% for aspecto in aspectos_investigados %}
+            <li class="card-aspecto-cognitivo">
+                <div class="card-aspecto-cognitivo__topo">
+                    <div class="card-aspecto-cognitivo__icone" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="9"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-aspecto-cognitivo__titulo">{{ aspecto.titulo }}</h3>
+                </div>
+                <p class="card-aspecto-cognitivo__texto">{{ aspecto.descricao }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <p class="nota-demanda-cognitiva">
+            * A escolha dos instrumentos e funções a serem investigadas é definida <strong>conforme a demanda</strong> e as orientações éticas da Psicologia.
+        </p>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. FLUXO OFICIAL DA AVALIAÇÃO (6 ETAPAS)                     -->
+<!-- ============================================================ -->
+{% include "componentes/fluxo_avaliacao.html" with fluxo_eyebrow="METODOLOGIA TÉCNICA" fluxo_titulo="Como funciona a Avaliação Neuropsicológica" fluxo_subtitulo="Um percurso técnico rigoroso e transparente, estruturado para oferecer respostas fundamentadas e humanizadas." %}
+
+<!-- ============================================================ -->
+<!-- 5. DEVOLUTIVA E PONTE PARA REABILITAÇÃO                      -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Devolutiva e Continuidade">
+    <div class="site-container">
+        <div class="split-editorial split-editorial--inverso">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">CONTINUIDADE DO CUIDADO</span>
+                <h2 class="titulo-secao">Devolutiva técnica e possibilidades de intervenção</h2>
+
+                <p>
+                    Ao término da testagem e integração dos dados, é realizada a sessão de devolutiva com entrega de documento técnico (quando indicado). Nesse momento, os resultados são explicados detalhadamente, abrindo espaço para esclarecimento de dúvidas e diálogo construtivo.
+                </p>
+
+                <p>
+                    Quando identificada a necessidade de intervenção para fortalecimento de recursos ou adaptação da rotina, o processo pode abrir caminhos para a <strong>Reabilitação Neurocognitiva</strong>.
+                </p>
+
+                <div class="hero-interno__acoes" style="margin-top: var(--espaco-6);">
+                    <a href="{% url 'servicos:reabilitacao_neurocognitiva' %}" class="btn btn--primario">
+                        <span>Conhecer a Reabilitação Neurocognitiva</span>
+                    </a>
+                    <a href="{% url 'servicos:neuropsicologia' %}" class="btn btn--secundario">
+                        <span>Ver Neuropsicologia Clínica</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-015</span>
+                        <span class="placeholder-imagem__descricao">Reunião de Devolutiva Técnica</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 6. PÁGINAS RELACIONADAS                                      -->
+<!-- ============================================================ -->
+{% include "componentes/paginas_relacionadas.html" with itens_relacionados=itens_relacionados relacionadas_eyebrow="NAVEGAÇÃO" relacionadas_titulo="Áreas conectadas à Avaliação Neuropsicológica" relacionadas_subtitulo="Aprofunde seu conhecimento sobre as práticas especializadas do Instituto." %}
+
+<!-- ============================================================ -->
+<!-- 7. CTA DE ATENDIMENTO GLOBAL                                 -->
+<!-- ============================================================ -->
+{% include "componentes/cta_atendimento.html" %}
+{% endblock content %}

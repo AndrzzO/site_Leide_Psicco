@@ -1,0 +1,78 @@
+# ============================================================
+# .gitignore — INSTITUTO MENTE EM FOCO
+# ============================================================
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+
+# Python / Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Ambientes virtuais
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Banco de dados local e arquivos de backup/dumps
+*.sqlite3
+*.db
+db.sqlite3
+*.sql
+*.dump
+*.dump.gz
+*.tar.gz
+*.bak
+backups/
+
+# Arquivos de mídia gerados localmente (uploads)
+media/
+!media/.gitkeep
+
+# Arquivos estáticos coletados para produção
+staticfiles/
+
+# Logs e depuração
+*.log
+local_settings.py
+celerybeat-schedule
+celerybeat.pid
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini

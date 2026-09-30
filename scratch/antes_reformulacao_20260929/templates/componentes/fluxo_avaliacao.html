@@ -1,0 +1,112 @@
+{% load static %}
+<!-- ============================================================ -->
+<!-- COMPONENTE REUTILIZÁVEL: FLUXO OFICIAL DA AVALIAÇÃO           -->
+<!-- Representa o processo técnico e ético em 6 etapas estruturadas -->
+<!-- ============================================================ -->
+<section class="secao-fluxo-avaliacao {% if fluxo_classe_extra %}{{ fluxo_classe_extra }}{% endif %}" aria-labelledby="titulo-fluxo-avaliacao">
+    <div class="site-container">
+        <div class="secao-editorial__cabecalho secao-editorial__cabecalho--centro">
+            <span class="eyebrow">{{ fluxo_eyebrow|default:"PROCESSO TÉCNICO & ÉTICO" }}</span>
+            <h2 class="titulo-secao" id="titulo-fluxo-avaliacao">
+                {{ fluxo_titulo|default:"Como o processo de avaliação é organizado" }}
+            </h2>
+            <p class="secao-editorial__subtitulo">
+                {{ fluxo_subtitulo|default:"Uma estrutura ética e criteriosa, planejada para garantir acolhimento, rigor técnico e clareza em cada etapa." }}
+            </p>
+        </div>
+
+        <ol class="fluxo-avaliacao" role="list">
+            <!-- Etapa 1 -->
+            <li class="fluxo-avaliacao__item">
+                <div class="fluxo-avaliacao__marcador">
+                    <span class="fluxo-avaliacao__numero" aria-hidden="true">01</span>
+                </div>
+                <div class="fluxo-avaliacao__corpo">
+                    <h3 class="fluxo-avaliacao__titulo">Entrevista</h3>
+                    <p class="fluxo-avaliacao__texto">
+                        Momento inicial de acolhimento, escuta atenta da história de vida e compreensão detalhada dos motivos e expectativas da procura.
+                    </p>
+                </div>
+            </li>
+
+            <!-- Etapa 2 -->
+            <li class="fluxo-avaliacao__item">
+                <div class="fluxo-avaliacao__marcador">
+                    <span class="fluxo-avaliacao__numero" aria-hidden="true">02</span>
+                </div>
+                <div class="fluxo-avaliacao__corpo">
+                    <h3 class="fluxo-avaliacao__titulo">Aplicação de instrumentos</h3>
+                    <p class="fluxo-avaliacao__texto">
+                        Utilização criteriosa de instrumentos, tarefas e procedimentos técnicos regulamentados, selecionados conforme a demanda de cada caso.
+                    </p>
+                </div>
+            </li>
+
+            <!-- Etapa 3 -->
+            <li class="fluxo-avaliacao__item">
+                <div class="fluxo-avaliacao__marcador">
+                    <span class="fluxo-avaliacao__numero" aria-hidden="true">03</span>
+                </div>
+                <div class="fluxo-avaliacao__corpo">
+                    <h3 class="fluxo-avaliacao__titulo">Análise dos resultados</h3>
+                    <p class="fluxo-avaliacao__texto">
+                        Estudo técnico aprofundado dos dados obtidos, correlacionando os parâmetros normativos à realidade e ao contexto da pessoa.
+                    </p>
+                </div>
+            </li>
+
+            <!-- Etapa 4 -->
+            <li class="fluxo-avaliacao__item">
+                <div class="fluxo-avaliacao__marcador">
+                    <span class="fluxo-avaliacao__numero" aria-hidden="true">04</span>
+                </div>
+                <div class="fluxo-avaliacao__corpo">
+                    <h3 class="fluxo-avaliacao__titulo">Integração das informações</h3>
+                    <p class="fluxo-avaliacao__texto">
+                        Articulação entre a história pessoal, as observações clínicas e os achados das avaliações para construir uma compreensão global.
+                    </p>
+                </div>
+            </li>
+
+            <!-- Etapa 5 -->
+            <li class="fluxo-avaliacao__item">
+                <div class="fluxo-avaliacao__marcador">
+                    <span class="fluxo-avaliacao__numero" aria-hidden="true">05</span>
+                </div>
+                <div class="fluxo-avaliacao__corpo">
+                    <h3 class="fluxo-avaliacao__titulo">Devolutiva</h3>
+                    <p class="fluxo-avaliacao__texto">
+                        Sessão dedicada ao diálogo transparente, na qual os resultados, apontamentos e possíveis orientações são compartilhados de forma clara e acessível.
+                    </p>
+                </div>
+            </li>
+
+            <!-- Etapa 6 -->
+            <li class="fluxo-avaliacao__item">
+                <div class="fluxo-avaliacao__marcador">
+                    <span class="fluxo-avaliacao__numero" aria-hidden="true">06</span>
+                </div>
+                <div class="fluxo-avaliacao__corpo">
+                    <h3 class="fluxo-avaliacao__titulo">Documento técnico, quando indicado</h3>
+                    <p class="fluxo-avaliacao__texto">
+                        Elaboração e entrega de documento técnico formal fundamentado na legislação profissional vigente, emitido estritamente quando houver indicação técnica.
+                    </p>
+                </div>
+            </li>
+        </ol>
+
+        <!-- Orientação Técnica Obrigatória -->
+        <div class="fluxo-avaliacao__nota" role="note" aria-label="Orientação Técnica e Ética">
+            <div class="fluxo-avaliacao__nota-icone" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+            </div>
+            <p class="fluxo-avaliacao__nota-texto">
+                <strong>Critério Profissional:</strong> A indicação e a escolha dos procedimentos devem ser definidas de acordo com a demanda e dentro dos critérios técnicos e éticos da Psicologia.
+            </p>
+        </div>
+    </div>
+</section>

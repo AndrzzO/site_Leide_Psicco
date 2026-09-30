@@ -1,0 +1,576 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Design System — Laboratório Visual | {{ NOME_INSTITUTO }}{% endblock title %}
+
+{% block meta_robots %}noindex, nofollow{% endblock meta_robots %}
+
+{% block content %}
+<!-- Banner Informativo de Ambiente de Desenvolvimento -->
+<div style="background-color: var(--cor-areia); padding: var(--espaco-3) var(--espaco-4); border-bottom: 1px solid var(--cor-borda); text-align: center;">
+    <p class="texto-pequeno mb-0" style="color: var(--cor-texto-principal); font-weight: 600;">
+        🔬 LABORATÓRIO VISUAL — DESIGN SYSTEM & TOKENS (Ambiente Exclusivo para Desenvolvimento / DEBUG=True)
+    </p>
+</div>
+
+<!-- Introdução do Laboratório -->
+<section class="secao secao--clara">
+    <div class="container">
+        <header class="section-header section-header--esquerda">
+            <span class="eyebrow">Design System & Fundação Visual</span>
+            <h1 class="titulo-display">Sistema Visual Oficial — Instituto Mente em Foco</h1>
+            <p class="texto-lead">
+                Esta página serve como ferramenta de validação, controle de qualidade, testes responsivos
+                e auditoria de acessibilidade dos tokens, tipografia e componentes base que estruturam a interface do Instituto.
+            </p>
+        </header>
+
+        <hr class="divisor-delicado">
+
+        <!-- 1. PALETA DE CORES -->
+        <article class="stack" style="--stack-gap: var(--espaco-6); margin-bottom: var(--espaco-16);">
+            <div class="section-header section-header--esquerda mb-0">
+                <span class="eyebrow eyebrow--dourado">01. Cores e Superfícies</span>
+                <h2 class="titulo-secao">Paleta Primária e Tokens Semânticos</h2>
+                <p>Cores institucionais homologadas extraídas da identidade visual e da direção de arte oficial.</p>
+            </div>
+
+            <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+                <!-- Areia -->
+                <div class="card" style="padding: var(--espaco-4);">
+                    <div style="height: 90px; background-color: var(--cor-areia); border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.06); margin-bottom: var(--espaco-3);"></div>
+                    <strong style="font-size: var(--fonte-sm); display: block; color: var(--cor-texto-principal);">Bege Areia</strong>
+                    <code class="texto-pequeno">#D8C5A8</code>
+                    <p class="texto-pequeno mt-0" style="margin-top: 0.25rem;"><code>--cor-areia</code></p>
+                </div>
+
+                <!-- Off-White -->
+                <div class="card" style="padding: var(--espaco-4);">
+                    <div style="height: 90px; background-color: var(--cor-off-white); border-radius: var(--radius-sm); border: 1px solid var(--cor-borda); margin-bottom: var(--espaco-3);"></div>
+                    <strong style="font-size: var(--fonte-sm); display: block; color: var(--cor-texto-principal);">Off-White</strong>
+                    <code class="texto-pequeno">#F7F3EB</code>
+                    <p class="texto-pequeno mt-0" style="margin-top: 0.25rem;"><code>--cor-off-white</code></p>
+                </div>
+
+                <!-- Sálvia -->
+                <div class="card" style="padding: var(--espaco-4);">
+                    <div style="height: 90px; background-color: var(--cor-salvia); border-radius: var(--radius-sm); border: 1px solid rgba(0,0,0,0.06); margin-bottom: var(--espaco-3);"></div>
+                    <strong style="font-size: var(--fonte-sm); display: block; color: var(--cor-texto-principal);">Verde Sálvia</strong>
+                    <code class="texto-pequeno">#A8B09A</code>
+                    <p class="texto-pequeno mt-0" style="margin-top: 0.25rem;"><code>--cor-salvia</code></p>
+                </div>
+
+                <!-- Oliva -->
+                <div class="card" style="padding: var(--espaco-4);">
+                    <div style="height: 90px; background-color: var(--cor-oliva); border-radius: var(--radius-sm); margin-bottom: var(--espaco-3);"></div>
+                    <strong style="font-size: var(--fonte-sm); display: block; color: var(--cor-texto-principal);">Verde Oliva</strong>
+                    <code class="texto-pequeno">#56664B</code>
+                    <p class="texto-pequeno mt-0" style="margin-top: 0.25rem;"><code>--cor-oliva</code></p>
+                </div>
+
+                <!-- Dourado -->
+                <div class="card" style="padding: var(--espaco-4);">
+                    <div style="height: 90px; background-color: var(--cor-dourado); border-radius: var(--radius-sm); margin-bottom: var(--espaco-3);"></div>
+                    <strong style="font-size: var(--fonte-sm); display: block; color: var(--cor-texto-principal);">Dourado Champagne</strong>
+                    <code class="texto-pequeno">#C9A86A</code>
+                    <p class="texto-pequeno mt-0" style="margin-top: 0.25rem;"><code>--cor-dourado</code></p>
+                </div>
+
+                <!-- Taupe -->
+                <div class="card" style="padding: var(--espaco-4);">
+                    <div style="height: 90px; background-color: var(--cor-taupe); border-radius: var(--radius-sm); margin-bottom: var(--espaco-3);"></div>
+                    <strong style="font-size: var(--fonte-sm); display: block; color: var(--cor-texto-principal);">Marrom Taupe</strong>
+                    <code class="texto-pequeno">#6D655B</code>
+                    <p class="texto-pequeno mt-0" style="margin-top: 0.25rem;"><code>--cor-taupe</code></p>
+                </div>
+            </div>
+        </article>
+
+        <hr class="divisor-delicado">
+
+        <!-- 2. TIPOGRAFIA E HIERARQUIA EDITORIAL -->
+        <article class="stack" style="--stack-gap: var(--espaco-6); margin-bottom: var(--espaco-16);">
+            <div class="section-header section-header--esquerda mb-0">
+                <span class="eyebrow eyebrow--dourado">02. Tipografia Editorial</span>
+                <h2 class="titulo-secao">Escala Tipográfica Responsiva (Clamp)</h2>
+                <p>Combinação da nobreza de <em>Cormorant Garamond</em> para títulos com a clareza funcional de <em>Montserrat</em> para textos.</p>
+            </div>
+
+            <div class="card" style="padding: var(--espaco-8);">
+                <div style="margin-bottom: var(--espaco-6);">
+                    <span class="badge badge--dourado mb-0" style="margin-bottom: var(--espaco-2);">Hero Headline</span>
+                    <h1 class="titulo-hero">Você não precisa permanecer preso ao que viveu.</h1>
+                    <code class="texto-pequeno">.titulo-hero | Cormorant Garamond 600 | clamp(2.5rem, 1.95rem + 2.5vw, 4.25rem)</code>
+                </div>
+
+                <div style="margin-bottom: var(--espaco-6);">
+                    <span class="badge badge--oliva mb-0" style="margin-bottom: var(--espaco-2);">Display Title</span>
+                    <h2 class="titulo-display">Alguns momentos da vida mudam tudo...</h2>
+                    <code class="texto-pequeno">.titulo-display | Cormorant Garamond 600 | clamp(2.25rem, 1.85rem + 1.8vw, 3.25rem)</code>
+                </div>
+
+                <div style="margin-bottom: var(--espaco-6);">
+                    <span class="badge badge--oliva mb-0" style="margin-bottom: var(--espaco-2);">Section Title</span>
+                    <h3 class="titulo-secao">Conheça nossas principais áreas de trabalho</h3>
+                    <code class="texto-pequeno">.titulo-secao | Cormorant Garamond 600 | clamp(1.875rem, 1.6rem + 1.2vw, 2.5rem)</code>
+                </div>
+
+                <div style="margin-bottom: var(--espaco-6);">
+                    <span class="badge badge--oliva mb-0" style="margin-bottom: var(--espaco-2);">Card Title</span>
+                    <h4 class="titulo-card">Psicoterapia Individual e Avaliação Neuropsicológica</h4>
+                    <code class="texto-pequeno">.titulo-card | Cormorant Garamond 600 | clamp(1.25rem, 1.15rem + 0.5vw, 1.4375rem)</code>
+                </div>
+
+                <div style="margin-bottom: var(--espaco-6);">
+                    <span class="badge badge--oliva mb-0" style="margin-bottom: var(--espaco-2);">Eyebrow / Supratítulo</span>
+                    <div><span class="eyebrow">COMPREENDER • CUIDAR • RECONSTRUIR</span></div>
+                    <code class="texto-pequeno">.eyebrow | Montserrat 600 Uppercase | letter-spacing: 0.12em</code>
+                </div>
+
+                <div style="margin-bottom: var(--espaco-6);">
+                    <span class="badge badge--oliva mb-0" style="margin-bottom: var(--espaco-2);">Lead Editorial (Parágrafo de Abertura)</span>
+                    <p class="texto-lead">
+                        A psicoterapia e a avaliação neuropsicológica oferecem caminhos seguros para compreender suas dores,
+                        ressignificar experiências e construir novos passos para uma vida mais autêntica e serena.
+                    </p>
+                    <code class="texto-pequeno">.texto-lead | Montserrat 400 | clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem)</code>
+                </div>
+
+                <div style="margin-bottom: var(--espaco-6);">
+                    <span class="badge badge--oliva mb-0" style="margin-bottom: var(--espaco-2);">Frase de Destaque / Citação</span>
+                    <span class="frase-destaque">"Sua história merece ser compreendida."</span>
+                    <code class="texto-pequeno">.frase-destaque | Cormorant Garamond Italic | clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem)</code>
+                </div>
+
+                <div style="margin-bottom: var(--espaco-6);">
+                    <span class="badge badge--dourado mb-0" style="margin-bottom: var(--espaco-2);">Assinatura / Detalhe Editorial</span>
+                    <div><span class="texto-assinatura">Cuidar da mente também é uma forma de recomeçar.</span></div>
+                    <code class="texto-pequeno">.texto-assinatura | Cormorant Garamond Italic Dourado</code>
+                </div>
+
+                <div>
+                    <span class="badge badge--oliva mb-0" style="margin-bottom: var(--espaco-2);">Teste de Caracteres em Português</span>
+                    <p>
+                        Acolhimento com sensibilidade, atenção, coração, recomeço, neuropsicologia, intervenção clínica,
+                        experiência terapêutica, superação e reconstrução de vínculos afetivos saudáveis.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <hr class="divisor-delicado">
+
+        <!-- 3. BOTÕES E COMPONENTES DE AÇÃO -->
+        <article class="stack" style="--stack-gap: var(--espaco-6); margin-bottom: var(--espaco-16);">
+            <div class="section-header section-header--esquerda mb-0">
+                <span class="eyebrow eyebrow--dourado">03. Interação e Ações</span>
+                <h2 class="titulo-secao">Botões, CTAs e Links</h2>
+                <p>Elementos interativos com área de toque mínima confortável (48px+), foco visível acessível e transições suaves.</p>
+            </div>
+
+            <div class="card" style="padding: var(--espaco-8);">
+                <div class="cta-group mt-0" style="margin-top: 0; margin-bottom: var(--espaco-6);">
+                    <!-- Botão Primário -->
+                    <a href="#teste-primario" class="btn btn--primario">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        Quero conhecer o atendimento
+                    </a>
+
+                    <!-- Botão Secundário -->
+                    <a href="#teste-secundario" class="btn btn--secundario">
+                        Conhecer especialidades
+                    </a>
+
+                    <!-- Botão WhatsApp -->
+                    <a href="#teste-whatsapp" class="btn btn--whatsapp">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        Falar no WhatsApp
+                    </a>
+
+                    <!-- Botão Desabilitado -->
+                    <button class="btn btn--primario" disabled>
+                        Ação Indisponível
+                    </button>
+                </div>
+
+                <div class="cluster" style="margin-bottom: var(--espaco-6);">
+                    <a href="#link-seta" class="link-seta">
+                        Saiba mais sobre a consulta
+                        <span class="link-seta__icone" aria-hidden="true">→</span>
+                    </a>
+
+                    <a href="#link-seta-2" class="link-seta">
+                        Entenda o processo avaliativo
+                        <span class="link-seta__icone" aria-hidden="true">→</span>
+                    </a>
+                </div>
+
+                <div class="cluster">
+                    <span class="badge badge--oliva">Psicologia Clínica</span>
+                    <span class="badge badge--dourado">Neuropsicologia</span>
+                    <span class="badge badge--escuro">Presencial & Online</span>
+                </div>
+            </div>
+        </article>
+
+        <hr class="divisor-delicado">
+
+        <!-- 4. CARDS E COMPOSIÇÕES DE CONTEÚDO -->
+        <article class="stack" style="--stack-gap: var(--espaco-6); margin-bottom: var(--espaco-16);">
+            <div class="section-header section-header--esquerda mb-0">
+                <span class="eyebrow eyebrow--dourado">04. Cards e Blocos Editoriais</span>
+                <h2 class="titulo-secao">Cards de Identificação, Serviços e Fotográficos</h2>
+                <p>Componentes modulares reproduzindo as seções da referência visual com respiro e equilíbrio.</p>
+            </div>
+
+            <!-- Subseção: 7 Cards de Identificação (Fiel à Referência) -->
+            <div style="margin-bottom: var(--espaco-8);">
+                <h3 class="titulo-card" style="margin-bottom: var(--espaco-4);">Cards de Identificação Emocional (Fileira de 7 Situações)</h3>
+                <div class="fileira-identificacao">
+                    <div class="card-identificacao">
+                        <div class="card-identificacao__icone" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </div>
+                        <p class="card-identificacao__texto">"Meu relacionamento terminou e não sei como recomeçar."</p>
+                    </div>
+
+                    <div class="card-identificacao">
+                        <div class="card-identificacao__icone" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                        </div>
+                        <p class="card-identificacao__texto">"Sinto que estou presa a feridas e mágoas do passado."</p>
+                    </div>
+
+                    <div class="card-identificacao">
+                        <div class="card-identificacao__icone" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                        </div>
+                        <p class="card-identificacao__texto">"Não consigo controlar minha ansiedade no dia a dia."</p>
+                    </div>
+
+                    <div class="card-identificacao">
+                        <div class="card-identificacao__icone" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        </div>
+                        <p class="card-identificacao__texto">"Tenho medo de me envolver e confiar novamente."</p>
+                    </div>
+
+                    <div class="card-identificacao">
+                        <div class="card-identificacao__icone" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="15" x2="16" y2="15"></line><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                        </div>
+                        <p class="card-identificacao__texto">"Sinto que perdi o controle sobre minhas emoções."</p>
+                    </div>
+
+                    <div class="card-identificacao">
+                        <div class="card-identificacao__icone" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                        </div>
+                        <p class="card-identificacao__texto">"Tenho dificuldades constantes de foco e memória."</p>
+                    </div>
+
+                    <div class="card-identificacao">
+                        <div class="card-identificacao__icone" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        </div>
+                        <p class="card-identificacao__texto">"Não sei por onde começar a buscar ajuda."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subseção: Grid de Cards de Especialidades Clínicas -->
+            <div style="margin-bottom: var(--espaco-8);">
+                <h3 class="titulo-card" style="margin-bottom: var(--espaco-4);">Cards de Serviços e Intervenções</h3>
+                <div class="grid-cards">
+                    <div class="card card-servico">
+                        <div>
+                            <div class="card-servico__icone" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><path d="M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"></path></svg>
+                            </div>
+                            <h4 class="titulo-card">Psicoterapia Individual</h4>
+                            <p class="card-servico__descricao">
+                                Espaço seguro de escuta para elaborar dores, ansiedades, processos de luto e reconstrução pessoal.
+                            </p>
+                        </div>
+                        <a href="#psicoterapia" class="link-seta">
+                            Conhecer atendimento
+                            <span class="link-seta__icone" aria-hidden="true">→</span>
+                        </a>
+                    </div>
+
+                    <div class="card card-servico">
+                        <div>
+                            <div class="card-servico__icone" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                            </div>
+                            <h4 class="titulo-card">Avaliação Neuropsicológica</h4>
+                            <p class="card-servico__descricao">
+                                Investigação aprofundada de memória, atenção, funções executivas e perfil cognitivo individualizado.
+                            </p>
+                        </div>
+                        <a href="#neuropsicologia" class="link-seta">
+                            Conhecer avaliação
+                            <span class="link-seta__icone" aria-hidden="true">→</span>
+                        </a>
+                    </div>
+
+                    <div class="card card-servico">
+                        <div>
+                            <div class="card-servico__icone" aria-hidden="true">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                            </div>
+                            <h4 class="titulo-card">Reabilitação Neurocognitiva</h4>
+                            <p class="card-servico__descricao">
+                                Estratégias estruturadas para fortalecimento de recursos funcionais, autonomia e qualidade de vida.
+                            </p>
+                        </div>
+                        <a href="#reabilitacao" class="link-seta">
+                            Conhecer reabilitação
+                            <span class="link-seta__icone" aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subseção: Cards Fotográficos com Overlay para Áreas de Atuação -->
+            <div>
+                <h3 class="titulo-card" style="margin-bottom: var(--espaco-4);">Cards Fotográficos com Overlay (Áreas de Atuação)</h3>
+                <div class="grid-areas">
+                    <div class="card-foto">
+                        <div class="placeholder-imagem" style="border: none; border-radius: 0;">
+                            <span class="placeholder-imagem__codigo">[IMG-003: Psicologia]</span>
+                            <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                        </div>
+                        <div class="card-foto__overlay"></div>
+                        <div class="card-foto__conteudo">
+                            <span class="badge badge--escuro card-foto__badge">Atendimento</span>
+                            <h4 class="card-foto__titulo">Psicologia</h4>
+                            <span class="link-seta" style="color: var(--cor-areia);">Ver detalhes →</span>
+                        </div>
+                    </div>
+
+                    <div class="card-foto">
+                        <div class="placeholder-imagem" style="border: none; border-radius: 0;">
+                            <span class="placeholder-imagem__codigo">[IMG-004: Neuropsicologia]</span>
+                            <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                        </div>
+                        <div class="card-foto__overlay"></div>
+                        <div class="card-foto__conteudo">
+                            <span class="badge badge--escuro card-foto__badge">Avaliação</span>
+                            <h4 class="card-foto__titulo">Neuropsicologia</h4>
+                            <span class="link-seta" style="color: var(--cor-areia);">Ver detalhes →</span>
+                        </div>
+                    </div>
+
+                    <div class="card-foto">
+                        <div class="placeholder-imagem" style="border: none; border-radius: 0;">
+                            <span class="placeholder-imagem__codigo">[IMG-005: Traumas]</span>
+                            <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                        </div>
+                        <div class="card-foto__overlay"></div>
+                        <div class="card-foto__conteudo">
+                            <span class="badge badge--escuro card-foto__badge">Acolhimento</span>
+                            <h4 class="card-foto__titulo">Traumas e Crises</h4>
+                            <span class="link-seta" style="color: var(--cor-areia);">Ver detalhes →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <hr class="divisor-delicado">
+
+        <!-- 5. COMPONENTES DE MÍDIA, ASPECT-RATIOS E PLACEHOLDERS -->
+        <article class="stack" style="--stack-gap: var(--espaco-6); margin-bottom: var(--espaco-16);">
+            <div class="section-header section-header--esquerda mb-0">
+                <span class="eyebrow eyebrow--dourado">05. Mídia e Placeholders</span>
+                <h2 class="titulo-secao">Frames de Imagem e Proporções Oficiais (Prevenção de CLS)</h2>
+                <p>O espaço fotográfico é rigorosamente reservado antes do carregamento de qualquer asset.</p>
+            </div>
+
+            <div class="grid-cards">
+                <!-- 4:5 - Foto Hero / Perfil -->
+                <div class="stack" style="--stack-gap: var(--espaco-2);">
+                    <div class="media-frame ratio-4-5">
+                        <div class="placeholder-imagem">
+                            <div class="placeholder-imagem__icone" aria-hidden="true">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            </div>
+                            <span class="placeholder-imagem__codigo">IMG-001</span>
+                            <span class="placeholder-imagem__descricao">Foto Principal — Mari Menezes</span>
+                            <span class="placeholder-imagem__ratio">Proporção 4:5 (Vertical)</span>
+                        </div>
+                    </div>
+                    <span class="texto-pequeno"><code>.media-frame.ratio-4-5</code> (Hero Section & Sobre Mim)</span>
+                </div>
+
+                <!-- 4:3 - Cards de Áreas -->
+                <div class="stack" style="--stack-gap: var(--espaco-2);">
+                    <div class="media-frame ratio-4-3">
+                        <div class="placeholder-imagem">
+                            <div class="placeholder-imagem__icone" aria-hidden="true">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            </div>
+                            <span class="placeholder-imagem__codigo">IMG-003</span>
+                            <span class="placeholder-imagem__descricao">Card de Área de Atuação</span>
+                            <span class="placeholder-imagem__ratio">Proporção 4:3 (Horizontal)</span>
+                        </div>
+                    </div>
+                    <span class="texto-pequeno"><code>.media-frame.ratio-4-3</code> (Cards da Home)</span>
+                </div>
+
+                <!-- 16:9 - Capas de Serviços -->
+                <div class="stack" style="--stack-gap: var(--espaco-2);">
+                    <div class="media-frame ratio-16-9">
+                        <div class="placeholder-imagem">
+                            <div class="placeholder-imagem__icone" aria-hidden="true">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            </div>
+                            <span class="placeholder-imagem__codigo">IMG-011</span>
+                            <span class="placeholder-imagem__descricao">Capa Página de Serviço</span>
+                            <span class="placeholder-imagem__ratio">Proporção 16:9 (Panorâmica)</span>
+                        </div>
+                    </div>
+                    <span class="texto-pequeno"><code>.media-frame.ratio-16-9</code> (Páginas de Especialidade)</span>
+                </div>
+            </div>
+        </article>
+
+        <hr class="divisor-delicado">
+
+        <!-- 6. PASSOS EDITORIAIS E ACCORDION ACESSÍVEL -->
+        <article class="stack" style="--stack-gap: var(--espaco-6); margin-bottom: var(--espaco-16);">
+            <div class="section-header section-header--esquerda mb-0">
+                <span class="eyebrow eyebrow--dourado">06. Didática e Clareza</span>
+                <h2 class="titulo-secao">Passos Editoriais e Accordion Acessível</h2>
+                <p>Elementos estruturais para orientar a jornada do visitante sem parecer checklist médico frio.</p>
+            </div>
+
+            <div class="grid-cards" style="margin-bottom: var(--espaco-6);">
+                <div class="step">
+                    <span class="step__numero">01</span>
+                    <h3 class="step__titulo">Conversar</h3>
+                    <p class="step__descricao">O primeiro contato para expor o momento atual e alinhar a forma de cuidado mais adequada.</p>
+                </div>
+
+                <div class="step">
+                    <span class="step__numero">02</span>
+                    <h3 class="step__titulo">Compreender</h3>
+                    <p class="step__descricao">Escuta e investigação clínica profunda para identificar raízes e dinâmicas do sofrimento.</p>
+                </div>
+
+                <div class="step">
+                    <span class="step__numero">03</span>
+                    <h3 class="step__titulo">Cuidar</h3>
+                    <p class="step__descricao">Intervenção psicoterapêutica ou neuropsicológica continuada e acolhedora.</p>
+                </div>
+
+                <div class="step">
+                    <span class="step__numero">04</span>
+                    <h3 class="step__titulo">Reconstruir</h3>
+                    <p class="step__descricao">Desenvolvimento de recursos emocionais e comportamentais para seguir adiante com serenidade.</p>
+                </div>
+            </div>
+
+            <div class="card" style="padding: var(--espaco-6);">
+                <h4 class="titulo-card" style="margin-bottom: var(--espaco-4);">Exemplo de Details / Summary Nativo e Acessível</h4>
+                <details>
+                    <summary>Como saber se meu caso é para psicoterapia ou avaliação neuropsicológica?</summary>
+                    <div class="details-conteudo">
+                        A psicoterapia foca no acompanhamento emocional, traumas e relacionamentos. Já a avaliação neuropsicológica investiga funções cognitivas como memória, atenção e raciocínio através de testes validados.
+                    </div>
+                </details>
+
+                <details>
+                    <summary>O atendimento pode ser realizado de forma online?</summary>
+                    <div class="details-conteudo">
+                        Sim, a psicoterapia individual pode ser realizada com segurança e sigilo na modalidade online conforme resoluções do Conselho Federal de Psicologia.
+                    </div>
+                </details>
+            </div>
+        </article>
+
+        <hr class="divisor-delicado">
+
+        <!-- 7. FORMULÁRIOS BASE -->
+        <article class="stack" style="--stack-gap: var(--espaco-6); margin-bottom: var(--espaco-16);">
+            <div class="section-header section-header--esquerda mb-0">
+                <span class="eyebrow eyebrow--dourado">07. Formulários Base</span>
+                <h2 class="titulo-secao">Campos, Focos e Validações Acessíveis</h2>
+                <p>Estilos limpos, serenos e acessíveis para inputs, seletores e mensagens de erro.</p>
+            </div>
+
+            <div class="card" style="max-width: 600px; padding: var(--espaco-8);">
+                <form onsubmit="return false;" class="stack" style="--stack-gap: var(--espaco-4);">
+                    <div>
+                        <label for="campo-nome">Nome Completo</label>
+                        <input type="text" id="campo-nome" placeholder="Digite seu nome">
+                    </div>
+
+                    <div class="campo-erro">
+                        <label for="campo-email">E-mail para Contato (Simulação de Erro)</label>
+                        <input type="email" id="campo-email" value="email-invalido" aria-invalid="true">
+                        <span class="mensagem-erro">Por favor, insira um endereço de e-mail válido.</span>
+                    </div>
+
+                    <div>
+                        <label for="campo-area">Área de Interesse</label>
+                        <select id="campo-area">
+                            <option value="">Selecione uma área...</option>
+                            <option value="psicologia">Psicologia Clínica</option>
+                            <option value="neuropsicologia">Avaliação Neuropsicológica</option>
+                            <option value="traumas">Acompanhamento em Traumas</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="campo-desabilitado">Campo Desabilitado</label>
+                        <input type="text" id="campo-desabilitado" value="Campo temporariamente indisponível" disabled>
+                    </div>
+                </form>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- 8. SEÇÃO AREIA (Demonstração de Superfície Suave) -->
+<section class="secao secao--areia">
+    <div class="container">
+        <div class="section-header section-header--centro">
+            <span class="eyebrow eyebrow--oliva">Superfície Diferenciada</span>
+            <h2 class="titulo-secao">Demonstração da Seção Areia (Respiro Acolhedor)</h2>
+            <p>
+                Utilizada para quebrar o ritmo visual entre blocos de conteúdo claro, proporcionando
+                uma transição suave, serena e natural.
+            </p>
+            <div class="cta-group" style="justify-content: center;">
+                <a href="#acao-areia" class="btn btn--primario">Botão na Seção Areia</a>
+                <a href="#acao-areia-2" class="btn btn--secundario">Ação Secundária</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 9. SEÇÃO VERDE OLIVA (Demonstração de Rodapé ou Destaque Escuro) -->
+<section class="secao secao--verde">
+    <div class="container">
+        <div class="section-header section-header--centro">
+            <span class="eyebrow eyebrow--claro">Encerramento Institucional</span>
+            <h2 class="titulo-display titulo--claro">Cuidar da mente também é uma forma de recomeçar.</h2>
+            <p>
+                Demonstração de contraste acessível sobre o verde oliva profundo oficial.
+                Tipografia clara, botões em tom areia/dourado e links sutis.
+            </p>
+            <div class="cta-group" style="justify-content: center;">
+                <a href="#agendar-verde" class="btn btn--dourado">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Agende seu atendimento
+                </a>
+                <a href="#whatsapp-verde" class="btn btn--whatsapp">
+                    Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

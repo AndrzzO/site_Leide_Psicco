@@ -1,0 +1,467 @@
+/* ============================================================
+   CANAL DE CONTATO E AGENDAMENTO — INSTITUTO MENTE EM FOCO
+   Design System: Paleta Oliva, Areia, Dourado, Taupe.
+   Layout responsivo, acessível e acolhedor (mobile-first a 1920px+).
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. SEÇÃO E GRID PRINCIPAL DE CONTATO
+   ------------------------------------------------------------ */
+.secao-contato {
+  padding: clamp(var(--espaco-8), 5vw, var(--espaco-16)) 0;
+  background-color: var(--cor-off-white, #FAF8F5);
+}
+
+.contato-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(var(--espaco-8), 4vw, var(--espaco-12));
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .contato-grid {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+}
+
+/* ------------------------------------------------------------
+   2. COLUNA DE INFORMAÇÕES E WHATSAPP
+   ------------------------------------------------------------ */
+.contato-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-6);
+}
+
+.contato-info__introducao {
+  margin-bottom: var(--espaco-2);
+}
+
+.contato-info__titulo {
+  font-family: var(--fonte-display);
+  font-size: clamp(1.65rem, 2.5vw, 2.15rem);
+  font-weight: 600;
+  color: var(--cor-oliva);
+  margin-bottom: var(--espaco-3);
+  line-height: 1.25;
+}
+
+.contato-info__texto {
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  line-height: 1.68;
+  color: var(--cor-taupe);
+}
+
+/* Card Destacado do WhatsApp */
+.card-whatsapp-destaque {
+  background: linear-gradient(135deg, var(--cor-oliva) 0%, #3D4A35 100%);
+  color: var(--cor-texto-claro);
+  border-radius: var(--radius-md);
+  padding: clamp(var(--espaco-6), 3vw, var(--espaco-8));
+  box-shadow: var(--sombra-card);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 106, 0.3);
+}
+
+.card-whatsapp-destaque__cabecalho {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-3);
+}
+
+.card-whatsapp-destaque__icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: var(--cor-dourado);
+  flex-shrink: 0;
+}
+
+.card-whatsapp-destaque__titulo {
+  font-family: var(--fonte-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.card-whatsapp-destaque__texto {
+  font-family: var(--fonte-texto);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba(247, 243, 235, 0.88);
+  margin-bottom: var(--espaco-5);
+}
+
+.card-whatsapp-destaque__btn {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .card-whatsapp-destaque__btn {
+    width: auto;
+    display: inline-flex;
+  }
+}
+
+/* Card Institucional de Canais */
+.card-canais-institucionais {
+  background-color: var(--cor-branco, #FFFFFF);
+  border: 1px solid rgba(44, 60, 48, 0.09);
+  border-radius: var(--raio-md, 10px);
+  padding: clamp(var(--espaco-6), 3vw, var(--espaco-8));
+  box-shadow: 0 4px 16px rgba(44, 60, 48, 0.04);
+}
+
+.card-canais-institucionais__titulo {
+  font-family: var(--fonte-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--cor-oliva);
+  margin-bottom: var(--espaco-4);
+  padding-bottom: var(--espaco-2);
+  border-bottom: 1px solid rgba(44, 60, 48, 0.08);
+}
+
+.lista-canais {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+}
+
+.item-canal {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espaco-3);
+  font-family: var(--fonte-texto);
+  font-size: 0.9375rem;
+  color: var(--cor-texto);
+  line-height: 1.5;
+}
+
+.item-canal__icone {
+  color: var(--cor-dourado);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.item-canal__conteudo strong {
+  display: block;
+  color: var(--cor-oliva);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.15rem;
+}
+
+.item-canal__conteudo a {
+  color: var(--cor-oliva);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: color var(--transicao-rapida);
+}
+
+.item-canal__conteudo a:hover {
+  color: var(--cor-dourado);
+}
+
+/* ------------------------------------------------------------
+   3. FORMULÁRIO SEGURO DE CONTATO
+   ------------------------------------------------------------ */
+.card-formulario {
+  background-color: var(--cor-branco, #FFFFFF);
+  border: 1px solid rgba(44, 60, 48, 0.1);
+  border-radius: var(--raio-md, 10px);
+  padding: clamp(var(--espaco-6), 4vw, var(--espaco-10));
+  box-shadow: 0 6px 20px rgba(44, 60, 48, 0.05);
+}
+
+.card-formulario__cabecalho {
+  margin-bottom: var(--espaco-6);
+}
+
+.card-formulario__titulo {
+  font-family: var(--fonte-display);
+  font-size: clamp(1.5rem, 2.3vw, 1.95rem);
+  font-weight: 600;
+  color: var(--cor-oliva);
+  margin-bottom: var(--espaco-2);
+}
+
+.card-formulario__subtitulo {
+  font-family: var(--fonte-texto);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--cor-taupe);
+}
+
+/* Aviso discreto sobre não envio de dados clínicos sensíveis */
+.aviso-dados-sensiveis {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espaco-3);
+  padding: 0.875rem 1rem;
+  background-color: var(--cor-areia-clara);
+  border-left: 3px solid var(--cor-dourado);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: var(--espaco-6);
+  font-family: var(--fonte-texto);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--cor-taupe);
+}
+
+.aviso-dados-sensiveis__icone {
+  color: var(--cor-dourado);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+/* Campos do Formulário */
+.form-contato {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-5);
+}
+
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+}
+
+.form-label {
+  font-family: var(--fonte-texto);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cor-oliva);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-label__obrigatorio {
+  color: #C5221F;
+  margin-left: 0.2rem;
+}
+
+.form-label__dica {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--cor-taupe);
+}
+
+/* Inputs, Selects e Textarea */
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.85rem 1.15rem;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  color: var(--cor-oliva);
+  background-color: var(--cor-areia-clara, #FBF9F5);
+  border: 1px solid rgba(44, 60, 48, 0.16);
+  border-radius: var(--raio-sm, 6px);
+  transition: all var(--transicao-rapida);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  background-color: var(--cor-branco, #FFFFFF);
+  border-color: var(--cor-oliva);
+  box-shadow: 0 0 0 3px rgba(44, 60, 48, 0.2);
+}
+
+/* Estado de Erro / Acessibilidade (WCAG 3.3.1) */
+.form-input[aria-invalid="true"],
+.form-select[aria-invalid="true"],
+.form-textarea[aria-invalid="true"],
+.form-checkbox[aria-invalid="true"] {
+  border-color: #C5221F !important;
+  background-color: #FFF9F9;
+}
+
+.form-input[aria-invalid="true"]:focus,
+.form-select[aria-invalid="true"]:focus,
+.form-textarea[aria-invalid="true"]:focus {
+  border-color: #C5221F !important;
+  box-shadow: 0 0 0 3px rgba(197, 34, 31, 0.25) !important;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(92, 107, 95, 0.7);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.6;
+}
+
+/* Grupo de Checkbox de Consentimento */
+.form-checkbox-grupo {
+  margin-top: var(--espaco-2);
+}
+
+.form-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espaco-3);
+  font-family: var(--fonte-texto);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--cor-taupe);
+  cursor: pointer;
+}
+
+.form-checkbox {
+  margin-top: 0.2rem;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--cor-oliva);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.form-checkbox-label a {
+  color: var(--cor-oliva);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
+.form-checkbox-label a:hover {
+  color: var(--cor-dourado);
+}
+
+/* Legenda de campos obrigatórios (WCAG 3.3.2) */
+.form-legenda-obrigatorio {
+  font-family: var(--fonte-texto);
+  font-size: 0.8125rem;
+  color: var(--cor-texto-suave);
+  margin-bottom: var(--espaco-4);
+}
+
+.form-legenda-obrigatorio__simbolo {
+  color: #C5221F;
+  font-weight: 700;
+}
+
+/* Sumário de Erros no Topo do Formulário (WCAG 3.3.1) */
+.form-sumario-erros {
+  background-color: #FCE8E6;
+  border: 1px solid #FAD2CF;
+  border-left: 4px solid #C5221F;
+  border-radius: var(--raio-sm, 6px);
+  padding: 1rem 1.25rem;
+  margin-bottom: var(--espaco-6);
+}
+
+.form-sumario-erros:focus {
+  outline: 2px solid #C5221F;
+  outline-offset: 2px;
+}
+
+.form-sumario-erros__titulo {
+  font-family: var(--fonte-texto);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #C5221F;
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  margin-bottom: var(--espaco-2);
+}
+
+.form-sumario-erros__lista {
+  margin: 0;
+  padding-left: 1.5rem;
+  font-size: 0.875rem;
+  color: #5C1D1D;
+}
+
+.form-sumario-erros__lista li {
+  margin-bottom: 0.35rem;
+}
+
+.form-sumario-erros__lista a {
+  color: #A51D1A;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+}
+
+.form-sumario-erros__lista a:hover,
+.form-sumario-erros__lista a:focus-visible {
+  color: #5C1D1D;
+  outline: 2px solid #A51D1A;
+}
+
+/* Mensagens de Erro dos Campos */
+.form-erro {
+  font-family: var(--fonte-texto);
+  font-size: 0.8125rem;
+  color: #C5221F;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Feedback de Mensagens Django */
+.feedback-mensagens {
+  margin-bottom: var(--espaco-6);
+}
+
+.feedback-alerta {
+  padding: 1rem 1.25rem;
+  border-radius: var(--raio-sm, 6px);
+  font-family: var(--fonte-texto);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-4);
+}
+
+.feedback-alerta--success {
+  background-color: #E6F4EA;
+  color: #137333;
+  border: 1px solid #CEEAD6;
+}
+
+.feedback-alerta--error {
+  background-color: #FCE8E6;
+  color: #C5221F;
+  border: 1px solid #FAD2CF;
+}
+
+/* Botão de Envio */
+.form-btn-submit {
+  width: 100%;
+  margin-top: var(--espaco-2);
+}
+
+@media (min-width: 600px) {
+  .form-btn-submit {
+    width: auto;
+    align-self: flex-start;
+  }
+}

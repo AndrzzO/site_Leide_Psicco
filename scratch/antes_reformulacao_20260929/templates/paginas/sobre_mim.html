@@ -1,0 +1,135 @@
+{% extends "base/base.html" %}
+{% load static seo_tags %}
+
+{% block title %}{{ titulo_pagina }}{% endblock title %}
+{% block meta_description %}{{ meta_descricao }}{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paginas_internas.css' %}">
+{% endblock extra_head %}
+
+{% block structured_data %}
+{{ block.super }}
+{% render_breadcrumbs_schema breadcrumb %}
+{% endblock structured_data %}
+
+{% block content %}
+<!-- ============================================================ -->
+<!-- 1. HERO INTERNO: APRESENTAÇÃO MARI MENEZES                   -->
+<!-- ============================================================ -->
+{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="SOBRE MIM" titulo_hero="Prazer, eu sou Mari Menezes." descricao_hero="Psicóloga, palestrante e facilitadora de grupos, com atuação em Psicologia e Neuropsicologia." cta_texto="Conhecer o atendimento" cta_url="#trajetoria" cta_secundario_texto="Falar pelo WhatsApp" cta_secundario_url=WHATSAPP_LINK imagem_url=imagem_url imagem_alt="Psicóloga Mari Menezes — Instituto Mente em Foco" imagem_ratio="ratio-4-5" placeholder_codigo="IMG-010" placeholder_descricao="Retrato Editorial Mari Menezes" placeholder_ratio="Proporção 4:5" badge_texto="Mari Menezes • Psicóloga & Neuropsicóloga" %}
+
+<!-- ============================================================ -->
+<!-- 2. BIOGRAFIA E VISÃO CLÍNICA EDITORIAL                       -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" id="trajetoria" aria-label="Trajetória Profissional">
+    <div class="site-container">
+        <div class="split-editorial">
+            <!-- Coluna de Texto Editorial -->
+            <div class="split-editorial__texto">
+                <span class="eyebrow">PROPÓSITO & ESCUTA</span>
+                <h2 class="titulo-secao">Uma prática guiada pelo respeito à sua história</h2>
+
+                <p>
+                    Minha prática parte da compreensão de que cada pessoa carrega uma história que precisa ser compreendida antes de ser julgada.
+                </p>
+
+                <p>
+                    Meu trabalho busca oferecer um espaço de escuta profissional, acolhimento e construção de estratégias para diferentes momentos da vida. Compreender o que você está sentindo e vivendo é o primeiro passo para reorganizar seus caminhos com autonomia e serenidade.
+                </p>
+
+                <!-- Citação de Destaque Oficial -->
+                <div class="bloco-citacao-editorial">
+                    <blockquote class="bloco-citacao-editorial__texto">
+                        “{{ profissional.frase_destaque|default:"Meu propósito é ajudar pessoas a compreenderem melhor a própria história e encontrarem recursos para seguir seus caminhos." }}”
+                    </blockquote>
+                    <span class="bloco-citacao-editorial__autor">Mari Menezes</span>
+                </div>
+
+                {% if profissional and profissional.biografia_completa %}
+                    <div class="split-editorial__biografia-extra">
+                        {{ profissional.biografia_completa|linebreaks }}
+                    </div>
+                {% endif %}
+
+                {% if profissional and profissional.registro_profissional and profissional.registro_profissional != 'PENDENTE_DEFINICAO' %}
+                    <p class="texto-suave">
+                        <strong>Registro Profissional:</strong> {{ profissional.registro_profissional }}
+                    </p>
+                {% endif %}
+            </div>
+
+            <!-- Coluna de Imagem / Fotografia Editorial do Espaço -->
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    {% if profissional and profissional.foto_secundaria %}
+                        <img src="{{ profissional.foto_secundaria.url }}"
+                             alt="Consultório e ambiente de acolhimento do Instituto Mente em Foco"
+                             loading="lazy"
+                             decoding="async"
+                             class="split-editorial__img">
+                    {% else %}
+                        <div class="placeholder-imagem">
+                            <span class="placeholder-imagem__codigo">IMG-028</span>
+                            <span class="placeholder-imagem__descricao">Ambiente Clínico e Acolhimento</span>
+                            <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. OS TRÊS PILARES DA PRÁTICA CLÍNICA                        -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--areia" aria-label="Pilares Clínicos">
+    <div class="site-container">
+        <div class="secao-editorial__cabecalho secao-editorial__cabecalho--centro">
+            <span class="eyebrow">CONCEITO DO CUIDADO</span>
+            <h2 class="titulo-secao">Compreender • Cuidar • Reconstruir</h2>
+            <p class="secao-editorial__subtitulo">
+                Um método de acolhimento que respeita a singularidade e o tempo de cada pessoa em seu processo de transformação.
+            </p>
+        </div>
+
+        <div class="grid-pilares-sobre">
+            <article class="card-pilar-sobre">
+                <div class="card-pilar-sobre__numero" aria-hidden="true">01</div>
+                <h3 class="card-pilar-sobre__titulo">Compreender</h3>
+                <p class="card-pilar-sobre__texto">
+                    Investigar a história, identificar emoções e reconhecer os padrões de repetição que influenciam as vivências do presente.
+                </p>
+            </article>
+
+            <article class="card-pilar-sobre">
+                <div class="card-pilar-sobre__numero" aria-hidden="true">02</div>
+                <h3 class="card-pilar-sobre__titulo">Cuidar</h3>
+                <p class="card-pilar-sobre__texto">
+                    Oferecer um ambiente seguro e sigiloso para acolher a dor, elaborar conflitos e construir estratégias personalizadas de enfrentamento.
+                </p>
+            </article>
+
+            <article class="card-pilar-sobre">
+                <div class="card-pilar-sobre__numero" aria-hidden="true">03</div>
+                <h3 class="card-pilar-sobre__titulo">Reconstruir</h3>
+                <p class="card-pilar-sobre__texto">
+                    Fortalecer a autonomia, restabelecer limites saudáveis e desenvolver recursos internos para seguir em frente com dignidade.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. ÁREAS DE ATUAÇÃO RELACIONADAS                             -->
+<!-- ============================================================ -->
+{% include "componentes/paginas_relacionadas.html" with relacionadas_eyebrow="ATUAÇÃO INTEGRADA" relacionadas_titulo="Áreas de Atendimento Clínico" relacionadas_subtitulo="Conheça as frentes especializadas desenvolvidas no Instituto Mente em Foco." itens_relacionados=itens_relacionados %}
+
+<!-- ============================================================ -->
+<!-- 5. CTA DE ATENDIMENTO FINAL                                  -->
+<!-- ============================================================ -->
+{% include "componentes/cta_atendimento.html" with cta_titulo="Cuidar da mente também é uma forma de recomeçar." cta_texto_apoio="Agende sua conversa inicial e conheça um espaço seguro para cuidar da sua história com respeito e sigilo profissional." cta_botao_texto="Falar pelo WhatsApp" %}
+
+{% endblock content %}

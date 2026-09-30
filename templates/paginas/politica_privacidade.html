@@ -1,0 +1,254 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}{{ titulo_pagina }}{% endblock title %}
+{% block meta_description %}{{ meta_descricao }}{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paginas_internas.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<!-- ============================================================ -->
+<!-- HERO INTERNO: POLÍTICA DE PRIVACIDADE                        -->
+<!-- ============================================================ -->
+{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="TRANSPARÊNCIA E LGPD" titulo_hero="Política de Privacidade" descricao_hero="Compromisso institucional com a transparência, minimização de dados e respeito à sua privacidade neste website." %}
+
+<!-- ============================================================ -->
+<!-- CONTEÚDO ESTRUTURADO DA POLÍTICA DE PRIVACIDADE             -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Texto da Política de Privacidade">
+    <div class="site-container">
+        <article class="conteudo-politica" style="max-width: 760px; margin: 0 auto; font-family: var(--fonte-texto); font-size: 1.0625rem; line-height: 1.8; color: var(--cor-texto);">
+
+            <!-- 1. QUEM SOMOS -->
+            <section id="quem-somos" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    1. Quem Somos
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    O <strong>{{ NOME_INSTITUTO }}</strong> é um espaço dedicado ao acolhimento psicológico, investigação neuropsicológica e reabilitação cognitiva, tendo como Responsável Técnica a <strong>{{ NOME_PROFISSIONAL }}</strong>{% if CRP_PROFISSIONAL and CRP_PROFISSIONAL != 'PENDENTE_DEFINICAO' %} ({{ CRP_PROFISSIONAL }}){% endif %}.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    Este documento tem por finalidade esclarecer, de maneira transparente e factual, como tratamos as informações coletadas dos visitantes que navegam em nosso site institucional ou que utilizam nossos canais oficiais de comunicação.
+                </p>
+            </section>
+
+            <!-- 2. QUAIS DADOS O SITE PODE COLETAR -->
+            <section id="quais-dados-coletamos" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    2. Quais Dados o Site Pode Coletar
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    Adotamos o princípio da <strong>minimização de dados</strong> previsto no art. 6º, inciso III, da Lei Geral de Proteção de Dados Pessoais (LGPD — Lei nº 13.709/2018). O site coleta exclusivamente os dados estritamente necessários para permitir o diálogo e o retorno das solicitações enviadas:
+                </p>
+                <ul style="margin-bottom: 1rem; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Nome completo:</strong> Para identificação da pessoa que busca informações;</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Endereço de e-mail e/ou Telefone (WhatsApp):</strong> Para permitir que a profissional ou sua equipe retorne a mensagem recebida;</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Serviço ou tema de interesse (opcional):</strong> Para direcionar pontualmente o assunto da consulta informativa (ex.: Psicoterapia, Avaliação ou Reabilitação);</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Mensagem breve:</strong> Texto livre de esclarecimento sobre o contato;</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Registro de data e hora:</strong> Carimbo temporal gerado pelo sistema para controle de envio;</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Declaração de ciência:</strong> Confirmação eletrônica de leitura desta política.</li>
+                </ul>
+                <p style="margin-bottom: 1rem; background-color: var(--cor-areia-clara); padding: 1rem 1.25rem; border-left: 4px solid var(--cor-oliva); border-radius: var(--raio-sm, 4px);">
+                    <strong>Aviso Ético Rigoroso:</strong> Não coletamos CPF, RG, dados bancários, nem solicitamos informações clínicas, diagnósticos, sintomas, laudos ou receitas pelo formulário do site.
+                </p>
+            </section>
+
+            <!-- 3. COMO OS DADOS SÃO OBTIDOS -->
+            <section id="como-obtemos-dados" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    3. Como os Dados São Obtidos
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    Os dados pessoais tratados são fornecidos <strong>direta e voluntariamente pelo próprio titular</strong> ao preencher e submeter o formulário de contato do site, ou ao optar por clicar nos links que direcionam para o nosso WhatsApp comercial ou canais sociais.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    Não utilizamos ferramentas ocultas de captura de dados, compra de listas, rastreamento entre sites (cross-site tracking) ou perfilamento comportamental automatizado.
+                </p>
+            </section>
+
+            <!-- 4. PARA QUE OS DADOS SÃO UTILIZADOS -->
+            <section id="para-que-utilizamos" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    4. Para Que os Dados São Utilizados
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    As informações fornecidas destinam-se exclusivamente às seguintes finalidades institucionais:
+                </p>
+                <ul style="margin-bottom: 1rem; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 0.5rem;">Receber, ler e responder a dúvidas sobre as modalidades de atendimento do Instituto;</li>
+                    <li style="margin-bottom: 0.5rem;">Fornecer informações sobre horários disponíveis e procedimentos preliminares para agendamento;</li>
+                    <li style="margin-bottom: 0.5rem;">Garantir a segurança técnica da aplicação e prevenir requisições automatizadas ou abusivas (spambots).</li>
+                </ul>
+                <p style="margin-bottom: 1rem;">
+                    Os dados <strong>não são utilizados</strong> para envio de propagandas não solicitadas (SPAM), formação de listas de telemarketing, disparos em massa ou comercialização com terceiros.
+                </p>
+            </section>
+
+            <!-- 5. FORMULÁRIO DE CONTATO -->
+            <section id="formulario-contato" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    5. Formulário de Contato e Orientações Clínicas
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    O formulário disponível em nossa página de contato é um canal de acolhimento e comunicação inicial. <strong>Ele não constitui prontuário psicológico, prontuário médico, ficha de anamnese ou canal de emergência psiquiátrica.</strong>
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    Pedimos que o visitante <strong>não relate vivências detalhadas de sofrimento profundo, medicações em uso ou diagnósticos clínicos</strong> através do formulário aberto. O aprofundamento da história de vida e o acolhimento terapêutico ocorrem em ambiente clínico reservado, sob o absoluto sigilo profissional resguardado pelo Código de Ética Profissional do Psicólogo (Conselho Federal de Psicologia — CFP).
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    <em>Em situações de crise emocional aguda ou risco imediato, orientamos buscar atendimento presencial em serviços de urgência e emergência em saúde mental ou acionar o Centro de Valorização da Vida (CVV) pelo telefone 188.</em>
+                </p>
+            </section>
+
+            <!-- 6. COOKIES E TECNOLOGIAS -->
+            <section id="cookies-tecnologias" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    6. Cookies e Tecnologias de Navegação
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    Nosso website opera utilizando <strong>exclusivamente cookies técnicos e estritamente necessários</strong> à operação e segurança do sistema (como tokens de proteção contra falsificação de requisições CSRF e identificadores de sessão técnica).
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    <strong>Não utilizamos cookies analíticos invasivos, cookies de publicidade, cookies de terceiros ou tecnologias de perfilamento.</strong> Para obter detalhes minuciosos sobre a finalidade e duração de cada cookie essencial, consulte nossa <a href="{% url 'paginas:politica_cookies' %}" style="color: var(--cor-oliva); font-weight: 600; text-decoration: underline;">Política de Cookies</a>.
+                </p>
+            </section>
+
+            <!-- 7. SERVIÇOS DE TERCEIROS -->
+            <section id="servicos-terceiros" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    7. Serviços de Terceiros e Links Externos
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    O site do Instituto integra pontualmente as seguintes tecnologias e canais externos:
+                </p>
+                <ul style="margin-bottom: 1rem; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Google Fonts (Google LLC):</strong> Utilizado para o carregamento das fontes tipográficas oficiais (<em>Cormorant Garamond</em> e <em>Montserrat</em>). As requisições são restritas à entrega visual das fontes aos navegadores dos visitantes;</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>WhatsApp (Meta Platforms / WhatsApp LLC):</strong> O site disponibiliza links diretos e botão flutuante para início de conversa no WhatsApp. Nenhum dado é enviado à plataforma da Meta antes do clique voluntário do visitante no botão;</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Instagram e Google Maps:</strong> Links externos pontuais direcionando para os canais institucionais oficiais sem incorporação de scripts invasivos ou iframes de terceiros na página.</li>
+                </ul>
+            </section>
+
+            <!-- 8. COMPARTILHAMENTO -->
+            <section id="compartilhamento" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    8. Compartilhamento de Dados
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    O {{ NOME_INSTITUTO }} <strong>não comercializa, não compartilha e não transfere</strong> dados pessoais de visitantes a terceiros para propósitos comerciais, publicitários ou de marketing.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    O tratamento de dados é restrito aos fornecedores de tecnologia essenciais para a operação da infraestrutura (como provedor de hospedagem de servidores e banco de dados, e serviço de despacho de e-mails de notificação interna), atuando estritamente na condição de operadores técnicos e submetidos a deveres de confidencialidade e segurança.
+                </p>
+            </section>
+
+            <!-- 9. ARMAZENAMENTO E RETENÇÃO -->
+            <section id="armazenamento-retencao" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    9. Armazenamento e Retenção dos Dados
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    As mensagens recebidas pelo formulário são armazenadas no banco de dados da aplicação em ambiente seguro e com controle de acesso administrativo restrito.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    Os dados são mantidos pelo período necessário para atender à finalidade para a qual foram coletados (responder à solicitação inicial e organizar a fila de atendimento). A instituição conta com procedimentos técnicos para expurgo e eliminação segura de mensagens antigas ou que não tenham resultado em acompanhamento clínico posterior.
+                </p>
+            </section>
+
+            <!-- 10. SEGURANÇA -->
+            <section id="seguranca" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    10. Medidas Técnicas de Segurança
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    Adotamos salvaguardas técnicas e administrativas para proteger os dados pessoais contra acessos não autorizados, perdas, destruição ou vazamentos:
+                </p>
+                <ul style="margin-bottom: 1rem; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 0.5rem;">Tráfego criptografado através de protocolo HTTPS em ambientes de produção;</li>
+                    <li style="margin-bottom: 0.5rem;">Proteção contra ataques de injeção de código (XSS) e requisições forjadas (CSRF);</li>
+                    <li style="margin-bottom: 0.5rem;">Mecanismo de controle de taxa de requisições (rate limiting) para prevenir ataques de negação de serviço e sobrecarga;</li>
+                    <li style="margin-bottom: 0.5rem;">Acesso ao painel administrativo restrito a operadores devidamente autenticados, com campos de mensagens mantidos em modo de leitura estrita.</li>
+                </ul>
+            </section>
+
+            <!-- 11. DIREITOS E SOLICITAÇÕES -->
+            <section id="direitos-titular" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    11. Direitos dos Titulares de Dados
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    Em conformidade com o artigo 18 da LGPD, você, enquanto titular de dados pessoais, possui os seguintes direitos em relação aos dados que nos foram confiados:
+                </p>
+                <ul style="margin-bottom: 1rem; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 0.5rem;">Confirmar a existência de tratamento de dados;</li>
+                    <li style="margin-bottom: 0.5rem;">Acessar os dados fornecidos em mensagens anteriores;</li>
+                    <li style="margin-bottom: 0.5rem;">Solicitar a correção de dados incompletos, inexatos ou desatualizados;</li>
+                    <li style="margin-bottom: 0.5rem;">Solicitar a eliminação dos dados pessoais tratados com base no seu consentimento;</li>
+                    <li style="margin-bottom: 0.5rem;">Revogar o consentimento manifestado anteriormente.</li>
+                </ul>
+            </section>
+
+            <!-- 12. CANAL DE CONTATO -->
+            <section id="canal-contato" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    12. Canal de Atendimento a Solicitações de Privacidade
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    Para exercer quaisquer dos seus direitos de titular ou esclarecer dúvidas sobre as práticas de privacidade deste website, entre em contato diretamente com nossa equipe:
+                </p>
+                <div style="background-color: var(--cor-areia-clara); padding: 1.5rem; border-radius: var(--raio-md, 8px); border: 1px solid rgba(44,60,48,0.12); margin-bottom: 1rem;">
+                    <p style="margin-bottom: 0.5rem;">
+                        <strong>{{ NOME_INSTITUTO }}</strong>
+                    </p>
+                    <p style="margin-bottom: 0.5rem;">
+                        Responsável Técnica: <strong>{{ NOME_PROFISSIONAL }}</strong>
+                    </p>
+                    {% if EMAIL_CONTATO and EMAIL_CONTATO != 'PENDENTE_DEFINICAO' %}
+                    <p style="margin-bottom: 0.5rem;">
+                        E-mail de Contato: <a href="mailto:{{ EMAIL_CONTATO }}" style="color: var(--cor-oliva); font-weight: 600;">{{ EMAIL_CONTATO }}</a>
+                    </p>
+                    {% endif %}
+                    {% if WHATSAPP_LINK %}
+                    <p style="margin-bottom: 0;">
+                        WhatsApp Comercial: <a href="{{ WHATSAPP_LINK }}" target="_blank" rel="noopener noreferrer" style="color: var(--cor-oliva); font-weight: 600;">{{ WHATSAPP_NUMERO }}</a>
+                    </p>
+                    {% endif %}
+                </div>
+            </section>
+
+            <!-- 13. ALTERAÇÕES DA POLÍTICA -->
+            <section id="alteracoes" style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    13. Atualizações e Alterações Desta Política
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    Esta Política de Privacidade poderá ser revisada e atualizada periodicamente para refletir melhorias técnicas, adequações regulatórias emitidas pela Autoridade Nacional de Proteção de Dados (ANPD) ou aprimoramentos em nossos processos internos. Recomendamos a consulta periódica desta página.
+                </p>
+            </section>
+
+            <!-- 14. DATA DA ÚLTIMA ATUALIZAÇÃO -->
+            <section id="atualizacao" style="margin-bottom: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(44,60,48,0.12);">
+                <p style="font-size: 0.9375rem; color: var(--cor-taupe); margin-bottom: 1.5rem;">
+                    <strong>14. Data da Última Atualização:</strong> 21 de setembro de 2026.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="{% url 'contato:index' %}" class="btn btn--secundario" style="font-size: 0.875rem;">
+                        ← Voltar para Contato
+                    </a>
+                    <a href="{% url 'paginas:politica_cookies' %}" class="btn btn--outline" style="font-size: 0.875rem;">
+                        Ver Política de Cookies →
+                    </a>
+                </div>
+            </section>
+
+        </article>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CTA GLOBAL DE ATENDIMENTO                                    -->
+<!-- ============================================================ -->
+{% include "componentes/cta_atendimento.html" with cta_eyebrow="ACOLHIMENTO & ÉTICA" cta_titulo="Sua história merece ser compreendida com respeito e sigilo." cta_texto_apoio="Inicie uma conversa segura para tirar dúvidas sobre nossos atendimentos e avaliações." cta_botao_texto="Falar no WhatsApp" cta_assinatura="Comece por você." %}
+
+{% endblock content %}

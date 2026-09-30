@@ -1,0 +1,88 @@
+/* ============================================================
+   UTILITÁRIOS — INSTITUTO MENTE EM FOCO
+   Classes utilitárias estritamente necessárias e complementares,
+   sem recriação de frameworks genéricos.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. ALINHAMENTO DE TEXTO
+   ------------------------------------------------------------ */
+.texto-centro {
+  text-align: center;
+}
+
+.texto-esquerda {
+  text-align: left;
+}
+
+.texto-direita {
+  text-align: right;
+}
+
+/* ------------------------------------------------------------
+   2. VISIBILIDADE CONDICIONAL CONTROLADA
+   ------------------------------------------------------------ */
+@media (max-width: 767px) {
+  .ocultar-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .ocultar-desktop {
+    display: none !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   3. PONTO FOCAL DE IMAGEM (Object Position)
+   ------------------------------------------------------------ */
+.foco-topo {
+  --foco-imagem: top center;
+}
+
+.foco-centro {
+  --foco-imagem: center center;
+}
+
+.foco-base {
+  --foco-imagem: bottom center;
+}
+
+/* ------------------------------------------------------------
+   4. CORES DECORATIVAS PONTUAIS
+   ------------------------------------------------------------ */
+.cor-oliva {
+  color: var(--cor-oliva);
+}
+
+.cor-dourado {
+  color: var(--cor-dourado);
+}
+
+.cor-taupe {
+  color: var(--cor-taupe);
+}
+
+.cor-salvia {
+  color: var(--cor-salvia);
+}
+
+/* ------------------------------------------------------------
+   5. AJUSTES FINOS DE ESPAÇAMENTO
+   ------------------------------------------------------------ */
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.pt-0 {
+  padding-top: 0 !important;
+}
+
+.pb-0 {
+  padding-bottom: 0 !important;
+}

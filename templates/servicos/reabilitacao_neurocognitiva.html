@@ -1,0 +1,160 @@
+{% extends "base/base.html" %}
+{% load static seo_tags %}
+
+{% block title %}{{ titulo_pagina }}{% endblock title %}
+{% block meta_description %}{{ meta_descricao }}{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paginas_internas.css' %}">
+{% endblock extra_head %}
+
+{% block structured_data %}
+{{ block.super }}
+{% render_service_schema servico "Reabilitação Neurocognitiva no Cotidiano" %}
+{% render_breadcrumbs_schema breadcrumb %}
+{% endblock structured_data %}
+
+{% block content %}
+<!-- ============================================================ -->
+<!-- 1. HERO INTERNO: REABILITAÇÃO NEUROCOGNITIVA                 -->
+<!-- ============================================================ -->
+{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="ACOMPANHAMENTO COGNITIVO" titulo_hero="Reabilitação Neurocognitiva" descricao_hero=servico.resumo|default:"Após avaliação e quando houver indicação, construção de estratégias individualizadas voltadas ao funcionamento cognitivo e à vida cotidiana, considerando necessidades e objetivos da pessoa." cta_texto="Agendar atendimento" cta_url=WHATSAPP_LINK|default:"/contato/" imagem_url=imagem_url imagem_alt="Reabilitação Neurocognitiva — Instituto Mente em Foco" imagem_ratio="ratio-16-9" placeholder_codigo="IMG-015" placeholder_descricao="Fotografia Editorial — Reabilitação Neurocognitiva" placeholder_ratio="Proporção 16:9" badge_texto="Estratégias Individualizadas" %}
+
+<!-- ============================================================ -->
+<!-- 2. APÓS AVALIAÇÃO E QUANDO HOUVER INDICAÇÃO                  -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Sobre a Reabilitação Neurocognitiva">
+    <div class="site-container">
+        <div class="split-editorial">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">CONTINUIDADE & CUIDADO</span>
+                <h2 class="titulo-secao">Após avaliação e quando houver indicação</h2>
+
+                <p>
+                    A <strong>Reabilitação Neurocognitiva</strong> é um processo de intervenção terapêutica planejado a partir dos resultados obtidos em uma avaliação prévia, sendo indicada quando se constata a necessidade de suporte direcionado.
+                </p>
+
+                <p>
+                    {{ servico.descricao|default:"O trabalho visa ao fortalecimento da autonomia no cotidiano por meio da construção e aplicação de estratégias individualizadas, considerando sempre a realidade funcional, os limites e os projetos da pessoa." }}
+                </p>
+
+                <div class="bloco-citacao-editorial">
+                    <blockquote class="bloco-citacao-editorial__texto">
+                        “Cuidar do funcionamento cognitivo é criar pontes práticas e gentis para que cada pessoa viva com maior independência em sua rotina.”
+                    </blockquote>
+                    <span class="bloco-citacao-editorial__autor">Instituto Mente em Foco</span>
+                </div>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-015</span>
+                        <span class="placeholder-imagem__descricao">Continuidade e Estratégias no Cotidiano</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. PILARES E EIXOS DA REABILITAÇÃO                           -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--areia" aria-labelledby="titulo-eixos-reab">
+    <div class="site-container">
+        <div class="secao-editorial__cabecalho secao-editorial__cabecalho--centro">
+            <span class="eyebrow">DIMENSÕES DO ATENDIMENTO</span>
+            <h2 class="titulo-secao" id="titulo-eixos-reab">Estratégias individualizadas</h2>
+            <p class="secao-editorial__subtitulo">
+                Um acompanhamento estruturado sobre pilares essenciais, articulando potencialidades cognitivas e demandas do ambiente real.
+            </p>
+        </div>
+
+        <div class="grid-reabilitacao-eixos">
+            {% for eixo in eixos_reabilitacao %}
+            <article class="card-reabilitacao-eixo">
+                <div class="card-reabilitacao-eixo__icone" aria-hidden="true">
+                    {% if eixo.icone == 'cerebro' %}
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="9"/>
+                            <path d="M12 3v18M3 12h18"/>
+                        </svg>
+                    {% elif eixo.icone == 'sol' %}
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                    {% else %}
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    {% endif %}
+                </div>
+                <h3 class="card-reabilitacao-eixo__titulo">{{ eixo.titulo }}</h3>
+                <p class="card-reabilitacao-eixo__texto">{{ eixo.descricao }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. INTEGRAÇÃO COM A AVALIAÇÃO PRÉVIA                         -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Integração Avaliativa">
+    <div class="site-container">
+        <div class="split-editorial split-editorial--inverso">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">FUNDAMENTAÇÃO CLÍNICA</span>
+                <h2 class="titulo-secao">A importância de um mapeamento prévio</h2>
+
+                <p>
+                    Para que qualquer estratégia tenha eficácia e faça sentido na rotina, é fundamental conhecer minuciosamente o perfil neuropsicológico da pessoa. Por isso, a avaliação prévia orienta os passos e define as prioridades de intervenção.
+                </p>
+
+                <p>
+                    O acompanhamento é flexível, revisado periodicamente e desenvolvido em conjunto com a pessoa e, quando pertinente, seus familiares.
+                </p>
+
+                <div class="hero-interno__acoes" style="margin-top: var(--espaco-6);">
+                    <a href="{% url 'servicos:avaliacao_neuropsicologica' %}" class="btn btn--primario">
+                        <span>Conhecer a Avaliação Neuropsicológica</span>
+                    </a>
+                    <a href="{% url 'servicos:neuropsicologia' %}" class="btn btn--secundario">
+                        <span>Ver Neuropsicologia Clínica</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-016</span>
+                        <span class="placeholder-imagem__descricao">Estratégias de Adaptação e Autonomia</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. PÁGINAS RELACIONADAS                                      -->
+<!-- ============================================================ -->
+{% include "componentes/paginas_relacionadas.html" with itens_relacionados=itens_relacionados relacionadas_eyebrow="CONTINUIDADE" relacionadas_titulo="Atuações integradas à Reabilitação" relacionadas_subtitulo="Conheça os serviços articulados ao cuidado neuropsicológico." %}
+
+<!-- ============================================================ -->
+<!-- 6. CTA DE ATENDIMENTO GLOBAL                                 -->
+<!-- ============================================================ -->
+{% include "componentes/cta_atendimento.html" %}
+{% endblock content %}

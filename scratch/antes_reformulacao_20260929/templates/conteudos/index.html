@@ -1,0 +1,336 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}{{ meta_title }}{% endblock title %}
+{% block meta_description %}{{ meta_description }}{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paginas_internas.css' %}">
+<link rel="stylesheet" href="{% static 'css/conteudos.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<!-- ============================================================ -->
+<!-- 1. HERO DA ÁREA DE CONTEÚDOS & BREADCRUMB                    -->
+<!-- ============================================================ -->
+<section class="conteudos-hero" aria-label="Cabeçalho da Seção de Conteúdos">
+    <div class="site-container conteudos-hero__container">
+        <!-- Breadcrumb Semântico -->
+        <nav class="breadcrumb" aria-label="Caminho de navegação">
+            <ol class="breadcrumb__lista">
+                <li class="breadcrumb__item">
+                    <a href="{% url 'paginas:inicio' %}" class="breadcrumb__link">Início</a>
+                    <span class="breadcrumb__separador" aria-hidden="true">›</span>
+                </li>
+                {% if categoria_selecionada %}
+                <li class="breadcrumb__item">
+                    <a href="{% url 'conteudos:index' %}" class="breadcrumb__link">Conteúdos</a>
+                    <span class="breadcrumb__separador" aria-hidden="true">›</span>
+                </li>
+                <li class="breadcrumb__item breadcrumb__item--ativo" aria-current="page">
+                    <span class="breadcrumb__atual">{{ categoria_selecionada.nome }}</span>
+                </li>
+                {% else %}
+                <li class="breadcrumb__item breadcrumb__item--ativo" aria-current="page">
+                    <span class="breadcrumb__atual">Conteúdos</span>
+                </li>
+                {% endif %}
+            </ol>
+        </nav>
+
+        <span class="eyebrow">ARTIGOS & ORIENTAÇÃO EDITORIAL</span>
+
+        {% if categoria_selecionada %}
+            <h1 class="conteudos-hero__titulo">Artigos sobre {{ categoria_selecionada.nome }}</h1>
+            <p class="conteudos-hero__descricao">
+                {{ categoria_selecionada.descricao|default:"Orientações e reflexões clínicas especializadas pelo Instituto Mente em Foco." }}
+            </p>
+        {% elif query %}
+            <h1 class="conteudos-hero__titulo">Resultados para “{{ query }}”</h1>
+            <p class="conteudos-hero__descricao">
+                Publicações e reflexões encontradas para o termo pesquisado.
+            </p>
+        {% else %}
+            <h1 class="conteudos-hero__titulo">Conteúdos Educativos e Reflexões Clínicas</h1>
+            <p class="conteudos-hero__descricao">
+                Textos e orientações técnicas sobre psicologia, neuropsicologia, relacionamentos e processos de reconstrução emocional, elaborados com respeito à sua história.
+            </p>
+        {% endif %}
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2. TOOLBAR: FILTRO POR CATEGORIAS E BUSCA                    -->
+<!-- ============================================================ -->
+<section class="conteudos-toolbar" aria-label="Filtros e Busca de Artigos">
+    <div class="site-container">
+        <div class="conteudos-toolbar__grid">
+            <!-- Chips de Categorias -->
+            <nav class="chips-categorias" aria-label="Filtrar por categoria">
+                <a href="{% url 'conteudos:index' %}{% if query %}?q={{ query }}{% endif %}" 
+                   class="chip-categoria {% if not categoria_selecionada %}chip-categoria--ativo{% endif %}">
+                    Todos os temas
+                </a>
+                {% for cat in categorias %}
+                <a href="{% url 'conteudos:categoria' cat.slug %}{% if query %}?q={{ query }}{% endif %}" 
+                   class="chip-categoria {% if categoria_selecionada.slug == cat.slug %}chip-categoria--ativo{% endif %}">
+                    {{ cat.nome }}
+                </a>
+                {% endfor %}
+            </nav>
+
+            <!-- Barra de Busca -->
+            <div class="barra-busca">
+                <form action="{% url 'conteudos:index' %}" method="get" class="barra-busca__form" role="search">
+                    {% if categoria_selecionada %}
+                    <input type="hidden" name="categoria" value="{{ categoria_selecionada.slug }}">
+                    {% endif %}
+                    <span class="barra-busca__icone" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input type="search" 
+                           name="q" 
+                           class="barra-busca__input" 
+                           placeholder="Buscar artigos por assunto ou palavra..." 
+                           value="{{ query }}" 
+                           aria-label="Buscar artigos por tema ou palavra-chave">
+                    {% if query %}
+                    <a href="{% if categoria_selecionada %}{% url 'conteudos:categoria' categoria_selecionada.slug %}{% else %}{% url 'conteudos:index' %}{% endif %}" 
+                       class="barra-busca__limpar" 
+                       title="Limpar busca" 
+                       aria-label="Limpar busca">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </a>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+
+        <!-- Feedback de Filtro Ativo com anúncio acessível via leitor de tela -->
+        {% if query or categoria_selecionada %}
+        <div class="feedback-filtro" role="status" aria-live="polite">
+            <div class="feedback-filtro__texto">
+                {% if query and categoria_selecionada %}
+                    Exibindo artigos em <strong>{{ categoria_selecionada.nome }}</strong> para o termo <strong>“{{ query }}”</strong> ({{ total_resultados }} encontrado{{ total_resultados|pluralize }}).
+                {% elif categoria_selecionada %}
+                    Exibindo artigos da categoria <strong>{{ categoria_selecionada.nome }}</strong> ({{ total_resultados }} encontrado{{ total_resultados|pluralize }}).
+                {% elif query %}
+                    Exibindo resultados para <strong>“{{ query }}”</strong> ({{ total_resultados }} encontrado{{ total_resultados|pluralize }}).
+                {% endif %}
+            </div>
+            <a href="{% url 'conteudos:index' %}" class="feedback-filtro__limpar">Limpar todos os filtros</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. DESTAQUE EDITORIAL (SE HOUVER)                             -->
+<!-- ============================================================ -->
+{% if artigo_destaque %}
+<section class="secao-destaque-editorial" aria-label="Artigo em Destaque">
+    <div class="site-container">
+        <article class="card-destaque-editorial">
+            <a href="{{ artigo_destaque.get_absolute_url }}" class="card-link-overlay" aria-label="Ler artigo em destaque: {{ artigo_destaque.titulo }}">
+                {{ artigo_destaque.titulo }}
+            </a>
+            <div class="card-destaque-editorial__capa-wrap">
+                {% if artigo_destaque.imagem_capa %}
+                <img src="{{ artigo_destaque.imagem_capa.url }}" 
+                     alt="{{ artigo_destaque.texto_alternativo_imagem|default:artigo_destaque.titulo }}" 
+                     class="card-destaque-editorial__capa" 
+                     loading="eager"
+                     fetchpriority="high"
+                     decoding="async">
+                {% else %}
+                <div class="card-destaque-editorial__placeholder">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="card-destaque-editorial__corpo">
+                <div class="card-destaque-editorial__meta">
+                    {% if artigo_destaque.categoria %}
+                    <span class="card-destaque-editorial__tag">{{ artigo_destaque.categoria.nome }}</span>
+                    {% endif %}
+                    <span>{{ artigo_destaque.tempo_leitura_minutos }} min de leitura</span>
+                    {% if artigo_destaque.data_publicacao %}
+                    <span>• {{ artigo_destaque.data_publicacao|date:"d \d\e F \d\e Y" }}</span>
+                    {% endif %}
+                </div>
+
+                <h2 class="card-destaque-editorial__titulo">{{ artigo_destaque.titulo }}</h2>
+
+                {% if artigo_destaque.resumo %}
+                <p class="card-destaque-editorial__resumo">{{ artigo_destaque.resumo }}</p>
+                {% endif %}
+
+                <div class="card-destaque-editorial__link">
+                    <span class="btn btn--primario btn--sm">
+                        <span>Ler artigo completo</span>
+                        <span class="btn__seta" aria-hidden="true">→</span>
+                    </span>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+{% endif %}
+
+<!-- ============================================================ -->
+<!-- 4. GRID DE ARTIGOS & ESTADOS                                  -->
+<!-- ============================================================ -->
+<section class="secao-artigos-grid" aria-label="Lista de Artigos">
+    <div class="site-container">
+        {% if artigos %}
+            <div class="grid-artigos">
+                {% for artigo in artigos %}
+                <article class="card-artigo-item">
+                    <a href="{{ artigo.get_absolute_url }}" class="card-link-overlay" aria-label="Ler artigo: {{ artigo.titulo }}">
+                        {{ artigo.titulo }}
+                    </a>
+
+                    <div class="card-artigo-item__capa-wrap">
+                        {% if artigo.imagem_capa %}
+                        <img src="{{ artigo.imagem_capa.url }}" 
+                             alt="{{ artigo.texto_alternativo_imagem|default:artigo.titulo }}" 
+                             class="card-artigo-item__capa" 
+                             loading="lazy"
+                             decoding="async">
+                        {% else %}
+                        <div class="card-artigo-item__placeholder">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="card-artigo-item__corpo">
+                        <div class="card-artigo-item__meta">
+                            {% if artigo.categoria %}
+                            <span class="card-artigo-item__categoria">{{ artigo.categoria.nome }}</span>
+                            {% else %}
+                            <span>Instituto Mente em Foco</span>
+                            {% endif %}
+                            <span>{{ artigo.tempo_leitura_minutos }} min de leitura</span>
+                        </div>
+
+                        <h2 class="card-artigo-item__titulo">{{ artigo.titulo }}</h2>
+
+                        {% if artigo.resumo %}
+                        <p class="card-artigo-item__resumo">{{ artigo.resumo }}</p>
+                        {% endif %}
+
+                        <div class="card-artigo-item__rodape">
+                            <span>{{ artigo.data_publicacao|date:"d/m/Y" }}</span>
+                            <span class="card-artigo-item__link-texto">
+                                Ler artigo <span aria-hidden="true">→</span>
+                            </span>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+
+            <!-- Paginação -->
+            {% if artigos.has_other_pages %}
+            <nav class="paginacao-conteudos" aria-label="Navegação entre páginas de artigos">
+                <ul class="paginacao-conteudos__lista">
+                    {% if artigos.has_previous %}
+                    <li>
+                        <a href="?page={{ artigos.previous_page_number }}{% if query %}&q={{ query }}{% endif %}{% if categoria_selecionada %}&categoria={{ categoria_selecionada.slug }}{% endif %}" 
+                           class="paginacao-conteudos__link" 
+                           aria-label="Página anterior">
+                            ‹ Anterior
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in artigos.paginator.page_range %}
+                        {% if artigos.number == num %}
+                        <li>
+                            <span class="paginacao-conteudos__link paginacao-conteudos__link--ativo" aria-current="page">
+                                {{ num }}
+                            </span>
+                        </li>
+                        {% elif num > artigos.number|add:'-3' and num < artigos.number|add:'3' %}
+                        <li>
+                            <a href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}{% if categoria_selecionada %}&categoria={{ categoria_selecionada.slug }}{% endif %}" 
+                               class="paginacao-conteudos__link"
+                               aria-label="Ir para a página {{ num }}">
+                                {{ num }}
+                            </a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if artigos.has_next %}
+                    <li>
+                        <a href="?page={{ artigos.next_page_number }}{% if query %}&q={{ query }}{% endif %}{% if categoria_selecionada %}&categoria={{ categoria_selecionada.slug }}{% endif %}" 
+                           class="paginacao-conteudos__link" 
+                           aria-label="Próxima página">
+                            Próxima ›
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+
+        {% elif not artigo_destaque %}
+            <!-- Estado Neutro / Nenhum Artigo Publicado -->
+            <div class="estado-vazio-conteudos">
+                <div class="estado-vazio-conteudos__icone" aria-hidden="true">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                </div>
+
+                {% if query or categoria_selecionada %}
+                    <h2 class="estado-vazio-conteudos__titulo">Nenhum artigo encontrado</h2>
+                    <p class="estado-vazio-conteudos__texto">
+                        Não localizamos publicações com os critérios pesquisados. Tente buscar com outras palavras ou explore todos os nossos temas.
+                    </p>
+                    <a href="{% url 'conteudos:index' %}" class="btn btn--primario">
+                        <span>Ver todos os conteúdos</span>
+                    </a>
+                {% else %}
+                    <h2 class="estado-vazio-conteudos__titulo">Em breve novos conteúdos educativos serão publicados aqui</h2>
+                    <p class="estado-vazio-conteudos__texto">
+                        Estamos estruturando orientações técnicas e reflexões sobre psicoterapia, neuropsicologia, relacionamentos e saúde mental. Em breve você encontrará novos artigos neste espaço.
+                    </p>
+                    <div style="display: flex; gap: var(--espaco-3); justify-content: center; flex-wrap: wrap;">
+                        <a href="{% url 'paginas:inicio' %}" class="btn btn--secundario">
+                            <span>Voltar ao início</span>
+                        </a>
+                        {% if WHATSAPP_LINK %}
+                        <a href="{{ WHATSAPP_LINK }}" target="_blank" rel="noopener noreferrer" class="btn btn--primario">
+                            <span>Falar no WhatsApp</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. CTA GLOBAL DE ATENDIMENTO                                  -->
+<!-- ============================================================ -->
+{% include "componentes/cta_atendimento.html" with cta_eyebrow="ACOLHIMENTO & ESCUTA" cta_titulo="Sua história merece um espaço seguro de reflexão e cuidado." cta_texto_apoio="Se você sente que este é o momento de olhar para sua trajetória com acolhimento profissional, agende uma conversa." cta_botao_texto="Agendar atendimento" cta_assinatura="Comece por você." %}
+
+{% endblock content %}

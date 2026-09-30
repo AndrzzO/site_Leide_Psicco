@@ -1,0 +1,136 @@
+{% extends "base/base.html" %}
+{% load static seo_tags %}
+
+{% block title %}{{ titulo_pagina }}{% endblock title %}
+{% block meta_description %}{{ meta_descricao }}{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paginas_internas.css' %}">
+{% endblock extra_head %}
+
+{% block structured_data %}
+{{ block.super }}
+{% render_service_schema servico "Psicoterapia Clínica" %}
+{% render_breadcrumbs_schema breadcrumb %}
+{% endblock structured_data %}
+
+{% block content %}
+<!-- ============================================================ -->
+<!-- 1. HERO INTERNO: PSICOLOGIA & PSICOTERAPIA                   -->
+<!-- ============================================================ -->
+{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="PSICOLOGIA" titulo_hero=servico.titulo|default:"Psicologia e Psicoterapia" descricao_hero=servico.resumo|default:"Um espaço de escuta profissional para compreender emoções, pensamentos, comportamentos e relações." cta_texto="Agendar atendimento" cta_url=WHATSAPP_LINK|default:"/contato/" imagem_url=imagem_url imagem_alt="Acolhimento em Psicologia e Psicoterapia — Instituto Mente em Foco" imagem_ratio="ratio-16-9" placeholder_codigo="IMG-011" placeholder_descricao="Capa Psicologia e Psicoterapia" placeholder_ratio="Proporção 16:9" badge_texto="Psicoterapia Individual" %}
+
+<!-- ============================================================ -->
+<!-- 2. O QUE É ESTE ESPAÇO: ESCUTA ÉTICA E SIGILOSA             -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Sobre o Atendimento em Psicologia">
+    <div class="site-container">
+        <div class="split-editorial">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">ESCUTA CLÍNICA</span>
+                <h2 class="titulo-secao">Um espaço seguro para você falar sobre o que realmente importa</h2>
+
+                <p>
+                    A psicoterapia oferece um ambiente acolhedor, fundamentado na ética, no respeito e no sigilo profissional. É um momento dedicado a desacelerar e olhar com profundidade para suas vivências, conflitos e sentimentos.
+                </p>
+
+                <p>
+                    {{ servico.descricao|default:"A psicoterapia oferece um espaço ético e sigiloso para acolher suas experiências emocionais, conflitos e momentos de mudança, desenvolvendo recursos internos para novas possibilidades." }}
+                </p>
+
+                <div class="bloco-citacao-editorial">
+                    <blockquote class="bloco-citacao-editorial__texto">
+                        “Compreender o que você está sentindo é o primeiro passo para encontrar novas possibilidades de caminhar.”
+                    </blockquote>
+                    <span class="bloco-citacao-editorial__autor">Instituto Mente em Foco</span>
+                </div>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-003</span>
+                        <span class="placeholder-imagem__descricao">Escuta e Cuidado em Psicologia</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. SITUAÇÕES E TEMAS QUE PODEM SER TRABALHADOS               -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--areia" aria-label="Temas Trabalhados">
+    <div class="site-container">
+        <div class="secao-editorial__cabecalho secao-editorial__cabecalho--centro">
+            <span class="eyebrow">ACOLHIMENTO INTEGRAL</span>
+            <h2 class="titulo-secao">Situações e aspectos que podem ser cuidados</h2>
+            <p class="secao-editorial__subtitulo">
+                Cada trajetória é singular. O acompanhamento psicoterapêutico acolhe diferentes momentos de vida, desafios emocionais e fases de transição.
+            </p>
+        </div>
+
+        <div class="grid-temas">
+            {% for tema in temas %}
+            <article class="card-tema">
+                <div class="card-tema__icone" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M12 8v8M8 12h8"/>
+                    </svg>
+                </div>
+                <div class="card-tema__conteudo">
+                    <h3 class="card-tema__titulo">{{ tema.titulo }}</h3>
+                    <p class="card-tema__descricao">{{ tema.descricao }}</p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. BLOCO EDITORIAL: COMPREENDER, CUIDAR E DESENVOLVER        -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Compreensão e Desenvolvimento">
+    <div class="site-container">
+        <div class="split-editorial split-editorial--inverso">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">RELAÇÕES & EMOÇÕES</span>
+                <h2 class="titulo-secao">Compreender para transformar relações e escolhas</h2>
+
+                <p>
+                    Muitas vezes, aquilo que causa mal-estar no presente está conectado a padrões relacionais construídos ao longo da história pessoal. Olhar para esses nós emocionais com delicadeza permite desarmar defesas que já não fazem sentido.
+                </p>
+
+                <p>
+                    O objetivo do atendimento psicológico não é impor respostas prontas, mas apoiar você na descoberta de recursos internos sólidos para lidar com as incertezas, fortalecer a autoestima e cultivar relações mais saudáveis.
+                </p>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-002</span>
+                        <span class="placeholder-imagem__descricao">Presença e Serenidade</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. PÁGINAS E ÁREAS RELACIONADAS                              -->
+<!-- ============================================================ -->
+{% include "componentes/paginas_relacionadas.html" with relacionadas_eyebrow="CUIDADO INTEGRADO" relacionadas_titulo="Você também pode conhecer" relacionadas_subtitulo="Áreas afins que se complementam no cuidado com a saúde emocional." itens_relacionados=itens_relacionados %}
+
+<!-- ============================================================ -->
+<!-- 6. CTA DE ATENDIMENTO FINAL                                  -->
+<!-- ============================================================ -->
+{% include "componentes/cta_atendimento.html" with cta_titulo="Cuidar da mente também é uma forma de recomeçar." cta_texto_apoio="Inicie sua jornada psicoterapêutica com respeito ao seu ritmo e compromisso ético." cta_botao_texto="Falar pelo WhatsApp" %}
+
+{% endblock content %}

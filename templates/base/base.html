@@ -1,0 +1,95 @@
+{% load static seo_tags %}<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- Metadados Fundamentais de SEO -->
+    <title>{% block title %}{{ NOME_INSTITUTO }} — {{ CONCEITO_TRIPLICE }}{% endblock title %}</title>
+    <meta name="description" content="{% block meta_description %}{{ ASSINATURA_INSTITUCIONAL }}{% endblock meta_description %}">
+    <meta name="robots" content="{% block meta_robots %}{% if meta_robots %}{{ meta_robots }}{% elif not SEO_ALLOW_INDEXING %}noindex, nofollow, noarchive{% else %}index, follow{% endif %}{% endblock meta_robots %}">
+    
+    <!-- URL Canônica Absoluta -->
+    {% block canonical %}
+    <link rel="canonical" href="{% if canonical_url %}{{ canonical_url }}{% elif canonical_path %}{{ SITE_URL }}{{ canonical_path }}{% else %}{{ SITE_URL }}{{ request.path }}{% endif %}">
+    {% endblock canonical %}
+
+    <!-- Verificação de Mecanismos de Busca (Google & Bing) -->
+    {% if GOOGLE_SITE_VERIFICATION %}
+    <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION }}">
+    {% endif %}
+    {% if BING_SITE_VERIFICATION %}
+    <meta name="msvalidate.01" content="{{ BING_SITE_VERIFICATION }}">
+    {% endif %}
+
+    <!-- Metadados Open Graph (Compartilhamento em Redes Sociais) -->
+    <meta property="og:site_name" content="{{ NOME_INSTITUTO }}">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="{% block og_type %}website{% endblock og_type %}">
+    <meta property="og:title" content="{% block og_title %}{% if titulo_pagina %}{{ titulo_pagina }}{% elif meta_title %}{{ meta_title }}{% else %}{{ NOME_INSTITUTO }}{% endif %}{% endblock og_title %}">
+    <meta property="og:description" content="{% block og_description %}{% if meta_descricao %}{{ meta_descricao }}{% elif meta_description %}{{ meta_description }}{% else %}{{ ASSINATURA_INSTITUCIONAL }}{% endif %}{% endblock og_description %}">
+    <meta property="og:url" content="{% block og_url %}{% if canonical_url %}{{ canonical_url }}{% elif canonical_path %}{{ SITE_URL }}{{ canonical_path }}{% else %}{{ SITE_URL }}{{ request.path }}{% endif %}{% endblock og_url %}">
+    <meta property="og:image" content="{% block og_image %}{% if og_image %}{{ SITE_URL }}{{ og_image }}{% else %}{{ SITE_URL }}/static/img/avaliacoes/inss.webp{% endif %}{% endblock og_image %}">
+    <meta property="og:image:alt" content="{% block og_image_alt %}{{ NOME_INSTITUTO }}{% endblock og_image_alt %}">
+
+    <!-- Metadados Twitter / X Cards -->
+    <meta name="twitter:card" content="{% block twitter_card %}summary_large_image{% endblock twitter_card %}">
+    <meta name="twitter:title" content="{% block twitter_title %}{% if titulo_pagina %}{{ titulo_pagina }}{% elif meta_title %}{{ meta_title }}{% else %}{{ NOME_INSTITUTO }}{% endif %}{% endblock twitter_title %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{% if meta_descricao %}{{ meta_descricao }}{% elif meta_description %}{{ meta_description }}{% else %}{{ ASSINATURA_INSTITUCIONAL }}{% endif %}{% endblock twitter_description %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% if og_image %}{{ SITE_URL }}{{ og_image }}{% else %}{{ SITE_URL }}/static/img/avaliacoes/inss.webp{% endif %}{% endblock twitter_image %}">
+
+    <!-- Tipografia Externa Otimizada (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Arquitetura CSS Modular (Ordem Estrita de Carregamento) -->
+    <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tipografia.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/componentes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/utilitarios.css' %}">
+
+    <!-- Dados Estruturados Schema.org (JSON-LD com Escape Anti-XSS) -->
+    {% block structured_data %}
+    {% render_global_schema %}
+    {% endblock structured_data %}
+
+    <link rel="stylesheet" href="{% static 'css/editorial.css' %}">
+    {% block extra_head %}{% endblock extra_head %}
+</head>
+<body>
+    <!-- Acessibilidade: Skip Link para navegação por teclado -->
+    <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- Header Institucional Definitivo -->
+    {% block header %}
+        {% include 'componentes/header.html' %}
+    {% endblock header %}
+
+    <!-- Gaveta Mobile e Backdrop: fora do <header> para evitar conflito com
+         backdrop-filter que cria stacking context (position: fixed seria relativo
+         ao header em vez da viewport, causando rolagem horizontal). -->
+    {% include 'componentes/menu_mobile.html' %}
+
+    <!-- Conteúdo Principal Semântico com foco programático acessível -->
+    <main id="conteudo-principal" class="site-main" tabindex="-1">
+        {% block content %}{% endblock content %}
+    </main>
+
+    <!-- Rodapé Institucional Definitivo -->
+    {% block footer %}
+        {% include 'componentes/footer.html' %}
+    {% endblock footer %}
+
+    <!-- Botão Flutuante de WhatsApp (Condicional a número cadastrado) -->
+    {% include 'componentes/whatsapp_flutuante.html' %}
+
+    <!-- JavaScript Base e Scripts Globais -->
+    <script src="{% static 'js/base.js' %}" defer></script>
+    <script src="{% static 'js/navegacao.js' %}" defer></script>
+    {% block extra_scripts %}{% endblock extra_scripts %}
+</body>
+</html>

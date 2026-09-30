@@ -1,0 +1,31 @@
+{% load static %}
+{# Gaveta de Navegação Mobile — deve ser filho direto do <body> para que
+   position: fixed seja relativo à viewport e não ao stacking context do header
+   (que possui backdrop-filter, o que cria um containing block para fixed). #}
+<div class="site-header__menu-mobile" id="menu-mobile-painel" data-menu-panel hidden>
+    <div class="site-header__menu-mobile-conteudo">
+        <nav class="site-header__nav-mobile" aria-label="Navegação móvel">
+            {% include 'componentes/menu_principal.html' with lista_classe="site-nav__lista--mobile" %}
+        </nav>
+
+        <div class="site-header__menu-mobile-acoes">
+            {% if WHATSAPP_LINK %}
+                <a href="{{ WHATSAPP_LINK }}" class="btn btn--primario site-header__mobile-cta" target="_blank" rel="noopener noreferrer">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Agendar atendimento
+                </a>
+            {% else %}
+                <a href="{% url 'contato:index' %}" class="btn btn--primario site-header__mobile-cta">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Agendar atendimento
+                </a>
+            {% endif %}
+
+            <p class="site-header__mobile-conceito">
+                {{ CONCEITO_TRIPLICE }}
+            </p>
+        </div>
+    </div>
+</div>
+<!-- Backdrop para fechamento por clique fora -->
+<div class="site-header__backdrop" data-menu-backdrop hidden aria-hidden="true"></div>

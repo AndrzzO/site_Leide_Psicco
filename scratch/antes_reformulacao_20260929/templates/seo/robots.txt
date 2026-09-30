@@ -1,0 +1,7 @@
+{% if not SEO_ALLOW_INDEXING %}User-agent: *
+Disallow: /
+{% else %}User-agent: *
+Allow: /
+
+Sitemap: {{ SITE_URL }}/sitemap.xml
+{% endif %}

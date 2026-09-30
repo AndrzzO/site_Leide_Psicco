@@ -1,0 +1,118 @@
+{% extends "base/base.html" %}
+{% load static seo_tags %}
+
+{% block title %}{{ titulo_pagina }}{% endblock title %}
+{% block meta_description %}{{ meta_descricao }}{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paginas_internas.css' %}">
+{% endblock extra_head %}
+
+{% block structured_data %}
+{{ block.super }}
+{% render_service_schema servico "Avaliação Psicológica Especializada" %}
+{% render_breadcrumbs_schema breadcrumb %}
+{% endblock structured_data %}
+
+{% block content %}
+<section class="editorial-secao editorial-secao--areia"><div class="site-container"><span class="eyebrow">AVALIAÇÕES E DOCUMENTOS</span><h2>Encontre a avaliação para sua demanda</h2><p>Burnout, ansiedade e depressão, bariátrica, esterilização, INSS e processos judiciais: conheça finalidades, etapas e limites de cada atendimento.</p><a class="editorial-link" href="{% url 'servicos:avaliacao' %}">Conhecer todas as avaliações, laudos e pareceres ↗</a></div></section>
+<!-- ============================================================ -->
+<!-- 1. HERO INTERNO: AVALIAÇÃO PSICOLÓGICA                       -->
+<!-- ============================================================ -->
+{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="PROCESSO TÉCNICO" titulo_hero="Avaliação Psicológica" descricao_hero=servico.resumo|default:"Processo estruturado de compreensão técnica de aspectos emocionais, comportamentais e relacionais, orientado por critérios éticos e científicos." cta_texto="Agendar atendimento" cta_url=WHATSAPP_LINK|default:"/contato/" imagem_url=imagem_url imagem_alt="Avaliação Psicológica — Instituto Mente em Foco" imagem_ratio="ratio-16-9" placeholder_codigo="IMG-013" placeholder_descricao="Fotografia Editorial — Avaliação Psicológica" placeholder_ratio="Proporção 16:9" badge_texto="Investigação Psicológica" %}
+
+<!-- ============================================================ -->
+<!-- 2. COMO O PROCESSO É ORGANIZADO                              -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Organização da Avaliação Psicológica">
+    <div class="site-container">
+        <div class="split-editorial">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">METODOLOGIA CLÍNICA</span>
+                <h2 class="titulo-secao">Compreensão estruturada e ética de aspectos emocionais</h2>
+
+                <p>
+                    A <strong>Avaliação Psicológica</strong> é um procedimento técnico conduzido exclusivamente por psicólogos, que utiliza métodos, técnicas e instrumentos aprovados pela legislação profissional para investigar dinâmicas psicológicas e comportamentais.
+                </p>
+
+                <p>
+                    {{ servico.descricao|default:"O processo é organizado de acordo com os objetivos e a demanda específica de cada pessoa, permitindo aprofundar o autoconhecimento, esclarecer impasses emocionais e fornecer subsídios sólidos para tomadas de decisão ou encaminhamentos pertinentes." }}
+                </p>
+
+                <div class="bloco-citacao-editorial">
+                    <blockquote class="bloco-citacao-editorial__texto">
+                        “Uma avaliação cuidadosa não se resume a respostas isoladas; ela integra a singularidade de cada história de vida ao rigor do conhecimento psicológico.”
+                    </blockquote>
+                    <span class="bloco-citacao-editorial__autor">Instituto Mente em Foco</span>
+                </div>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-013</span>
+                        <span class="placeholder-imagem__descricao">Espaço de Avaliação Psicológica</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. FLUXO OFICIAL DA AVALIAÇÃO (6 ETAPAS)                     -->
+<!-- ============================================================ -->
+{% include "componentes/fluxo_avaliacao.html" with fluxo_eyebrow="ETAPAS DO ATENDIMENTO" fluxo_titulo="Como a Avaliação Psicológica se desenvolve" fluxo_subtitulo="Etapas claras e fundamentadas, desde a escuta inicial até a entrega de conclusões responsáveis e humanizadas." %}
+
+<!-- ============================================================ -->
+<!-- 4. BLOCO: CRITÉRIOS TÉCNICOS E ÉTICOS                        -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--areia" aria-label="Critérios Técnicos">
+    <div class="site-container">
+        <div class="split-editorial split-editorial--inverso">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">RIGOR PROFISSIONAL</span>
+                <h2 class="titulo-secao">Devolutiva ética e documento técnico</h2>
+
+                <p>
+                    A conclusão do processo avaliativo inclui obrigatoriamente uma sessão de devolutiva, momento reservado para apresentar e discutir de forma transparente e acessível todos os achados clínicos.
+                </p>
+
+                <p>
+                    A emissão de <strong>documento técnico</strong> ocorre estritamente quando houver indicação técnica e finalidade fundamentada, redigido com base nas normativas vigentes do Conselho Federal de Psicologia.
+                </p>
+
+                <div class="hero-interno__acoes" style="margin-top: var(--espaco-6);">
+                    <a href="{% url 'servicos:avaliacao_neuropsicologica' %}" class="btn btn--primario">
+                        <span>Ver Avaliação Neuropsicológica</span>
+                    </a>
+                    <a href="{% url 'servicos:psicologia' %}" class="btn btn--secundario">
+                        <span>Conhecer a Psicoterapia</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-020</span>
+                        <span class="placeholder-imagem__descricao">Devolutiva e Diálogo Profissional</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. PÁGINAS RELACIONADAS                                      -->
+<!-- ============================================================ -->
+{% include "componentes/paginas_relacionadas.html" with itens_relacionados=itens_relacionados relacionadas_eyebrow="CONTINUIDADE" relacionadas_titulo="Atuações complementares à Avaliação Psicológica" relacionadas_subtitulo="Descubra outros caminhos clínicos disponíveis no Instituto." %}
+
+<!-- ============================================================ -->
+<!-- 6. CTA DE ATENDIMENTO GLOBAL                                 -->
+<!-- ============================================================ -->
+{% include "componentes/cta_atendimento.html" %}
+{% endblock content %}

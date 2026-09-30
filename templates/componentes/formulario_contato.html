@@ -1,0 +1,101 @@
+                <form action="{{ form_action|default:'/contato/' }}" method="post" class="form-contato" novalidate>
+                    {% csrf_token %}
+
+                    <!-- Honeypot contra robôs / bots (invisível para tecnologias assistivas) -->
+                    <div style="display:none !important; position:absolute; left:-9999px; visibility:hidden;" aria-hidden="true">
+                        <label for="id_campo_verificacao" class="visually-hidden" aria-hidden="true">Não preencha este campo</label>
+                        {{ form.campo_verificacao }}
+                    </div>
+
+                    <!-- Nome Completo -->
+                    <div class="form-grupo">
+                        <label for="{{ form.nome.id_for_label }}" class="form-label">
+                            <span>Nome Completo <span class="form-label__obrigatorio" aria-hidden="true">*</span></span>
+                        </label>
+                        {{ form.nome }}
+                        {% if form.nome.errors %}
+                        <span class="form-erro" role="alert" id="id_nome-erro">
+                            {{ form.nome.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <!-- E-mail -->
+                    <div class="form-grupo">
+                        <label for="{{ form.email.id_for_label }}" class="form-label">
+                            <span>E-mail</span>
+                            <span class="form-label__dica" id="id_email-dica">(informe e-mail ou telefone)</span>
+                        </label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                        <span class="form-erro" role="alert" id="id_email-erro">
+                            {{ form.email.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Telefone / WhatsApp -->
+                    <div class="form-grupo">
+                        <label for="{{ form.telefone.id_for_label }}" class="form-label">
+                            <span>Telefone / WhatsApp</span>
+                            <span class="form-label__dica" id="id_telefone-dica">(com DDD)</span>
+                        </label>
+                        {{ form.telefone }}
+                        {% if form.telefone.errors %}
+                        <span class="form-erro" role="alert" id="id_telefone-erro">
+                            {{ form.telefone.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    {% if not ocultar_servico %}
+                    <!-- Serviço de Interesse -->
+                    <div class="form-grupo">
+                        <label for="{{ form.servico_interesse.id_for_label }}" class="form-label">
+                            <span>Serviço ou Tema de Interesse</span>
+                            <span class="form-label__dica">(opcional)</span>
+                        </label>
+                        {{ form.servico_interesse }}
+                        {% if form.servico_interesse.errors %}
+                        <span class="form-erro" role="alert" id="id_servico_interesse-erro">
+                            {{ form.servico_interesse.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    {% endif %}
+                    <!-- Mensagem Breve -->
+                    <div class="form-grupo">
+                        <label for="{{ form.mensagem.id_for_label }}" class="form-label">
+                            <span>Mensagem Breve</span>
+                            <span class="form-label__dica">(opcional, até 2000 caracteres)</span>
+                        </label>
+                        {{ form.mensagem }}
+                        {% if form.mensagem.errors %}
+                        <span class="form-erro" role="alert" id="id_mensagem-erro">
+                            {{ form.mensagem.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Consentimento da Política de Privacidade -->
+                    <div class="form-checkbox-grupo">
+                        <label class="form-checkbox-label">
+                            {{ form.aceite_privacidade }}
+                            <span>
+                                Li e estou de acordo com a <a href="{% url 'paginas:politica_privacidade' %}" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> para o tratamento dos dados enviados neste formulário. <span class="form-label__obrigatorio" aria-hidden="true">*</span>
+                            </span>
+                        </label>
+                        {% if form.aceite_privacidade.errors %}
+                        <span class="form-erro" role="alert" id="id_aceite_privacidade-erro">
+                            {{ form.aceite_privacidade.errors.0 }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Botão de Envio -->
+                    <button type="submit" class="btn btn--primario form-btn-submit">
+                        <span>{{ botao_texto|default:'Enviar mensagem' }}</span>
+                        <span class="btn__seta" aria-hidden="true">→</span>
+                    </button>
+                </form>

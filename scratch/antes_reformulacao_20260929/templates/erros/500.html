@@ -1,0 +1,21 @@
+{% extends "base/base.html" %}
+
+{% block title %}Instabilidade Temporária (500) — {{ NOME_INSTITUTO }}{% endblock title %}
+{% block meta_robots %}noindex, nofollow{% endblock meta_robots %}
+
+{% block content %}
+<section class="secao-erro">
+    <div class="site-container">
+        <div class="card-erro">
+            <span class="codigo-erro">500</span>
+            <h1 class="card-erro__titulo">Instabilidade temporária</h1>
+            <p class="card-erro__descricao">
+                Nosso servidor encontrou uma dificuldade passageira. Nossa equipe técnica já está trabalhando para restaurar o serviço.
+            </p>
+            <div class="card-erro__acao">
+                <a href="{% url 'paginas:inicio' %}" class="botao-retorno">Tentar retornar ao início</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% load static %}
+<header class="site-header" id="site-header">
+    <div class="container site-header__container">
+        <!-- Logotipo / Identidade Visual -->
+        <div class="site-header__brand">
+            {% include 'componentes/logo.html' %}
+        </div>
+
+        <!-- Navegação Desktop -->
+        <nav class="site-header__nav-desktop" aria-label="Navegação principal">
+            {% include 'componentes/menu_principal.html' with lista_classe="site-nav__lista--desktop" %}
+        </nav>
+
+        <!-- Ações do Header (CTA e Toggle Mobile) -->
+        <div class="site-header__acoes">
+            <!-- CTA Permanente: Agendar Atendimento -->
+            {% if WHATSAPP_LINK %}
+                <a href="{{ WHATSAPP_LINK }}" class="btn btn--primario btn--sm site-header__cta" target="_blank" rel="noopener noreferrer" aria-label="Agendar atendimento pelo WhatsApp">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span>Agendar atendimento</span>
+                </a>
+            {% else %}
+                <a href="{% url 'contato:index' %}" class="btn btn--primario btn--sm site-header__cta" aria-label="Acessar página de contato e agendamento">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span>Agendar atendimento</span>
+                </a>
+            {% endif %}
+
+            <!-- Botão de Abertura do Menu Mobile -->
+            <button type="button" class="site-header__menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="menu-mobile-painel" aria-label="Abrir menu de navegação">
+                <span class="site-header__toggle-icon" aria-hidden="true">
+                    <span class="site-header__toggle-linha site-header__toggle-linha--1"></span>
+                    <span class="site-header__toggle-linha site-header__toggle-linha--2"></span>
+                    <span class="site-header__toggle-linha site-header__toggle-linha--3"></span>
+                </span>
+            </button>
+        </div>
+    </div>
+</header>

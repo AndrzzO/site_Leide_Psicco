@@ -1,0 +1,34 @@
+{% extends "base/base.html" %}
+
+{% block title %}{{ NOME_INSTITUTO }} — Fundação Técnica{% endblock title %}
+
+{% block content %}
+<section class="secao-temporaria">
+    <div class="site-container">
+        <div class="card-temporario">
+            <span class="badge-status">Fundação Técnica Ativa</span>
+            
+            <h1 class="card-temporario__titulo">{{ NOME_INSTITUTO }}</h1>
+            
+            <p class="card-temporario__profissional">
+                {{ NOME_PROFISSIONAL }}
+            </p>
+
+            <div class="card-temporario__divisor"></div>
+
+            <p class="card-temporario__conceito">
+                <strong>{{ CONCEITO_TRIPLICE }}</strong>
+            </p>
+
+            <p class="card-temporario__assinatura">
+                {{ ASSINATURA_INSTITUCIONAL }}
+            </p>
+
+            <div class="card-temporario__info">
+                <p>Ambiente estrutural Django configurado com sucesso e pronto para os desenvolvimentos incrementais.</p>
+                <p><small class="texto-suave">Nesta etapa a fundação técnica do projeto está operacional. O design editorial definitivo aprovado será implementado nas etapas dedicadas.</small></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

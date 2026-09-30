@@ -1,0 +1,130 @@
+{% extends "base/base.html" %}
+{% load static seo_tags %}
+
+{% block title %}{{ titulo_pagina }}{% endblock title %}
+{% block meta_description %}{{ meta_descricao }}{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paginas_internas.css' %}">
+{% endblock extra_head %}
+
+{% block structured_data %}
+{{ block.super }}
+{% render_breadcrumbs_schema breadcrumb %}
+{% endblock structured_data %}
+
+{% block content %}
+<!-- ============================================================ -->
+<!-- 1. HERO INTERNO: AVALIAÇÃO PSICOLÓGICA E NEUROPSICOLÓGICA   -->
+<!-- ============================================================ -->
+{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="AVALIAÇÃO ESPECIALIZADA" titulo_hero="Avaliação Psicológica e Neuropsicológica" descricao_hero="Processos técnicos distintos e fundamentados, conduzidos com rigor científico, acolhimento humano e devolutiva ética para compreender demandas emocionais e cognitivas." cta_texto="Agendar atendimento" cta_url=WHATSAPP_LINK|default:"/contato/" placeholder_codigo="IMG-012" placeholder_descricao="Fotografia Editorial — Avaliações Clínicas" placeholder_ratio="Proporção 16:9" badge_texto="Processos Técnicos" %}
+
+<!-- ============================================================ -->
+<!-- 2. INTRODUÇÃO EDITORIAL: DISTINÇÃO E COMPLEMENTARIDADE       -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Distinção dos Processos Avaliativos">
+    <div class="site-container">
+        <div class="secao-editorial__cabecalho secao-editorial__cabecalho--centro">
+            <span class="eyebrow">DIRETRIZES PROFISSIONAIS</span>
+            <h2 class="titulo-secao">Compreensão aprofundada, ética e individualizada</h2>
+            <p class="secao-editorial__subtitulo">
+                A <strong>Avaliação Psicológica</strong> e a <strong>Avaliação Neuropsicológica</strong> são processos técnicos distintos, cada qual voltado a investigar dimensões específicas do funcionamento humano. Embora com objetivos e ênfases diferenciados, podem se complementar de maneira harmoniosa conforme a demanda e a necessidade de cada caso.
+            </p>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- 3. DOIS BLOCOS PRINCIPAIS (HUB DE NAVEGAÇÃO)                 -->
+        <!-- ============================================================ -->
+        <div class="grid-avaliacao-hub">
+            <!-- Bloco 1: Avaliação Psicológica -->
+            <article class="card-avaliacao-hub">
+                <div class="card-avaliacao-hub__cabecalho">
+                    <span class="badge badge--suave card-avaliacao-hub__badge">Dinâmica Afetiva & Comportamento</span>
+                    <h3 class="card-avaliacao-hub__titulo">Avaliação Psicológica</h3>
+                </div>
+
+                <p class="card-avaliacao-hub__resumo">
+                    Processo estruturado de investigação voltado à compreensão de aspectos emocionais, dinâmica de personalidade, padrões comportamentais e relações interpessoais.
+                </p>
+
+                <ul class="card-avaliacao-hub__detalhes" role="list">
+                    <li class="card-avaliacao-hub__item">
+                        <span class="card-avaliacao-hub__item-icone" aria-hidden="true">✔</span>
+                        <span>Investigação de aspectos emocionais e afetivos</span>
+                    </li>
+                    <li class="card-avaliacao-hub__item">
+                        <span class="card-avaliacao-hub__item-icone" aria-hidden="true">✔</span>
+                        <span>Compreensão de padrões de relacionamento e convivência</span>
+                    </li>
+                    <li class="card-avaliacao-hub__item">
+                        <span class="card-avaliacao-hub__item-icone" aria-hidden="true">✔</span>
+                        <span>Utilização de instrumentos técnicos regulamentados</span>
+                    </li>
+                    <li class="card-avaliacao-hub__item">
+                        <span class="card-avaliacao-hub__item-icone" aria-hidden="true">✔</span>
+                        <span>Devolutiva detalhada e documento técnico quando indicado</span>
+                    </li>
+                </ul>
+
+                <div class="card-avaliacao-hub__acoes">
+                    <a href="{% url 'servicos:avaliacao_psicologica' %}" class="btn btn--primario" style="width: 100%;">
+                        <span>Conhecer a Avaliação Psicológica</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Bloco 2: Avaliação Neuropsicológica -->
+            <article class="card-avaliacao-hub card-avaliacao-hub--neuro">
+                <div class="card-avaliacao-hub__cabecalho">
+                    <span class="badge badge--suave card-avaliacao-hub__badge">Cognição & Funcionamento Cerebral</span>
+                    <h3 class="card-avaliacao-hub__titulo">Avaliação Neuropsicológica</h3>
+                </div>
+
+                <p class="card-avaliacao-hub__resumo">
+                    Investigação aprofundada no âmbito da Neuropsicologia para mapeamento do perfil de funções cognitivas, como atenção, memória, linguagem e raciocínio.
+                </p>
+
+                <ul class="card-avaliacao-hub__detalhes" role="list">
+                    <li class="card-avaliacao-hub__item">
+                        <span class="card-avaliacao-hub__item-icone" aria-hidden="true">✔</span>
+                        <span>Mapeamento de funções executivas, atenção e memória</span>
+                    </li>
+                    <li class="card-avaliacao-hub__item">
+                        <span class="card-avaliacao-hub__item-icone" aria-hidden="true">✔</span>
+                        <span>Relações entre cognição, emoções e comportamento</span>
+                    </li>
+                    <li class="card-avaliacao-hub__item">
+                        <span class="card-avaliacao-hub__item-icone" aria-hidden="true">✔</span>
+                        <span>Identificação de potencialidades e recursos preservados</span>
+                    </li>
+                    <li class="card-avaliacao-hub__item">
+                        <span class="card-avaliacao-hub__item-icone" aria-hidden="true">✔</span>
+                        <span>Direcionamento para reabilitação quando indicado</span>
+                    </li>
+                </ul>
+
+                <div class="card-avaliacao-hub__acoes">
+                    <a href="{% url 'servicos:avaliacao_neuropsicologica' %}" class="btn btn--primario" style="width: 100%;">
+                        <span>Conhecer a Avaliação Neuropsicológica</span>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. FLUXO OFICIAL DA AVALIAÇÃO (COMPONENTE COMPARTILHADO)     -->
+<!-- ============================================================ -->
+{% include "componentes/fluxo_avaliacao.html" with fluxo_eyebrow="ESTRUTURA GERAL" fluxo_titulo="As etapas do processo avaliativo" fluxo_subtitulo="Cada avaliação segue uma sequência estruturada e ética para garantir confiabilidade técnica e acolhimento em todas as fases." %}
+
+<!-- ============================================================ -->
+<!-- 5. PÁGINAS RELACIONADAS                                      -->
+<!-- ============================================================ -->
+{% include "componentes/paginas_relacionadas.html" with itens_relacionados=itens_relacionados relacionadas_eyebrow="NAVEGAÇÃO CLÍNICA" relacionadas_titulo="Outras áreas do Instituto Mente em Foco" relacionadas_subtitulo="Explore os demais eixos de atuação clínica e psicoterapêutica." %}
+
+<!-- ============================================================ -->
+<!-- 6. CTA DE ATENDIMENTO GLOBAL                                 -->
+<!-- ============================================================ -->
+{% include "componentes/cta_atendimento.html" %}
+{% endblock content %}

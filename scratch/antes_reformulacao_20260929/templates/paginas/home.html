@@ -1,0 +1,632 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}{{ NOME_INSTITUTO }} | Psicologia e Neuropsicologia — Mari Menezes{% endblock title %}
+{% block meta_description %}Acolhimento profissional e especializado em Psicologia e Neuropsicologia. Compreenda sua história, cuide das marcas emocionais e construa novos caminhos com a Psicóloga Mari Menezes.{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock extra_head %}
+
+{% block content %}
+<!-- ============================================================ -->
+<!-- 1. HERO PRINCIPAL                                            -->
+<!-- ============================================================ -->
+<section class="home-hero" id="inicio" aria-label="Apresentação Principal">
+    <div class="home-hero__decoracao" aria-hidden="true">
+        <!-- Ramo botânico sutil em SVG (alta fidelidade à referência) -->
+        <svg viewBox="0 0 160 480" fill="none" xmlns="http://www.w3.org/2000/svg" class="home-hero__folhagem">
+            <path d="M-20 40C30 90 60 160 30 250C0 340 50 420 80 460" stroke="var(--cor-salvia)" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.35"/>
+            <path d="M10 85C45 75 75 95 65 125C55 155 20 145 10 85Z" fill="var(--cor-salvia)" fill-opacity="0.12" stroke="var(--cor-salvia)" stroke-width="1.2" stroke-opacity="0.3"/>
+            <path d="M25 155C60 140 95 160 85 195C75 225 35 210 25 155Z" fill="var(--cor-salvia)" fill-opacity="0.12" stroke="var(--cor-salvia)" stroke-width="1.2" stroke-opacity="0.3"/>
+            <path d="M28 230C70 220 100 245 90 280C80 310 40 290 28 230Z" fill="var(--cor-salvia)" fill-opacity="0.12" stroke="var(--cor-salvia)" stroke-width="1.2" stroke-opacity="0.3"/>
+            <path d="M32 315C75 305 105 330 95 365C85 395 45 375 32 315Z" fill="var(--cor-salvia)" fill-opacity="0.12" stroke="var(--cor-salvia)" stroke-width="1.2" stroke-opacity="0.3"/>
+        </svg>
+    </div>
+
+    <div class="site-container">
+        <div class="home-hero__grid">
+            <!-- Coluna de Apresentação Textual -->
+            <div class="home-hero__conteudo">
+                <span class="eyebrow home-hero__eyebrow">{{ CONCEITO_TRIPLICE }}</span>
+                <h1 class="home-hero__titulo">Você não precisa permanecer preso ao que viveu.</h1>
+                <p class="home-hero__descricao">
+                    A Psicologia e a Neuropsicologia podem ajudar você a compreender sua história, cuidar das marcas emocionais e construir novas possibilidades para sua vida.
+                </p>
+                <div class="home-hero__acoes">
+                    <a href="#atendimento" class="btn btn--primario home-hero__btn">
+                        <span>Quero conhecer o atendimento</span>
+                    </a>
+                    {% if WHATSAPP_LINK %}
+                        <a href="{{ WHATSAPP_LINK }}" target="_blank" rel="noopener noreferrer" class="btn btn--secundario home-hero__btn">
+                            <svg class="home-hero__btn-icone" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.586-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.062-2.18-.553-1.614-.666-2.613-2.327-2.694-2.435-.08-.108-.65-0.865-.65-1.65 0-.785.41-1.17.555-1.328.145-.158.32-.198.428-.198.106 0 .213.001.305.006.098.005.23-.037.36.275.135.324.46 1.12.5 1.202.04.081.067.176.013.283-.053.108-.08.175-.16.27-.08.094-.17.21-.242.282-.08.08-.163.167-.07.327.094.159.418.69.897 1.117.616.549 1.135.719 1.297.799.16.081.254.068.348-.04.095-.109.405-.472.513-.634.108-.162.217-.135.366-.081.148.054.945.446 1.107.527.162.081.27.122.31.19.04.068.04.393-.104.798z"/>
+                            </svg>
+                            <span>Falar pelo WhatsApp</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'contato:index' %}" class="btn btn--secundario home-hero__btn">
+                            <svg class="home-hero__btn-icone" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <span>Falar pelo WhatsApp</span>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Coluna Visual da Profissional (Retrato Dominante) -->
+            <div class="home-hero__visual">
+                <div class="home-hero__frame-container">
+                    <div class="media-frame ratio-4-5 home-hero__frame">
+                        {% if profissional and profissional.foto_principal %}
+                            <img src="{{ profissional.foto_principal.url }}"
+                                 alt="Retrato profissional de {{ profissional.nome_exibicao }}"
+                                 class="home-hero__foto"
+                                 loading="eager"
+                                 fetchpriority="high"
+                                 decoding="async"
+                                 width="600"
+                                 height="750">
+                        {% else %}
+                            <div class="placeholder-imagem placeholder-imagem--hero">
+                                <span class="placeholder-imagem__codigo">IMG-001</span>
+                                <span class="placeholder-imagem__descricao">Foto Principal — Mari Menezes</span>
+                                <span class="placeholder-imagem__ratio">Proporção 4:5 (Vertical)</span>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Frase em itálico editorial flutuante conforme referência -->
+                    <aside class="home-hero__citacao-flutuante" aria-label="Mensagem de acolhimento">
+                        <p class="home-hero__citacao-texto">“Cuidar da mente também é uma forma de recomeçar.”</p>
+                    </aside>
+
+                    <!-- Identificação da Profissional -->
+                    <div class="home-hero__badge-profissional">
+                        <div class="home-hero__badge-icone" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <circle cx="12" cy="8" r="4"/>
+                                <path d="M4 20c0-4 4-6 8-6s8 2 8 6"/>
+                            </svg>
+                        </div>
+                        <div class="home-hero__badge-info">
+                            <span class="home-hero__badge-nome">{% if profissional %}{{ profissional.nome_exibicao }}{% else %}{{ NOME_PROFISSIONAL }}{% endif %}</span>
+                            <span class="home-hero__badge-cargo">Psicologia & Neuropsicologia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- 2. SEÇÃO INTRODUTÓRIA: ALGUNS MOMENTOS DA VIDA MUDAM TUDO     -->
+<!-- ============================================================ -->
+<section class="secao-introducao secao--clara" id="atendimento">
+    <div class="site-container">
+        <div class="secao-introducao__grid">
+            <!-- Coluna 1: Imagem Editorial Botânica (IMG-002) -->
+            <div class="secao-introducao__imagem-coluna">
+                <div class="media-frame ratio-1-1 secao-introducao__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-002</span>
+                        <span class="placeholder-imagem__descricao">Fotografia Botânica / Folhagem</span>
+                        <span class="placeholder-imagem__ratio">Proporção 1:1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna 2: Texto Central Acolhedor -->
+            <div class="secao-introducao__texto-coluna">
+                <span class="eyebrow">ACOLHIMENTO & ESCUTA</span>
+                <h2 class="titulo-secao">Alguns momentos da vida mudam tudo...</h2>
+                <div class="secao-introducao__paragrafos">
+                    <p>
+                        Separações, perdas, traumas, mudanças bruscas de vida, crises emocionais ou a sensação persistente de estar repetindo os mesmos padrões. Em momentos assim, contar com apoio profissional técnico e humanizado faz toda a diferença.
+                    </p>
+                    <p>
+                        Acolher o que doeu e dar um novo sentido à própria história é o primeiro passo para reconstruir caminhos mais leves, autênticos e conscientes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Coluna 3: 4 Pilares em Ícones Horizontais e Citação de Apoio (Fiel à Referência) -->
+            <div class="secao-introducao__destaques-coluna">
+                <div class="secao-introducao__pilares-grid" role="list" aria-label="Especialidades centrais">
+                    <div class="secao-introducao__pilar" role="listitem">
+                        <div class="secao-introducao__pilar-icone" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/>
+                                <path d="M12 7v5l3 3"/>
+                            </svg>
+                        </div>
+                        <span class="secao-introducao__pilar-nome">Psicologia</span>
+                    </div>
+
+                    <div class="secao-introducao__pilar" role="listitem">
+                        <div class="secao-introducao__pilar-icone" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+                            </svg>
+                        </div>
+                        <span class="secao-introducao__pilar-nome">Neuropsicologia</span>
+                    </div>
+
+                    <div class="secao-introducao__pilar" role="listitem">
+                        <div class="secao-introducao__pilar-icone" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <span class="secao-introducao__pilar-nome">Traumas</span>
+                    </div>
+
+                    <div class="secao-introducao__pilar" role="listitem">
+                        <div class="secao-introducao__pilar-icone" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                            </svg>
+                        </div>
+                        <span class="secao-introducao__pilar-nome">Reabilitação</span>
+                    </div>
+                </div>
+
+                <div class="secao-introducao__nota-citacao">
+                    <p class="secao-introducao__nota-texto">“O cuidado começa quando você decide se escutar.”</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- 3. SEÇÃO DE IDENTIFICAÇÃO (7 CARDS CLÍNICOS)                  -->
+<!-- ============================================================ -->
+<section class="secao-identificacao secao--areia" id="identificacao">
+    <div class="site-container">
+        <div class="secao-identificacao__cabecalho">
+            <span class="eyebrow">IDENTIFICAÇÃO & ESCOPO</span>
+            <h2 class="titulo-secao">Talvez você esteja vivendo uma dessas situações</h2>
+            <p class="secao-identificacao__subtitulo">
+                Situações frequentes trazidas ao consultório que revelam a importância de um espaço profissional de escuta, acolhimento e compreensão técnica.
+            </p>
+        </div>
+
+        <div class="secao-identificacao__grid">
+            {% for card in cards_identificacao %}
+            <article class="card card-identificacao">
+                <div class="card-identificacao__icone" aria-hidden="true">
+                    {% if card.icone == 'coracao' %}
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    {% elif card.icone == 'escudo' %}
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    {% elif card.icone == 'cadeado' %}
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                    {% elif card.icone == 'espiral' %}
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                        </svg>
+                    {% elif card.icone == 'sol' %}
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                    {% elif card.icone == 'espelho' %}
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="10" r="7"/>
+                            <path d="M12 17v5M9 22h6"/>
+                        </svg>
+                    {% else %}
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M11 20A7 7 0 0 1 4 13C4 7 11 3 11 3s7 4 7 10a7 7 0 0 1-7 7z"/>
+                            <path d="M11 3v17"/>
+                        </svg>
+                    {% endif %}
+                </div>
+                <p class="card-identificacao__frase">“{{ card.frase }}”</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- 4. SEÇÃO ÁREAS DE ATUAÇÃO (5 CARDS DO CMS)                     -->
+<!-- ============================================================ -->
+<section class="secao-areas secao--clara" id="areas">
+    <div class="site-container">
+        <div class="secao-areas__cabecalho">
+            <span class="eyebrow">PILARES CLÍNICOS</span>
+            <h2 class="titulo-secao">Áreas de Atuação</h2>
+            <p class="secao-areas__subtitulo">
+                Conheça as principais frentes de cuidado psicológico e neuropsicológico oferecidas pelo Instituto.
+            </p>
+        </div>
+
+        <!-- Carrossel 3D de Áreas de Atuação -->
+        <div class="carrossel-3d" id="carrossel-areas" role="region" aria-label="Áreas de Atuação — arraste ou use o scroll para navegar" tabindex="0">
+            <!-- Botões de navegação lateral -->
+            <button type="button" class="carrossel-3d__nav carrossel-3d__nav--anterior" id="carrossel-anterior" aria-label="Área clínica anterior">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button type="button" class="carrossel-3d__nav carrossel-3d__nav--proximo" id="carrossel-proximo" aria-label="Próxima área clínica">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+
+            <!-- Palco do Carrossel 3D -->
+            <div class="carrossel-3d__palco" id="carrossel-palco">
+                {% for area in areas_atuacao %}
+                <article class="card-foto carrossel-3d__card" data-indice="{{ forloop.counter0 }}">
+                    <div class="card-foto__frame media-frame ratio-4-3">
+                        {% if area.imagem %}
+                            <img src="{{ area.imagem.url }}"
+                                 alt="{% if area.texto_alternativo_imagem %}{{ area.texto_alternativo_imagem }}{% else %}Atendimento em {{ area.nome }}{% endif %}"
+                                 loading="lazy"
+                                 decoding="async"
+                                 width="600"
+                                 height="450">
+                        {% else %}
+                            <div class="placeholder-imagem">
+                                <span class="placeholder-imagem__codigo">IMG-00{{ forloop.counter|add:2 }}</span>
+                                <span class="placeholder-imagem__descricao">{{ area.nome }}</span>
+                                <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-foto__overlay"></div>
+                    <div class="card-foto__conteudo">
+                        <span class="badge badge--escuro card-foto__badge">Atendimento</span>
+                        <h3 class="card-foto__titulo">{{ area.nome }}</h3>
+                        <p class="card-foto__resumo">{{ area.resumo }}</p>
+                        {% if area.slug == 'psicologia' %}
+                            <a href="{% url 'servicos:psicologia' %}" class="link-seta card-foto__link">
+                                <span>Conhecer atendimento</span>
+                                <span class="link-seta__icone" aria-hidden="true">→</span>
+                            </a>
+                        {% elif area.slug == 'neuropsicologia' %}
+                            <a href="{% url 'servicos:neuropsicologia' %}" class="link-seta card-foto__link">
+                                <span>Conhecer atendimento</span>
+                                <span class="link-seta__icone" aria-hidden="true">→</span>
+                            </a>
+                        {% elif area.slug == 'traumas' %}
+                            <a href="{% url 'servicos:traumas' %}" class="link-seta card-foto__link">
+                                <span>Conhecer atendimento</span>
+                                <span class="link-seta__icone" aria-hidden="true">→</span>
+                            </a>
+                        {% elif area.slug == 'separacao-e-recomecos' %}
+                            <a href="{% url 'servicos:separacao_recomecos' %}" class="link-seta card-foto__link">
+                                <span>Conhecer atendimento</span>
+                                <span class="link-seta__icone" aria-hidden="true">→</span>
+                            </a>
+                        {% elif area.slug == 'novos-relacionamentos' %}
+                            <a href="{% url 'servicos:novos_relacionamentos' %}" class="link-seta card-foto__link">
+                                <span>Conhecer atendimento</span>
+                                <span class="link-seta__icone" aria-hidden="true">→</span>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'contato:index' %}" class="link-seta card-foto__link">
+                                <span>Informações sobre atendimento</span>
+                                <span class="link-seta__icone" aria-hidden="true">→</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                </article>
+                {% empty %}
+                    <p class="texto-suave" style="padding: 2rem;">Nenhuma área clínica cadastrada no momento.</p>
+                {% endfor %}
+            </div>
+
+            <!-- Indicadores (Dots) -->
+            <div class="carrossel-3d__indicadores" id="carrossel-indicadores" aria-hidden="true"></div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- ============================================================ -->
+<!-- 5. BLOCO SOBRE MARI MENEZES                                  -->
+<!-- ============================================================ -->
+<section class="secao-sobre secao--areia" id="sobre">
+    <div class="site-container">
+        <div class="secao-sobre__grid">
+            <!-- Coluna Foto 4:5 da Profissional -->
+            <div class="secao-sobre__visual">
+                <div class="media-frame ratio-4-5 secao-sobre__frame">
+                    {% if profissional and profissional.foto_sobre %}
+                        <img src="{{ profissional.foto_sobre.url }}"
+                             alt="Fotografia de {{ profissional.nome_exibicao }}"
+                             class="secao-sobre__foto"
+                             loading="lazy"
+                             decoding="async"
+                             width="600"
+                             height="750">
+                    {% elif profissional and profissional.foto_principal %}
+                        <img src="{{ profissional.foto_principal.url }}"
+                             alt="Fotografia de {{ profissional.nome_exibicao }}"
+                             class="secao-sobre__foto"
+                             loading="lazy"
+                             decoding="async"
+                             width="600"
+                             height="750">
+                    {% else %}
+                        <div class="placeholder-imagem">
+                            <span class="placeholder-imagem__codigo">IMG-010</span>
+                            <span class="placeholder-imagem__descricao">Foto Editorial — Mari Menezes</span>
+                            <span class="placeholder-imagem__ratio">Proporção 4:5</span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Coluna Conteúdo Editorial -->
+            <div class="secao-sobre__conteudo">
+                <span class="eyebrow">PROFISSIONAL RESPONSÁVEL</span>
+                <h2 class="titulo-secao">Prazer, eu sou Mari Menezes.</h2>
+                <p class="secao-sobre__cargo">
+                    {% if profissional %}{{ profissional.titulo_profissional }}{% else %}Psicóloga, palestrante e facilitadora de grupos{% endif %}
+                </p>
+
+                <div class="secao-sobre__bio">
+                    <p>
+                        {% if profissional %}{{ profissional.biografia_curta }}{% else %}Minha prática parte da compreensão de que cada pessoa carrega uma história que precisa ser compreendida antes de ser julgada. Meu trabalho busca oferecer um espaço de escuta profissional, acolhimento e construção de estratégias para diferentes momentos da vida.{% endif %}
+                    </p>
+                </div>
+
+                <blockquote class="frase-destaque secao-sobre__frase">
+                    <p>“{% if profissional %}{{ profissional.frase_destaque }}{% else %}Meu propósito é ajudar pessoas a compreenderem melhor a própria história e encontrarem recursos para seguir seus caminhos.{% endif %}”</p>
+                </blockquote>
+
+                <div class="secao-sobre__acoes">
+                    <a href="{% url 'paginas:sobre_mim' %}" class="btn btn--primario">
+                        <span>Conhecer minha trajetória</span>
+                    </a>
+                    {% if WHATSAPP_LINK %}
+                        <a href="{{ WHATSAPP_LINK }}" target="_blank" rel="noopener noreferrer" class="btn btn--secundario">
+                            <span>Conversar pelo WhatsApp</span>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- 6. COMO FUNCIONA O ATENDIMENTO (01–04)                       -->
+<!-- ============================================================ -->
+<section class="secao-processo secao--clara" id="processo">
+    <div class="site-container">
+        <div class="secao-processo__cabecalho">
+            <span class="eyebrow">PASSO A PASSO DO CUIDADO</span>
+            <h2 class="titulo-secao">Como funciona o atendimento</h2>
+            <p class="secao-processo__subtitulo">
+                Um processo ético, gradual e centrado na singularidade de cada pessoa.
+            </p>
+        </div>
+
+        <div class="secao-processo__grid">
+            {% for etapa in etapas_processo %}
+            <article class="step">
+                <span class="step__numero">{{ etapa.numero }}</span>
+                <h3 class="step__titulo">{{ etapa.titulo }}</h3>
+                <p class="step__descricao">{{ etapa.descricao }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- 7. BLOCO NEUROPSICOLOGIA & AVALIAÇÃO                         -->
+<!-- ============================================================ -->
+<section class="secao-neuro secao--areia" id="neuropsicologia">
+    <div class="site-container">
+        <div class="secao-neuro__grid">
+            <div class="secao-neuro__conteudo">
+                <span class="eyebrow">CIÊNCIA & COGNIÇÃO</span>
+                <h2 class="titulo-secao">Neuropsicologia & Avaliação Especializada</h2>
+                <p class="secao-neuro__descricao">
+                    A Neuropsicologia investiga minuciosamente as relações entre o funcionamento cerebral, a cognição, as emoções e o comportamento humano, permitindo intervenções direcionadas e esclarecedoras.
+                </p>
+
+                <div class="secao-neuro__tags-grupo" aria-label="Funções cognitivas investigadas">
+                    <span class="secao-neuro__tag">Atenção</span>
+                    <span class="secao-neuro__tag">Memória</span>
+                    <span class="secao-neuro__tag">Funções Executivas</span>
+                    <span class="secao-neuro__tag">Raciocínio</span>
+                    <span class="secao-neuro__tag">Linguagem</span>
+                    <span class="secao-neuro__tag">Dinâmica Emocional</span>
+                </div>
+
+                <div class="secao-neuro__esclarecimento">
+                    <p>
+                        <strong>Avaliação Psicológica e Avaliação Neuropsicológica:</strong> são processos técnicos distintos, conduzidos com instrumentos padronizados e devolutiva ética, que se complementam conforme a necessidade clínica de cada pessoa.
+                    </p>
+                </div>
+
+                <div class="secao-neuro__acoes">
+                    <a href="{% url 'servicos:neuropsicologia' %}" class="btn btn--primario">
+                        <span>Conhecer a Neuropsicologia</span>
+                    </a>
+                    <a href="{% url 'servicos:avaliacao' %}" class="btn btn--secundario">
+                        <span>Entender a Avaliação</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="secao-neuro__visual">
+                <div class="media-frame ratio-4-3 secao-neuro__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-012</span>
+                        <span class="placeholder-imagem__descricao">Fotografia Editorial — Neuropsicologia & Avaliação</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- 8. CONTEÚDOS & REFLEXÕES EM DESTAQUE                         -->
+<!-- ============================================================ -->
+<section class="secao-conteudos secao--clara" id="conteudos">
+    <div class="site-container">
+        <div class="secao-conteudos__cabecalho">
+            <span class="eyebrow">ARTIGOS & ORIENTAÇÃO</span>
+            <h2 class="titulo-secao">Conteúdos para apoiar sua reflexão</h2>
+            <p class="secao-conteudos__subtitulo">
+                Textos e orientações técnicas sobre saúde emocional, separação, autoconhecimento e neuropsicologia.
+            </p>
+        </div>
+
+        <div class="secao-conteudos__grid">
+            {% if artigos_publicados %}
+                {% for artigo in artigos_publicados %}
+                <article class="card card-artigo" style="position: relative;">
+                    <a href="{{ artigo.get_absolute_url }}" style="position: absolute; inset: 0; z-index: 2; text-indent: -9999px; overflow: hidden;" aria-label="Ler artigo: {{ artigo.titulo }}">{{ artigo.titulo }}</a>
+                    {% if artigo.imagem_capa %}
+                    <div style="aspect-ratio: 16/9; overflow: hidden; background-color: var(--cor-areia-clara);">
+                        <img src="{{ artigo.imagem_capa.url }}" alt="{{ artigo.texto_alternativo_imagem|default:artigo.titulo }}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" decoding="async">
+                    </div>
+                    {% endif %}
+                    <div class="card-artigo__cabecalho" style="padding: var(--espaco-5) var(--espaco-5) 0 var(--espaco-5);">
+                        {% if artigo.categoria %}
+                        <span class="badge badge--suave card-artigo__badge">{{ artigo.categoria.nome }}</span>
+                        {% endif %}
+                        <span class="card-artigo__tempo">{{ artigo.tempo_leitura_minutos }} min de leitura</span>
+                    </div>
+                    <div style="padding: 0 var(--espaco-5) var(--espaco-5) var(--espaco-5); display: flex; flex-direction: column; flex-grow: 1;">
+                        <h3 class="card-artigo__titulo" style="margin-top: var(--espaco-2);">{{ artigo.titulo }}</h3>
+                        {% if artigo.resumo %}
+                        <p class="card-artigo__resumo">{{ artigo.resumo }}</p>
+                        {% endif %}
+                        <div class="card-artigo__rodape" style="margin-top: auto; padding-top: var(--espaco-3); border-top: 1px solid rgba(44, 60, 48, 0.06);">
+                            <span style="color: var(--cor-oliva); font-size: var(--fonte-xs); font-weight: 600; display: inline-flex; align-items: center; gap: 0.25rem;">
+                                Ler artigo completo →
+                            </span>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            {% else %}
+                {% for tema in temas_conteudos %}
+                <article class="card card-artigo card-artigo--preview">
+                    <div class="card-artigo__cabecalho">
+                        <span class="badge badge--suave card-artigo__badge">{{ tema.categoria }}</span>
+                        <span class="card-artigo__tempo">{{ tema.tempo_leitura }}</span>
+                    </div>
+                    <h3 class="card-artigo__titulo">{{ tema.titulo }}</h3>
+                    <p class="card-artigo__resumo">{{ tema.resumo }}</p>
+                    <div class="card-artigo__rodape">
+                        <span class="card-artigo__status-badge">Publicação em breve</span>
+                    </div>
+                </article>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="secao-conteudos__cta">
+            <a href="{% url 'conteudos:index' %}" class="btn btn--secundario">
+                <span>Acessar área de conteúdos</span>
+                <span class="btn__seta" aria-hidden="true">→</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- 9. PERGUNTAS FREQUENTES (FAQ ACCORDION)                      -->
+<!-- ============================================================ -->
+<section class="secao-faq secao--areia" id="faq">
+    <div class="site-container site-container--texto">
+        <div class="secao-faq__cabecalho">
+            <span class="eyebrow">DÚVIDAS FREQUENTES</span>
+            <h2 class="titulo-secao">Perguntas Frequentes</h2>
+            <p class="secao-faq__subtitulo">
+                Esclarecimentos iniciais sobre o formato, acolhimento e escuta profissional.
+            </p>
+        </div>
+
+        <div class="accordion secao-faq__lista">
+            {% for item in faq_itens %}
+            <details class="accordion__item">
+                <summary class="accordion__titulo">{{ item.pergunta }}</summary>
+                <div class="accordion__conteudo">
+                    <p>{{ item.resposta }}</p>
+                </div>
+            </details>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- 10. CTA FINAL DE ENCERRAMENTO                                -->
+<!-- ============================================================ -->
+<section class="secao-cta-final" id="agendamento" aria-label="Ação de agendamento">
+    <div class="site-container">
+        <div class="secao-cta-final__box">
+            <div class="secao-cta-final__decoracao" aria-hidden="true">
+                <svg width="220" height="220" viewBox="0 0 200 200" fill="none" class="secao-cta-final__ramo">
+                    <path d="M20 180C60 140 100 80 170 30" stroke="var(--cor-dourado)" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.4"/>
+                    <path d="M80 110C100 85 130 90 120 115C110 135 85 130 80 110Z" fill="var(--cor-dourado)" fill-opacity="0.15" stroke="var(--cor-dourado)" stroke-width="1" stroke-opacity="0.4"/>
+                    <path d="M125 65C145 40 175 45 165 70C155 90 130 85 125 65Z" fill="var(--cor-dourado)" fill-opacity="0.15" stroke="var(--cor-dourado)" stroke-width="1" stroke-opacity="0.4"/>
+                </svg>
+            </div>
+
+            <div class="secao-cta-final__conteudo">
+                <span class="eyebrow secao-cta-final__eyebrow">COMECE POR VOCÊ</span>
+                <h2 class="secao-cta-final__titulo">Cuidar da mente também é uma forma de recomeçar.</h2>
+                <p class="secao-cta-final__subtitulo">
+                    Dê o primeiro passo para compreender sua história e construir novos caminhos com apoio profissional ético, acolhedor e seguro.
+                </p>
+                <div class="secao-cta-final__acoes">
+                    {% if WHATSAPP_LINK %}
+                        <a href="{{ WHATSAPP_LINK }}" target="_blank" rel="noopener noreferrer" class="btn btn--dourado secao-cta-final__btn">
+                            <span>Agendar atendimento</span>
+                            <span class="btn__seta" aria-hidden="true">→</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'contato:index' %}" class="btn btn--dourado secao-cta-final__btn">
+                            <span>Agendar atendimento</span>
+                            <span class="btn__seta" aria-hidden="true">→</span>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="{% static 'js/home.js' %}" defer></script>
+{% endblock extra_scripts %}

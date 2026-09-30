@@ -1,0 +1,200 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}{{ titulo_pagina }}{% endblock title %}
+{% block meta_description %}{{ meta_descricao }}{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paginas_internas.css' %}">
+<style>
+    .tabela-cookies-container {
+        width: 100%;
+        overflow-x: auto;
+        margin: 1.5rem 0 2rem;
+        border-radius: var(--raio-md, 8px);
+        border: 1px solid rgba(44, 60, 48, 0.15);
+        background: #fff;
+    }
+    .tabela-cookies {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9375rem;
+        text-align: left;
+    }
+    .tabela-cookies th {
+        background-color: var(--cor-oliva);
+        color: #fff;
+        padding: 0.875rem 1rem;
+        font-family: var(--fonte-display);
+        font-weight: 600;
+        letter-spacing: 0.03em;
+    }
+    .tabela-cookies td {
+        padding: 0.875rem 1rem;
+        border-bottom: 1px solid rgba(44, 60, 48, 0.08);
+        vertical-align: top;
+        color: var(--cor-texto);
+    }
+    .tabela-cookies tr:last-child td {
+        border-bottom: none;
+    }
+    .tabela-cookies tr:hover td {
+        background-color: var(--cor-areia-clara);
+    }
+    .badge-essencial {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        background-color: rgba(44, 60, 48, 0.1);
+        color: var(--cor-oliva);
+        font-weight: 600;
+        font-size: 0.8125rem;
+        border-radius: 4px;
+    }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+<!-- ============================================================ -->
+<!-- HERO INTERNO: POLÍTICA DE COOKIES                            -->
+<!-- ============================================================ -->
+{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="TRANSPARÊNCIA TÉCNICA" titulo_hero="Política de Cookies" descricao_hero="Esclarecimento transparente sobre as tecnologias de armazenamento técnico e ausência de rastreamento neste website." %}
+
+<!-- ============================================================ -->
+<!-- CONTEÚDO FACTUAL DA POLÍTICA DE COOKIES                      -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Texto da Política de Cookies">
+    <div class="site-container">
+        <article class="conteudo-politica" style="max-width: 760px; margin: 0 auto; font-family: var(--fonte-texto); font-size: 1.0625rem; line-height: 1.8; color: var(--cor-texto);">
+
+            <section style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    1. O Que São Cookies?
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    Cookies são pequenos arquivos de texto transmitidos pelo servidor do site e salvos no navegador do seu computador ou dispositivo móvel quando você visita uma página web. Eles servem para registrar informações essenciais para que o site funcione com segurança, lembre-se de ações pontuais da sessão e ofereça uma navegação estável.
+                </p>
+            </section>
+
+            <section style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    2. Compromisso de Não Rastreamento
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    O <strong>{{ NOME_INSTITUTO }}</strong> respeita integralmente a privacidade de seus visitantes. Por esse motivo, <strong>não utilizamos cookies de publicidade, não realizamos rastreamento comportamental e não compartilhamos dados de navegação com redes de anúncios ou terceiros</strong>.
+                </p>
+                <div style="background-color: var(--cor-areia-clara); padding: 1.25rem 1.5rem; border-left: 4px solid var(--cor-oliva); border-radius: var(--raio-sm, 4px); margin-bottom: 1rem;">
+                    <p style="margin-bottom: 0.5rem; font-weight: 600; color: var(--cor-oliva);">
+                        Auditoria de Tecnologias Ausentes em Nosso Site:
+                    </p>
+                    <ul style="margin-bottom: 0; padding-left: 1.25rem;">
+                        <li>Sem Google Analytics ou rastreadores de tráfego;</li>
+                        <li>Sem Meta Pixel (Facebook Pixel);</li>
+                        <li>Sem ferramentas de gravação de tela (Hotjar, Clarity);</li>
+                        <li>Sem cookies de terceiros para publicidade direcionada;</li>
+                        <li>Sem armazenamento persistente em <code>localStorage</code> ou <code>sessionStorage</code>.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    3. Cookies Estritamente Necessários Utilizados
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    Os únicos cookies operados pelo site são de <strong>primeira parte</strong>, gerados pelo próprio motor da plataforma Django exclusivamente para permitir a navegação e salvaguardar a segurança da comunicação:
+                </p>
+
+                <!-- Tabela de Cookies Acessível -->
+                <div class="tabela-cookies-container">
+                    <table class="tabela-cookies">
+                        <caption class="visually-hidden">Tabela técnica detalhando cookies essenciais de primeira parte, provedores, finalidades e duração</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Provedor</th>
+                                <th scope="col">Finalidade Técnica</th>
+                                <th scope="col">Duração</th>
+                                <th scope="col">Necessário?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong><code>csrftoken</code></strong></td>
+                                <td>Primeira Parte (Próprio Site)</td>
+                                <td>Protege contra-ataques de falsificação de requisições maliciosas entre sites (Cross-Site Request Forgery) ao submeter formulários.</td>
+                                <td>1 ano</td>
+                                <td><span class="badge-essencial">Sim (Segurança)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong><code>sessionid</code></strong></td>
+                                <td>Primeira Parte (Próprio Site)</td>
+                                <td>Utilizado exclusivamente para manter a sessão de operadores autenticados no painel administrativo interno (Django Admin). Não é emitido para visitantes anônimos.</td>
+                                <td>2 semanas (ou até logout)</td>
+                                <td><span class="badge-essencial">Sim (Acesso Admin)</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong><code>messages</code></strong></td>
+                                <td>Primeira Parte (Próprio Site)</td>
+                                <td>Armazena temporariamente mensagens de confirmação da interface (por exemplo, o aviso de envio bem-sucedido do formulário de contato).</td>
+                                <td>Sessão (Efêmero)</td>
+                                <td><span class="badge-essencial">Sim (Feedback)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p style="font-size: 0.9375rem; color: var(--cor-taupe);">
+                    <em>Nota Técnica: Por serem indispensáveis ao funcionamento técnico e à segurança do serviço, estes cookies não dependem de consentimento prévio nos termos da LGPD e das diretrizes da ANPD.</em>
+                </p>
+            </section>
+
+            <section style="margin-bottom: 2.5rem;">
+                <h2 style="font-family: var(--fonte-display); font-size: 1.85rem; color: var(--cor-oliva); margin-bottom: 0.875rem;">
+                    4. Como Gerenciar ou Desativar Cookies no Navegador
+                </h2>
+                <p style="margin-bottom: 1rem;">
+                    Você pode, a qualquer momento, visualizar, bloquear ou excluir cookies diretamente nas configurações do seu navegador de internet. Observe que a desativação de cookies essenciais como o <code>csrftoken</code> pode impedir o correto envio de mensagens pelo formulário de contato.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    Consulte as instruções do seu navegador:
+                </p>
+                <ul style="margin-bottom: 1rem; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 0.35rem;">
+                        <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" style="color: var(--cor-oliva); text-decoration: underline;">Google Chrome</a>
+                    </li>
+                    <li style="margin-bottom: 0.35rem;">
+                        <a href="https://support.mozilla.org/pt-BR/kb/gerencie-configuracoes-de-armazenamento-local-do-site" target="_blank" rel="noopener noreferrer" style="color: var(--cor-oliva); text-decoration: underline;">Mozilla Firefox</a>
+                    </li>
+                    <li style="margin-bottom: 0.35rem;">
+                        <a href="https://support.apple.com/pt-br/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" style="color: var(--cor-oliva); text-decoration: underline;">Apple Safari</a>
+                    </li>
+                    <li style="margin-bottom: 0.35rem;">
+                        <a href="https://support.microsoft.com/pt-br/microsoft-edge/excluir-cookies-no-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" style="color: var(--cor-oliva); text-decoration: underline;">Microsoft Edge</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section style="margin-bottom: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(44, 60, 48, 0.12);">
+                <p style="font-size: 0.9375rem; color: var(--cor-taupe); margin-bottom: 1.5rem;">
+                    <strong>Data da Última Atualização:</strong> 21 de setembro de 2026.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="{% url 'paginas:politica_privacidade' %}" class="btn btn--secundario" style="font-size: 0.875rem;">
+                        ← Ver Política de Privacidade
+                    </a>
+                    <a href="{% url 'contato:index' %}" class="btn btn--outline" style="font-size: 0.875rem;">
+                        Ir para Contato →
+                    </a>
+                </div>
+            </section>
+
+        </article>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CTA GLOBAL DE ATENDIMENTO                                    -->
+<!-- ============================================================ -->
+{% include "componentes/cta_atendimento.html" with cta_eyebrow="ACOLHIMENTO & ÉTICA" cta_titulo="Sua história merece ser compreendida com respeito e sigilo." cta_texto_apoio="Inicie uma conversa segura para tirar dúvidas sobre nossos atendimentos e avaliações." cta_botao_texto="Falar no WhatsApp" cta_assinatura="Comece por você." %}
+
+{% endblock content %}

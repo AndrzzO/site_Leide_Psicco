@@ -1,0 +1,21 @@
+{% extends "base/base.html" %}
+
+{% block title %}Acesso Restrito (403) — {{ NOME_INSTITUTO }}{% endblock title %}
+{% block meta_robots %}noindex, nofollow{% endblock meta_robots %}
+
+{% block content %}
+<section class="secao-erro">
+    <div class="site-container">
+        <div class="card-erro">
+            <span class="codigo-erro">403</span>
+            <h1 class="card-erro__titulo">Acesso restrito</h1>
+            <p class="card-erro__descricao">
+                Você não possui permissão para acessar esta área reservada do Instituto.
+            </p>
+            <div class="card-erro__acao">
+                <a href="{% url 'paginas:inicio' %}" class="botao-retorno">Retornar à página inicial com segurança</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

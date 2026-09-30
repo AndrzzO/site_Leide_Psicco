@@ -1,0 +1,21 @@
+{% extends "base/base.html" %}
+
+{% block title %}Requisição Inválida (400) — {{ NOME_INSTITUTO }}{% endblock title %}
+{% block meta_robots %}noindex, nofollow{% endblock meta_robots %}
+
+{% block content %}
+<section class="secao-erro">
+    <div class="site-container">
+        <div class="card-erro">
+            <span class="codigo-erro">400</span>
+            <h1 class="card-erro__titulo">Requisição não compreendida</h1>
+            <p class="card-erro__descricao">
+                A solicitação enviada não pôde ser processada corretamente pelo servidor.
+            </p>
+            <div class="card-erro__acao">
+                <a href="{% url 'paginas:inicio' %}" class="botao-retorno">Retornar à página inicial</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

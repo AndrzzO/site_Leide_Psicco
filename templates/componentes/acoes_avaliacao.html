@@ -1,0 +1,4 @@
+<div class="editorial-acoes">
+<a class="btn btn--primario" href="{% url 'contato:index' %}?assunto={{ assunto|default:'avaliacao'|urlencode }}#formulario-contato">Solicitar avaliação psicológica <span aria-hidden="true">↗</span></a>
+{% if WHATSAPP_LINK %}<a class="editorial-link" href="{{ WHATSAPP_LINK }}" target="_blank" rel="noopener noreferrer">Falar no WhatsApp ↗</a>{% else %}<a class="editorial-link" href="{% url 'contato:index' %}#formulario-contato">Falar com o Instituto ↗</a>{% endif %}
+</div>

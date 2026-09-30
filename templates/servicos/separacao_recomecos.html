@@ -1,0 +1,132 @@
+{% extends "base/base.html" %}
+{% load static seo_tags %}
+
+{% block title %}{{ titulo_pagina }}{% endblock title %}
+{% block meta_description %}{{ meta_descricao }}{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paginas_internas.css' %}">
+{% endblock extra_head %}
+
+{% block structured_data %}
+{{ block.super }}
+{% render_service_schema servico "Acompanhamento em Separação e Transição de Vida" %}
+{% render_breadcrumbs_schema breadcrumb %}
+{% endblock structured_data %}
+
+{% block content %}
+<!-- ============================================================ -->
+<!-- 1. HERO INTERNO: SEPARAÇÃO E RECOMEÇOS                       -->
+<!-- ============================================================ -->
+{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="RECONSTRUÇÃO PESSOAL" titulo_hero=servico.titulo|default:"Separação e Recomeços" descricao_hero="Separar-se também é reorganizar a própria vida. Oferecemos um acompanhamento ético para acolher sentimentos contraditórios e reencontrar sua identidade." cta_texto="Dar o primeiro passo para o recomeço" cta_url=WHATSAPP_LINK|default:"/contato/" imagem_url=imagem_url imagem_alt="Acompanhamento em Separação e Recomeços — Instituto Mente em Foco" imagem_ratio="ratio-16-9" placeholder_codigo="IMG-014" placeholder_descricao="Capa Separação e Recomeços" placeholder_ratio="Proporção 16:9" badge_texto="Reorganização Emocional" %}
+
+<!-- ============================================================ -->
+<!-- 2. O QUE MUDA APÓS UMA SEPARAÇÃO: REORGANIZAR A VIDA         -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Reorganização Pós-Término">
+    <div class="site-container">
+        <div class="split-editorial">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">NOVO CICLO</span>
+                <h2 class="titulo-secao">Separar-se também é reorganizar a própria vida</h2>
+
+                <p>
+                    O término de um relacionamento é um dos momentos mais desafiadores na vida de uma pessoa. Além do rompimento com o outro, rompe-se uma série de acordos cotidianos, planos de futuro e formas conhecidas de existir.
+                </p>
+
+                <p>
+                    {{ servico.descricao|default:"O término de uma relação exige acolhimento de sentimentos contraditórios e reconstrução do projeto de vida pessoal e afetivo, com dignidade e respeito à sua história." }}
+                </p>
+
+                <!-- Citação de Destaque Obrigatória -->
+                <div class="bloco-citacao-editorial">
+                    <blockquote class="bloco-citacao-editorial__texto">
+                        “Antes de escolher novamente alguém, talvez seja importante reencontrar você.”
+                    </blockquote>
+                    <span class="bloco-citacao-editorial__autor">Instituto Mente em Foco</span>
+                </div>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-006</span>
+                        <span class="placeholder-imagem__descricao">Reencontro e Autonomia</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. ASPECTOS EMOCIONAIS TRABALHADOS NO PROCESSO               -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--areia" aria-label="Aspectos Trabalhados na Separação">
+    <div class="site-container">
+        <div class="secao-editorial__cabecalho secao-editorial__cabecalho--centro">
+            <span class="eyebrow">DIMENSÕES DA MUDANÇA</span>
+            <h2 class="titulo-secao">O que muda e precisa de cuidado após um término</h2>
+            <p class="secao-editorial__subtitulo">
+                A psicoterapia apoia você na travessia das principais dimensões transformadas pelo fim de uma relação.
+            </p>
+        </div>
+
+        <div class="grid-aspectos">
+            {% for aspecto in aspectos %}
+            <article class="card-aspecto">
+                <div class="card-aspecto__numero" aria-hidden="true">{{ aspecto.numero }}</div>
+                <div class="card-aspecto__conteudo">
+                    <h3 class="card-aspecto__titulo">{{ aspecto.titulo }}</h3>
+                    <p class="card-aspecto__texto">{{ aspecto.texto }}</p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. PONTE PARA O FUTURO: RECOMEÇAR NÃO SIGNIFICA ESQUECER     -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Ponte para o Futuro">
+    <div class="site-container">
+        <div class="split-editorial split-editorial--inverso">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">NOVAS POSSIBILIDADES</span>
+                <h2 class="titulo-secao">Recomeçar não significa esquecer</h2>
+
+                <p>
+                    Reconstruir a vida afetiva não exige apagar o passado ou agir como se tudo o que foi vivido não tivesse valor. Pelo contrário: trata-se de integrar a experiência com maturidade, acolher o aprendizado e reencontrar a confiança em quem você é.
+                </p>
+
+                <p>
+                    Quando você reconstrói seus próprios limites e compreende suas necessidades emocionais, o futuro deixa de parecer uma ameaça e volta a ser um espaço fértil para novos começos.
+                </p>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-007</span>
+                        <span class="placeholder-imagem__descricao">Horizontes Abertos e Novos Passos</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. PÁGINAS RELACIONADAS                                      -->
+<!-- ============================================================ -->
+{% include "componentes/paginas_relacionadas.html" with relacionadas_eyebrow="CONTINUIDADE DA CAMINHADA" relacionadas_titulo="Você também pode conhecer" relacionadas_subtitulo="Frentes de atendimento conectadas à reorganização afetiva e pessoal." itens_relacionados=itens_relacionados %}
+
+<!-- ============================================================ -->
+<!-- 6. CTA DE ATENDIMENTO FINAL                                  -->
+<!-- ============================================================ -->
+{% include "componentes/cta_atendimento.html" with cta_titulo="Cuidar da mente também é uma forma de recomeçar." cta_texto_apoio="Reorganize sua vida emocional com apoio profissional, sigilo e serenidade." cta_botao_texto="Falar pelo WhatsApp" %}
+
+{% endblock content %}

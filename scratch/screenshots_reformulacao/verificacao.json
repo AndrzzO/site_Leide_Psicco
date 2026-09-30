@@ -1,0 +1,142 @@
+[
+  {
+    "name": "home",
+    "status": 200,
+    "h1": 1,
+    "title": "Avaliações, Laudos e Pareceres | Instituto Mente em Foco",
+    "brokenImages": [],
+    "overflow": false
+  },
+  {
+    "name": "avaliacoes",
+    "status": 200,
+    "h1": 1,
+    "title": "Avaliações, Laudos e Pareceres | Instituto Mente em Foco",
+    "brokenImages": [],
+    "overflow": false
+  },
+  {
+    "name": "burnout",
+    "status": 200,
+    "h1": 1,
+    "title": "Avaliação Psicológica para Burnout | Instituto Mente em Foco",
+    "brokenImages": [],
+    "overflow": false
+  },
+  {
+    "name": "bariatrica",
+    "status": 200,
+    "h1": 1,
+    "title": "Avaliação Psicológica para Cirurgia Bariátrica | Instituto Mente em Foco",
+    "brokenImages": [],
+    "overflow": false
+  },
+  {
+    "name": "esterilizacao",
+    "status": 200,
+    "h1": 1,
+    "title": "Avaliação Psicológica para Esterilização | Instituto Mente em Foco",
+    "brokenImages": [],
+    "overflow": false
+  },
+  {
+    "name": "inss",
+    "status": 200,
+    "h1": 1,
+    "title": "Avaliação Psicológica para INSS | Instituto Mente em Foco",
+    "brokenImages": [],
+    "overflow": false
+  },
+  {
+    "name": "judicial",
+    "status": 200,
+    "h1": 1,
+    "title": "Laudo Psicológico para Processos Judiciais | Instituto Mente em Foco",
+    "brokenImages": [],
+    "overflow": false
+  },
+  {
+    "name": "ansiedade",
+    "status": 200,
+    "h1": 1,
+    "title": "Avaliação Psicológica para Ansiedade e Depressão | Instituto Mente em Foco",
+    "brokenImages": [],
+    "overflow": false
+  },
+  {
+    "name": "psicoterapia",
+    "status": 200,
+    "h1": 1,
+    "title": "Psicoterapia Online e Presencial | Instituto Mente em Foco",
+    "brokenImages": [],
+    "overflow": false
+  },
+  {
+    "name": "credenciamento",
+    "status": 200,
+    "h1": 1,
+    "title": "Seja um Psicólogo Credenciado | Instituto Mente em Foco",
+    "brokenImages": [],
+    "overflow": false
+  },
+  {
+    "name": "home",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "name": "avaliacoes",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "name": "burnout",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "name": "bariatrica",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "name": "esterilizacao",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "name": "inss",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "name": "judicial",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "name": "ansiedade",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "name": "psicoterapia",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "name": "credenciamento",
+    "mobile": true,
+    "overflow": false
+  },
+  {
+    "menuExpanded": "true",
+    "submenuVisible": true
+  },
+  {
+    "submenuClosed": true
+  },
+  {
+    "menuClosed": "false"
+  }
+]

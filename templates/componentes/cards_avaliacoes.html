@@ -1,0 +1,10 @@
+{% load static %}
+<div class="avaliacoes-grid">
+{% for item in avaliacoes %}
+<article class="avaliacao-card">
+<a href="{% url 'servicos:avaliacao_especifica' slug=item.slug %}">
+<picture><source media="(max-width: 600px)" srcset="{% static 'img/avaliacoes/' %}{{ item.imagem }}-mobile.webp"><img src="{% static 'img/avaliacoes/' %}{{ item.imagem }}.webp" alt="{{ item.alt }}" width="960" height="640" loading="lazy" decoding="async"></picture>
+<div class="avaliacao-card__texto"><span class="editorial-numero">0{{ forloop.counter }} / {{ item.grupo }}</span><h3>{{ item.nome }}</h3><p>{{ item.resumo }}</p><span class="editorial-link">Entender a avaliação <span aria-hidden="true">↗</span></span></div>
+</a></article>
+{% endfor %}
+</div>

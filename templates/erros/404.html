@@ -1,0 +1,21 @@
+{% extends "base/base.html" %}
+
+{% block title %}Página Não Encontrada (404) — {{ NOME_INSTITUTO }}{% endblock title %}
+{% block meta_robots %}noindex, nofollow{% endblock meta_robots %}
+
+{% block content %}
+<section class="secao-erro">
+    <div class="site-container">
+        <div class="card-erro">
+            <span class="codigo-erro">404</span>
+            <h1 class="card-erro__titulo">Página não encontrada</h1>
+            <p class="card-erro__descricao">
+                O endereço acessado não está disponível ou foi reestruturado, mas você pode continuar navegando pelos nossos canais institucionais.
+            </p>
+            <div class="card-erro__acao">
+                <a href="{% url 'paginas:inicio' %}" class="botao-retorno">Voltar à página inicial</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

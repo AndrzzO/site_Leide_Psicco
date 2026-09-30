@@ -1,0 +1,47 @@
+<ul class="site-nav__lista {% if lista_classe %}{{ lista_classe }}{% endif %}">
+    <li class="site-nav__item">
+        <a href="{% url 'paginas:inicio' %}" class="site-nav__link {% if request.path == '/' %}site-nav__link--ativo{% endif %}" {% if request.path == '/' %}aria-current="page"{% endif %}>
+            Início
+        </a>
+    </li>
+    <li class="site-nav__item">
+        <a href="{% url 'paginas:sobre_mim' %}" class="site-nav__link {% if '/sobre-mim/' in request.path %}site-nav__link--ativo{% endif %}" {% if '/sobre-mim/' in request.path %}aria-current="page"{% endif %}>
+            Sobre Mim
+        </a>
+    </li>
+    <li class="site-nav__item">
+        <a href="{% url 'servicos:psicologia' %}" class="site-nav__link {% if '/psicologia/' in request.path %}site-nav__link--ativo{% endif %}" {% if '/psicologia/' in request.path %}aria-current="page"{% endif %}>
+            Psicologia
+        </a>
+    </li>
+    <li class="site-nav__item">
+        <a href="{% url 'servicos:neuropsicologia' %}" class="site-nav__link {% if '/neuropsicologia/' in request.path or '/reabilitacao-neurocognitiva/' in request.path %}site-nav__link--ativo{% endif %}" {% if '/neuropsicologia/' in request.path or '/reabilitacao-neurocognitiva/' in request.path %}aria-current="page"{% endif %}>
+            Neuropsicologia
+        </a>
+    </li>
+    <li class="site-nav__item">
+        <a href="{% url 'servicos:traumas' %}" class="site-nav__link {% if '/traumas/' in request.path %}site-nav__link--ativo{% endif %}" {% if '/traumas/' in request.path %}aria-current="page"{% endif %}>
+            Traumas
+        </a>
+    </li>
+    <li class="site-nav__item">
+        <a href="{% url 'servicos:separacao_recomecos' %}" class="site-nav__link {% if '/separacao-e-recomecos/' in request.path %}site-nav__link--ativo{% endif %}" {% if '/separacao-e-recomecos/' in request.path %}aria-current="page"{% endif %}>
+            Separação & Recomeços
+        </a>
+    </li>
+    <li class="site-nav__item">
+        <a href="{% url 'servicos:avaliacao' %}" class="site-nav__link {% if '/avaliacao' in request.path %}site-nav__link--ativo{% endif %}" {% if '/avaliacao' in request.path %}aria-current="page"{% endif %}>
+            Avaliação
+        </a>
+    </li>
+    <li class="site-nav__item">
+        <a href="{% url 'conteudos:index' %}" class="site-nav__link {% if '/conteudos/' in request.path %}site-nav__link--ativo{% endif %}" {% if '/conteudos/' in request.path %}aria-current="page"{% endif %}>
+            Conteúdos
+        </a>
+    </li>
+    <li class="site-nav__item">
+        <a href="{% url 'contato:index' %}" class="site-nav__link {% if '/contato/' in request.path %}site-nav__link--ativo{% endif %}" {% if '/contato/' in request.path %}aria-current="page"{% endif %}>
+            Contato
+        </a>
+    </li>
+</ul>

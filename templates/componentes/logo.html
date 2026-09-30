@@ -1,0 +1,13 @@
+{% load static %}
+<a href="{% url 'paginas:inicio' %}" class="site-logo {% if logo_classe %}{{ logo_classe }}{% endif %}" aria-label="{{ NOME_INSTITUTO }} — Página Inicial">
+    {% if CONFIGURACAO_SITE and CONFIGURACAO_SITE.logo_horizontal %}
+        <img src="{{ CONFIGURACAO_SITE.logo_horizontal.url }}" alt="{{ NOME_INSTITUTO }}" class="site-logo__img" width="220" height="48" loading="eager" decoding="async">
+    {% elif CONFIGURACAO_SITE and CONFIGURACAO_SITE.logo %}
+        <img src="{{ CONFIGURACAO_SITE.logo.url }}" alt="{{ NOME_INSTITUTO }}" class="site-logo__img" width="180" height="48" loading="eager" decoding="async">
+    {% else %}
+        <span class="site-logo__texto">
+            <span class="site-logo__nome">{{ NOME_INSTITUTO }}</span>
+            <span class="site-logo__subtitulo">{{ NOME_PROFISSIONAL }}</span>
+        </span>
+    {% endif %}
+</a>

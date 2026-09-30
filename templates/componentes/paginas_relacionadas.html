@@ -1,0 +1,29 @@
+<!-- ============================================================ -->
+<!-- COMPONENTE: PÁGINAS E SERVIÇOS RELACIONADOS                  -->
+<!-- Navegação contextual discreta entre áreas clínicas afins     -->
+<!-- ============================================================ -->
+<section class="secao-relacionadas secao--areia" aria-label="Áreas Relacionadas">
+    <div class="site-container">
+        <div class="secao-relacionadas__cabecalho">
+            <span class="eyebrow">{{ relacionadas_eyebrow|default:"CONTINUIDADE DO CUIDADO" }}</span>
+            <h2 class="secao-relacionadas__titulo">{{ relacionadas_titulo|default:"Você também pode conhecer" }}</h2>
+            {% if relacionadas_subtitulo %}
+                <p class="secao-relacionadas__subtitulo">{{ relacionadas_subtitulo }}</p>
+            {% endif %}
+        </div>
+
+        <div class="grid-relacionadas">
+            {% for item in itens_relacionados %}
+            <article class="card-relacionado">
+                <span class="badge badge--suave card-relacionado__badge">{{ item.categoria|default:"Área Clínica" }}</span>
+                <h3 class="card-relacionado__titulo">{{ item.titulo }}</h3>
+                <p class="card-relacionado__resumo">{{ item.resumo }}</p>
+                <a href="{{ item.url }}" class="link-seta card-relacionado__link">
+                    <span>{{ item.link_texto|default:"Conhecer atuação" }}</span>
+                    <span class="link-seta__icone" aria-hidden="true">→</span>
+                </a>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>

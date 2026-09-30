@@ -1,0 +1,22 @@
+# ============================================================
+# REQUIREMENTS — INSTITUTO MENTE EM FOCO
+# Dependências mínimas e justificadas para a fundação do projeto
+# ============================================================
+
+# Framework Web principal (SSR, ORM, Admin, Templates, Segurança)
+Django>=5.2,<6.1
+
+# Gerenciamento seguro de variáveis de ambiente (.env)
+python-decouple>=3.8,<4.0
+
+# Abstração de URL de banco de dados (permite transição transparente SQLite -> PostgreSQL)
+dj-database-url>=3.1.2,<4.0
+
+# Dependências nativas do ecossistema Django
+asgiref>=3.8,<4.0
+sqlparse>=0.5,<1.0
+tzdata>=2025.1
+
+# Processamento e validação de imagens nos ImageFields
+Pillow>=11.0,<13.0
+

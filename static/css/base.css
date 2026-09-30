@@ -1,0 +1,436 @@
+/* ============================================================
+   BASE CSS — INSTITUTO MENTE EM FOCO
+   Reset moderno, estilos de raiz, acessibilidade visual,
+   formulários base e regras de movimento reduzido.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. RESET MODERNO E BOX-SIZING
+   ------------------------------------------------------------ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Garante que o atributo HTML5 hidden nunca seja sobreposto por author styles */
+[hidden] {
+  display: none !important;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+  max-width: 100vw;
+}
+
+body {
+  font-family: var(--fonte-texto);
+  font-size: var(--fonte-base);
+  color: var(--cor-texto-principal);
+  background-color: var(--cor-fundo-principal);
+  line-height: 1.65;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
+}
+
+/* ------------------------------------------------------------
+   2. ELEMENTOS DE MÍDIA E IMAGENS
+   ------------------------------------------------------------ */
+img, picture, svg, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ------------------------------------------------------------
+   3. ACESSIBILIDADE E NAVEGAÇÃO POR TECLADO (WCAG 2.2 NÍVEL AA)
+   ------------------------------------------------------------ */
+/* Indicador universal de foco visível com alto contraste e offset */
+:focus-visible {
+  outline: var(--foco-outline-largura, 2px) solid var(--foco-outline-cor, var(--cor-oliva));
+  outline-offset: var(--foco-outline-offset, 3px);
+  border-radius: var(--radius-sm);
+}
+
+/* Remove contorno padrão de foco por clique de ponteiro preservando foco por teclado */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip link: totalmente oculto fora da tela até receber foco por teclado */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--cor-oliva);
+  color: #FFFFFF;
+  padding: 0.75rem 1.5rem;
+  z-index: 9999;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-family: var(--fonte-texto);
+  font-size: var(--fonte-sm);
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  border: 2px solid #FFFFFF;
+  transition: top var(--transicao-rapida);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 1rem;
+  outline: 3px solid var(--cor-dourado);
+  outline-offset: 2px;
+}
+
+/* Classes utilitárias para leitores de tela */
+.sr-only,
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ------------------------------------------------------------
+   4. ESTRUTURA GLOBAL (Header, Main, Footer)
+   ------------------------------------------------------------ */
+.site-header {
+  background-color: var(--cor-superficie-translucida);
+  border-bottom: 1px solid var(--cor-borda-suave);
+  padding: var(--espaco-3) 0;
+  position: relative;
+  z-index: var(--z-header);
+}
+
+.site-header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--espaco-4);
+}
+
+.site-header__logo-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header__title {
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-lg);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--cor-oliva);
+}
+
+.site-header__subtitle {
+  font-size: var(--fonte-xs);
+  color: var(--cor-texto-secundario);
+  letter-spacing: 0.03em;
+}
+
+.site-header__concept {
+  font-size: var(--fonte-xs);
+  letter-spacing: 0.1em;
+  color: var(--cor-taupe);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.site-main {
+  flex: 1;
+}
+
+.site-footer {
+  background-color: var(--cor-oliva);
+  color: var(--cor-texto-claro);
+  padding: var(--espaco-12) 0 var(--espaco-8);
+  margin-top: auto;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--espaco-2);
+}
+
+.site-footer__quote {
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-md);
+  opacity: 0.92;
+}
+
+.site-footer__copy {
+  font-size: var(--fonte-xs);
+  opacity: 0.75;
+}
+
+/* ------------------------------------------------------------
+   5. CONTROLES DE FORMULÁRIO BASE
+   ------------------------------------------------------------ */
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+label {
+  display: block;
+  font-size: var(--fonte-sm);
+  font-weight: 500;
+  color: var(--cor-texto-principal);
+  margin-bottom: var(--espaco-2);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--radius-sm);
+  color: var(--cor-texto-principal);
+  font-size: var(--fonte-base);
+  transition: border-color var(--transicao-rapida), box-shadow var(--transicao-rapida);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--cor-oliva);
+  box-shadow: 0 0 0 3px rgba(86, 102, 75, 0.15);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: #F0EDE6;
+  color: var(--cor-texto-suave);
+  cursor: not-allowed;
+  border-color: var(--cor-borda-suave);
+}
+
+/* Estado de Erro em Formulários */
+.campo-erro input,
+.campo-erro textarea,
+.campo-erro select,
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: var(--cor-erro);
+  background-color: var(--cor-erro-fundo);
+}
+
+.mensagem-erro {
+  display: block;
+  color: var(--cor-erro);
+  font-size: var(--fonte-xs);
+  margin-top: var(--espaco-1);
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------
+   6. DETAILS E SUMMARY (Base Acessível para Futuro FAQ)
+   ------------------------------------------------------------ */
+details {
+  border-bottom: 1px solid var(--cor-borda-suave);
+  padding: var(--espaco-4) 0;
+}
+
+summary {
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-lg);
+  font-weight: 600;
+  color: var(--cor-oliva);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "+";
+  font-family: var(--fonte-texto);
+  font-size: var(--fonte-md);
+  color: var(--cor-dourado);
+  transition: transform var(--transicao-rapida);
+}
+
+details[open] summary::after {
+  content: "−";
+}
+
+details .details-conteudo {
+  padding-top: var(--espaco-3);
+  color: var(--cor-texto-secundario);
+  font-size: var(--fonte-base);
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------
+   7. PÁGINAS DE ERRO E COMPONENTES TEMPORÁRIOS
+   ------------------------------------------------------------ */
+.secao-temporaria,
+.secao-erro {
+  padding: var(--espaco-20) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.card-temporario,
+.card-erro {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda-suave);
+  border-radius: var(--radius-md);
+  padding: var(--espaco-12);
+  max-width: var(--largura-leitura);
+  margin: 0 auto;
+  box-shadow: var(--sombra-suave);
+  text-align: center;
+}
+
+.codigo-erro {
+  font-family: var(--fonte-display);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--cor-areia);
+  line-height: 1;
+  display: block;
+  margin-bottom: var(--espaco-2);
+}
+
+.card-erro__titulo {
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-2xl);
+  color: var(--cor-oliva);
+  margin-bottom: var(--espaco-2);
+}
+
+.card-erro__descricao {
+  color: var(--cor-texto-secundario);
+  margin-bottom: var(--espaco-6);
+  font-size: var(--fonte-base);
+}
+
+.badge-status {
+  display: inline-block;
+  background-color: rgba(168, 176, 154, 0.25);
+  color: var(--cor-oliva);
+  font-size: var(--fonte-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--espaco-4);
+}
+
+.card-temporario__titulo {
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-3xl);
+  color: var(--cor-oliva);
+  margin-bottom: var(--espaco-1);
+  line-height: 1.2;
+}
+
+.card-temporario__profissional {
+  font-size: var(--fonte-md);
+  color: var(--cor-texto-secundario);
+  margin-bottom: var(--espaco-4);
+}
+
+.card-temporario__divisor {
+  width: 60px;
+  height: 2px;
+  background-color: var(--cor-dourado);
+  margin: var(--espaco-4) auto;
+}
+
+.card-temporario__conceito {
+  font-size: var(--fonte-sm);
+  letter-spacing: 0.1em;
+  color: var(--cor-taupe);
+  margin-bottom: var(--espaco-2);
+}
+
+.card-temporario__assinatura {
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-lg);
+  font-style: italic;
+  color: var(--cor-texto-secundario);
+  margin-bottom: var(--espaco-8);
+}
+
+.card-temporario__info {
+  background-color: var(--cor-fundo-principal);
+  border-radius: var(--radius-sm);
+  padding: var(--espaco-4);
+  font-size: var(--fonte-sm);
+  color: var(--cor-texto-secundario);
+}
+
+.botao-retorno {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  background-color: var(--cor-oliva);
+  color: var(--cor-texto-claro);
+  text-decoration: none;
+  padding: 0.75rem 1.85rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--fonte-sm);
+  font-weight: 500;
+  transition: background-color var(--transicao-padrao), transform var(--transicao-rapida);
+}
+
+.botao-retorno:hover {
+  background-color: var(--cor-acao-hover);
+  transform: translateY(-1px);
+}
+
+/* ------------------------------------------------------------
+   8. PREFERS REDUCED MOTION (Acessibilidade Vestibular)
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

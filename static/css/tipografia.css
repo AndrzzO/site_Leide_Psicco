@@ -1,0 +1,239 @@
+/* ============================================================
+   TIPOGRAFIA — INSTITUTO MENTE EM FOCO
+   Escala tipográfica com clamp(), hierarquia editorial,
+   eyebrows, citações, parágrafos e assinaturas.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. SELEÇÃO DE TEXTO
+   ------------------------------------------------------------ */
+::selection {
+  background-color: rgba(216, 197, 168, 0.45); /* Dourado/Areia sutil */
+  color: var(--cor-texto-principal);
+}
+
+/* ------------------------------------------------------------
+   2. HIERARQUIA PADRÃO DE CABEÇALHOS SEMÂNTICOS
+   ------------------------------------------------------------ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fonte-display);
+  color: var(--cor-titulo);
+  line-height: 1.2;
+  font-weight: 600;
+  text-wrap: balance;
+  margin-bottom: var(--espaco-3);
+}
+
+h1 { font-size: var(--fonte-3xl); line-height: 1.15; }
+h2 { font-size: var(--fonte-2xl); line-height: 1.2; }
+h3 { font-size: var(--fonte-xl); line-height: 1.25; }
+h4 { font-size: var(--fonte-lg); line-height: 1.3; }
+h5 { font-family: var(--fonte-texto); font-size: var(--fonte-base); font-weight: 600; }
+h6 { font-family: var(--fonte-texto); font-size: var(--fonte-sm); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ------------------------------------------------------------
+   3. CLASSES UTILITÁRIAS DE TÍTULOS EDITORIAIS
+   ------------------------------------------------------------ */
+/* Título Hero de grande presença e impacto acolhedor */
+.titulo-hero {
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-hero);
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--cor-titulo);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  max-width: 22ch;
+  margin-bottom: var(--espaco-4);
+}
+
+/* Título Display para seções de destaque */
+.titulo-display {
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-3xl);
+  font-weight: 600;
+  line-height: 1.18;
+  color: var(--cor-titulo);
+  text-wrap: balance;
+  margin-bottom: var(--espaco-4);
+}
+
+/* Título padrão de seções internas */
+.titulo-secao {
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-2xl);
+  font-weight: 600;
+  line-height: 1.22;
+  color: var(--cor-titulo);
+  text-wrap: balance;
+  margin-bottom: var(--espaco-3);
+}
+
+/* Título de cards de serviços e especialidades */
+.titulo-card {
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-lg);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--cor-titulo);
+  margin-bottom: var(--espaco-2);
+}
+
+/* Subtítulo ou cabeçalho menor sans-serif */
+.titulo-menor {
+  font-family: var(--fonte-texto);
+  font-size: var(--fonte-base);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--cor-texto-principal);
+  margin-bottom: var(--espaco-2);
+}
+
+/* Variação para títulos em seções de fundo escuro */
+.secao--verde .titulo-hero,
+.secao--verde .titulo-display,
+.secao--verde .titulo-secao,
+.secao--verde .titulo-card,
+.titulo--claro {
+  color: var(--cor-texto-claro);
+}
+
+/* ------------------------------------------------------------
+   4. EYEBROW / SUPRATÍTULO
+   (Ex: COMPREENDER • CUIDAR • RECONSTRUIR)
+   ------------------------------------------------------------ */
+.eyebrow {
+  font-family: var(--fonte-texto);
+  font-size: var(--fonte-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cor-taupe);
+  display: inline-block;
+  margin-bottom: var(--espaco-2);
+}
+
+.eyebrow--dourado {
+  color: var(--cor-dourado);
+}
+
+.eyebrow--oliva {
+  color: var(--cor-oliva);
+}
+
+.eyebrow--claro {
+  color: rgba(247, 243, 235, 0.85);
+}
+
+/* ------------------------------------------------------------
+   5. PARÁGRAFOS E TEXTO CORRENTE
+   ------------------------------------------------------------ */
+p {
+  color: var(--cor-texto-secundario);
+  font-size: var(--fonte-base);
+  line-height: 1.65;
+  margin-bottom: var(--espaco-4);
+  max-width: 72ch;
+  text-wrap: pretty;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* Parágrafo de abertura editorial / Lead */
+.texto-lead {
+  font-size: var(--fonte-md);
+  color: var(--cor-texto-principal);
+  line-height: 1.6;
+  max-width: 65ch;
+  margin-bottom: var(--espaco-6);
+}
+
+/* Texto pequeno para notas, créditos e legendas */
+.texto-pequeno {
+  font-size: var(--fonte-sm);
+  color: var(--cor-texto-suave);
+  line-height: 1.55;
+}
+
+.secao--verde p,
+.secao--verde .texto-lead {
+  color: rgba(247, 243, 235, 0.9);
+}
+
+.secao--verde .texto-pequeno {
+  color: rgba(247, 243, 235, 0.7);
+}
+
+/* ------------------------------------------------------------
+   6. CITAÇÕES E FRASES DE DESTAQUE
+   ------------------------------------------------------------ */
+.frase-destaque {
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-xl);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--cor-titulo);
+  line-height: 1.35;
+  text-wrap: balance;
+  margin: var(--espaco-6) 0;
+  display: block;
+}
+
+.secao--verde .frase-destaque {
+  color: var(--cor-texto-claro);
+}
+
+blockquote {
+  border-left: 3px solid var(--cor-dourado);
+  padding-left: var(--espaco-5);
+  margin: var(--espaco-6) 0;
+  font-family: var(--fonte-display);
+  font-size: var(--fonte-lg);
+  font-style: italic;
+  color: var(--cor-texto-principal);
+  line-height: 1.5;
+}
+
+/* ------------------------------------------------------------
+   7. TEXTO DE ASSINATURA / MANUSCRITO EDITORIAL
+   ------------------------------------------------------------ */
+.texto-assinatura {
+  font-family: var(--fonte-assinatura);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--fonte-lg);
+  color: var(--cor-dourado);
+  letter-spacing: 0.02em;
+  display: inline-block;
+}
+
+/* ------------------------------------------------------------
+   8. LISTAS EDITORIAIS
+   ------------------------------------------------------------ */
+.lista-editorial {
+  list-style: none;
+  padding-left: 0;
+  margin: var(--espaco-4) 0;
+}
+
+.lista-editorial li {
+  position: relative;
+  padding-left: var(--espaco-6);
+  margin-bottom: var(--espaco-2);
+  color: var(--cor-texto-secundario);
+  font-size: var(--fonte-base);
+  line-height: 1.6;
+}
+
+.lista-editorial li::before {
+  content: "";
+  position: absolute;
+  left: var(--espaco-1);
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--cor-dourado);
+}

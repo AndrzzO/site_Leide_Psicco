@@ -1,0 +1,22 @@
+{% extends "base/base.html" %}
+
+{% block title %}Muitas Requisições (429) — {{ NOME_INSTITUTO }}{% endblock title %}
+{% block meta_robots %}noindex, nofollow{% endblock meta_robots %}
+
+{% block content %}
+<section class="secao-erro">
+    <div class="site-container">
+        <div class="card-erro">
+            <span class="codigo-erro">429</span>
+            <h1 class="card-erro__titulo">Muitas tentativas de acesso</h1>
+            <p class="card-erro__descricao">
+                Identificamos muitas tentativas de envio em um curto período.
+                Por favor, aguarde alguns minutos antes de tentar novamente.
+            </p>
+            <div class="card-erro__acao">
+                <a href="{% url 'paginas:inicio' %}" class="botao-retorno">Retornar à página inicial com segurança</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,130 @@
+{% extends "base/base.html" %}
+{% load static seo_tags %}
+
+{% block title %}{{ titulo_pagina }}{% endblock title %}
+{% block meta_description %}{{ meta_descricao }}{% endblock meta_description %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/paginas_internas.css' %}">
+{% endblock extra_head %}
+
+{% block structured_data %}
+{{ block.super }}
+{% render_service_schema servico "Acompanhamento Terapêutico para Relações Afetivas" %}
+{% render_breadcrumbs_schema breadcrumb %}
+{% endblock structured_data %}
+
+{% block content %}
+<!-- ============================================================ -->
+<!-- 1. HERO INTERNO: NOVOS RELACIONAMENTOS                       -->
+<!-- ============================================================ -->
+{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="VIVÊNCIAS AFETIVAS" titulo_hero=servico.titulo|default:"Novos Relacionamentos" descricao_hero="Recomeçar não significa esquecer. Oferecemos um acompanhamento profissional para compreender escolhas, limites e expectativas em novas etapas da vida amorosa." cta_texto="Conhecer o atendimento" cta_url=WHATSAPP_LINK|default:"/contato/" imagem_url=imagem_url imagem_alt="Acompanhamento para Novos Relacionamentos — Instituto Mente em Foco" imagem_ratio="ratio-16-9" placeholder_codigo="IMG-027" placeholder_descricao="Capa Novos Relacionamentos" placeholder_ratio="Proporção 16:9" badge_texto="Relações Afetivas" %}
+
+<!-- ============================================================ -->
+<!-- 2. INTRODUÇÃO: PASSADO E PRESENTE NA VIDA AFETIVA            -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Passado e Presente nos Relacionamentos">
+    <div class="site-container">
+        <div class="split-editorial">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">HISTÓRIA & AFETO</span>
+                <h2 class="titulo-secao">Compreender a própria história para viver o presente</h2>
+
+                <p>
+                    Iniciar um novo relacionamento ou desejar se abrir para alguém pode despertar sentimentos intensos e contraditórios. É natural que experiências vividas em vínculos anteriores influenciem como você se posiciona hoje.
+                </p>
+
+                <p>
+                    {{ servico.descricao|default:"A terapia auxilia a identificar padrões relacionais anteriores, superando medos e estabelecendo limites saudáveis em novas etapas da vida amorosa, sempre respeitando a sua individualidade." }}
+                </p>
+
+                <!-- Citação de Destaque Oficial -->
+                <div class="bloco-citacao-editorial">
+                    <blockquote class="bloco-citacao-editorial__texto">
+                        “Recomeçar não significa esquecer, mas dar um novo significado àquilo que você viveu.”
+                    </blockquote>
+                    <span class="bloco-citacao-editorial__autor">Instituto Mente em Foco</span>
+                </div>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-007</span>
+                        <span class="placeholder-imagem__descricao">Afeto, Limites e Diálogo</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. DOIS EIXOS REFLEXIVOS: O DESEJO E A CAUTELA               -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--areia" aria-label="Dois Eixos de Reflexão">
+    <div class="site-container">
+        <div class="secao-editorial__cabecalho secao-editorial__cabecalho--centro">
+            <span class="eyebrow">EQUILÍBRIO EMOCIONAL</span>
+            <h2 class="titulo-secao">A tensão natural entre o afeto e a proteção</h2>
+            <p class="secao-editorial__subtitulo">
+                Um novo encontro afetivo costuma colocar em diálogo duas forças legítimas do ser humano:
+            </p>
+        </div>
+
+        <div class="grid-dois-eixos">
+            {% for eixo in eixos %}
+            <article class="card-eixo {{ eixo.classe }}">
+                <span class="badge badge--suave card-eixo__badge">{{ eixo.badge }}</span>
+                <h3 class="card-eixo__titulo">{{ eixo.titulo }}</h3>
+                <p class="card-eixo__texto">{{ eixo.texto }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. INFLUÊNCIA DE EXPERIÊNCIAS ANTERIORES E LIMITES           -->
+<!-- ============================================================ -->
+<section class="secao-editorial secao--clara" aria-label="Limites e Autonomia">
+    <div class="site-container">
+        <div class="split-editorial split-editorial--inverso">
+            <div class="split-editorial__texto">
+                <span class="eyebrow">LIMITES & AUTONOMIA</span>
+                <h2 class="titulo-secao">Escolhas conscientes e limites respeitosos</h2>
+
+                <p>
+                    O acompanhamento psicoterapêutico oferece clareza para você observar como expectativas, medos e feridas passadas podem estar interferindo nas suas decisões afetivas atuais.
+                </p>
+
+                <p>
+                    Aprender a expressar seus limites com firmeza e gentileza, reconhecer aquilo que você aceita ou não em uma convivência e manter sua individualidade preservada são passos fundamentais para que um novo relacionamento seja um espaço de encontro, e não de anulação.
+                </p>
+            </div>
+
+            <div class="split-editorial__visual">
+                <div class="media-frame ratio-4-3 split-editorial__frame">
+                    <div class="placeholder-imagem">
+                        <span class="placeholder-imagem__codigo">IMG-006</span>
+                        <span class="placeholder-imagem__descricao">Autonomia e Clareza Afetiva</span>
+                        <span class="placeholder-imagem__ratio">Proporção 4:3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. PÁGINAS RELACIONADAS                                      -->
+<!-- ============================================================ -->
+{% include "componentes/paginas_relacionadas.html" with relacionadas_eyebrow="CUIDADO CONTÍNUO" relacionadas_titulo="Você também pode conhecer" relacionadas_subtitulo="Áreas afins que dialogam com a reconstrução e o cuidado com os relacionamentos." itens_relacionados=itens_relacionados %}
+
+<!-- ============================================================ -->
+<!-- 6. CTA DE ATENDIMENTO FINAL                                  -->
+<!-- ============================================================ -->
+{% include "componentes/cta_atendimento.html" with cta_titulo="Cuidar da mente também é uma forma de recomeçar." cta_texto_apoio="Construa relações mais conscientes e respeitosas com o apoio de um acompanhamento psicológico especializado." cta_botao_texto="Falar pelo WhatsApp" %}
+
+{% endblock content %}

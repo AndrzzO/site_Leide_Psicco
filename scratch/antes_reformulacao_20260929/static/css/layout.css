@@ -1,0 +1,197 @@
+/* ============================================================
+   LAYOUT — INSTITUTO MENTE EM FOCO
+   Containers, grids estruturais, seções editoriais com respiro,
+   ritmo vertical (.flow) e adaptação responsiva mobile-first.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. CONTAINERS DE LARGURA CONTROLADA
+   ------------------------------------------------------------ */
+.container,
+.site-container {
+  width: 100%;
+  max-width: var(--largura-maxima);
+  margin-inline: auto;
+  padding-inline: var(--padding-container);
+}
+
+/* Container amplo para composições fotográficas */
+.container-largo {
+  width: 100%;
+  max-width: var(--largura-larga);
+  margin-inline: auto;
+  padding-inline: var(--padding-container);
+}
+
+/* Container estreito para leitura editorial focada (60-75ch) */
+.container-texto {
+  width: 100%;
+  max-width: var(--largura-leitura);
+  margin-inline: auto;
+  padding-inline: var(--padding-container);
+}
+
+/* ------------------------------------------------------------
+   2. SEÇÕES EDITORIAIS E SUPERFÍCIES COM RESPIRO
+   ------------------------------------------------------------ */
+.secao {
+  padding-block: var(--secao-y-md);
+  position: relative;
+  width: 100%;
+}
+
+.secao--sm {
+  padding-block: var(--secao-y-sm);
+}
+
+.secao--lg {
+  padding-block: var(--secao-y-lg);
+}
+
+/* Variações de fundo oficiais da identidade */
+.secao--clara {
+  background-color: var(--cor-fundo-principal);
+}
+
+.secao--areia {
+  background-color: var(--cor-fundo-secundario);
+}
+
+.secao--verde {
+  background-color: var(--cor-fundo-verde);
+  color: var(--cor-texto-claro);
+}
+
+/* ------------------------------------------------------------
+   3. CABEÇALHO DE SEÇÃO (Section Header)
+   ------------------------------------------------------------ */
+.section-header {
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.section-header--centro {
+  text-align: center;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.section-header--esquerda {
+  text-align: left;
+  max-width: 680px;
+}
+
+.section-header .eyebrow {
+  margin-bottom: var(--espaco-2);
+}
+
+.section-header p {
+  margin-inline: auto;
+}
+
+.section-header--esquerda p {
+  margin-inline: 0;
+}
+
+/* ------------------------------------------------------------
+   4. SISTEMA DE GRIDS RESPONSIVOS
+   ------------------------------------------------------------ */
+/* Grid de duas colunas (Texto + Imagem / Imagem + Texto) */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espaco-8);
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  /* Proporção assimétrica do Hero da referência (~54% texto / 46% foto) */
+  .grid-2--hero {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 4vw, 4.5rem);
+  }
+
+  /* Inversão de colunas em desktop */
+  .grid-2--invertida > :first-child {
+    order: 2;
+  }
+  .grid-2--invertida > :last-child {
+    order: 1;
+  }
+}
+
+/* Grid genérico de cards com largura mínima de conforto */
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* Grid especializado para 5 áreas de especialidades clínicas */
+.grid-areas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Linha responsiva de 7 cards de identificação (snap-scroll em mobile) */
+.fileira-identificacao {
+  display: flex;
+  gap: var(--espaco-4);
+  overflow-x: auto;
+  padding-bottom: var(--espaco-4);
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.fileira-identificacao > * {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 1200px) {
+  .fileira-identificacao {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+
+  .fileira-identificacao > * {
+    flex: initial;
+  }
+}
+
+/* ------------------------------------------------------------
+   5. COMPOSIÇÕES EDITORIAIS E UTILITÁRIOS DE RITMO VERTICAL
+   ------------------------------------------------------------ */
+/* Ritmo vertical automático para blocos de texto (.flow) */
+.flow > * + * {
+  margin-top: var(--flow-space, var(--espaco-4));
+}
+
+/* Pilha flexível vertical (.stack) */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap, var(--espaco-4));
+}
+
+/* Agrupamento horizontal flexível */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cluster-gap, var(--espaco-3));
+}
+
+/* Bloco full-bleed opcional para quebrar fora do container sem provocar overflow horizontal */
+.full-bleed {
+  width: 100%;
+  max-width: 100vw;
+  margin-inline: 0;
+}

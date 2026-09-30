@@ -1,0 +1,170 @@
+/* ============================================================
+   DESIGN TOKENS — INSTITUTO MENTE EM FOCO
+   Centralização absoluta de cores, tipografia, espaçamentos,
+   bordas, sombras, transições e dimensões de layout.
+   ============================================================ */
+
+:root {
+  /* ------------------------------------------------------------
+     1. PALETA DE CORES OFICIAL APROVADA (Valores Primitivos)
+     ------------------------------------------------------------ */
+  --cor-areia: #D8C5A8;
+  --cor-off-white: #F7F3EB;
+  --cor-salvia: #A8B09A;
+  --cor-oliva: #56664B;
+  --cor-dourado: #C9A86A;
+  --cor-taupe: #6D655B;
+
+  /* ------------------------------------------------------------
+     2. TOKENS SEMÂNTICOS (Superfícies e Fundos)
+     ------------------------------------------------------------ */
+  --cor-fundo-principal: var(--cor-off-white);
+  --cor-fundo-secundario: #EFE9DE; /* Areia clara para alternância sutil */
+  --cor-fundo-areia: var(--cor-areia);
+  --cor-fundo-verde: var(--cor-oliva);
+  --cor-superficie: #FFFFFF;
+  --cor-superficie-translucida: rgba(247, 243, 235, 0.95);
+  --cor-overlay-foto: linear-gradient(180deg, rgba(45, 41, 38, 0.05) 0%, rgba(45, 41, 38, 0.65) 100%);
+
+  /* ------------------------------------------------------------
+     3. TOKENS SEMÂNTICOS DE TIPOGRAFIA E TEXTO
+     ------------------------------------------------------------ */
+  --cor-texto-principal: #2D2926; /* Café muito escuro / quase preto orgânico (13.0:1) */
+  --cor-texto-secundario: #5E5953; /* Taupe equilibrado para parágrafos (6.26:1) */
+  --cor-texto-suave: #6E675E; /* Calibrado para >= 4.5:1 sobre fundos claros (WCAG AA) */
+  --cor-texto-claro: var(--cor-off-white); /* Para fundos escuros / verde oliva */
+  --cor-titulo: var(--cor-oliva); /* Verde oliva profundo para títulos */
+
+  /* ------------------------------------------------------------
+     4. BORDAS, DIVISORES E ELEVAÇÕES
+     ------------------------------------------------------------ */
+  --cor-borda: rgba(109, 101, 91, 0.2);
+  --cor-borda-suave: rgba(109, 101, 91, 0.12);
+  --cor-borda-clara: rgba(247, 243, 235, 0.3);
+
+  /* ------------------------------------------------------------
+     5. TOKENS DE AÇÃO, FOCO E FEEDBACK (Acessibilidade WCAG 2.2)
+     ------------------------------------------------------------ */
+  --cor-destaque: var(--cor-dourado);
+  --cor-acao: var(--cor-oliva);
+  --cor-acao-hover: #44523B;
+  --cor-whatsapp: #4D6B42; /* Verde oliva botânico para WhatsApp refinado */
+  --cor-whatsapp-hover: #3C5533;
+  --cor-focus: var(--cor-oliva);
+  --foco-outline-largura: 2px;
+  --foco-outline-cor: var(--cor-oliva);
+  --foco-outline-offset: 3px;
+  --cor-erro: #9C3D3D;
+  --cor-erro-fundo: #FBF2F2;
+
+  /* ------------------------------------------------------------
+     6. FAMÍLIAS TIPOGRÁFICAS
+     ------------------------------------------------------------ */
+  --fonte-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --fonte-texto: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --fonte-assinatura: 'Cormorant Garamond', Georgia, serif;
+
+  /* ------------------------------------------------------------
+     7. ESCALA TIPOGRÁFICA RESPONSIVA (Fluid Clamp)
+     ------------------------------------------------------------ */
+  --fonte-xs: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem); /* ~12-13px */
+  --fonte-sm: clamp(0.8125rem, 0.78rem + 0.2vw, 0.875rem);   /* ~13-14px */
+  --fonte-base: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);     /* ~15-16px */
+  --fonte-md: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);    /* ~17-19px */
+  --fonte-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.4375rem);   /* ~20-23px */
+  --fonte-xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);    /* ~24-30px */
+  --fonte-2xl: clamp(1.875rem, 1.6rem + 1.2vw, 2.5rem);     /* ~30-40px */
+  --fonte-3xl: clamp(2.25rem, 1.85rem + 1.8vw, 3.25rem);    /* ~36-52px */
+  --fonte-hero: clamp(2.5rem, 1.95rem + 2.5vw, 4.25rem);    /* ~40-68px */
+
+  /* ------------------------------------------------------------
+     8. ESCALA DE ESPAÇAMENTO E RITMO VERTICAL
+     ------------------------------------------------------------ */
+  --espaco-1: 0.25rem;  /* 4px */
+  --espaco-2: 0.5rem;   /* 8px */
+  --espaco-3: 0.75rem;  /* 12px */
+  --espaco-4: 1rem;     /* 16px */
+  --espaco-5: 1.25rem;  /* 20px */
+  --espaco-6: 1.5rem;   /* 24px */
+  --espaco-8: 2rem;     /* 32px */
+  --espaco-10: 2.5rem;  /* 40px */
+  --espaco-12: 3rem;    /* 48px */
+  --espaco-16: 4rem;    /* 64px */
+  --espaco-20: 5rem;    /* 80px */
+  --espaco-24: 6rem;    /* 96px */
+
+  /* Compatibilidade semântica com código existente */
+  --espaco-xs: var(--espaco-1);
+  --espaco-sm: var(--espaco-2);
+  --espaco-md: var(--espaco-4);
+  --espaco-lg: var(--espaco-6);
+  --espaco-xl: var(--espaco-8);
+  --espaco-2xl: var(--espaco-12);
+  --espaco-3xl: var(--espaco-20);
+
+  /* Espaçamento vertical de seções */
+  --secao-y-sm: clamp(2.5rem, 4vw, 4rem);
+  --secao-y-md: clamp(4rem, 6vw, 6.5rem);
+  --secao-y-lg: clamp(5rem, 8vw, 8.5rem);
+
+  /* ------------------------------------------------------------
+     9. ARREDONDAMENTO (Border Radius)
+     ------------------------------------------------------------ */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+
+  /* ------------------------------------------------------------
+     10. ELEVAÇÕES E SOMBRAS SUAVES
+     ------------------------------------------------------------ */
+  --sombra-suave: 0 4px 20px rgba(45, 41, 38, 0.05);
+  --sombra-card: 0 8px 30px rgba(45, 41, 38, 0.07);
+  --sombra-hover: 0 12px 36px rgba(45, 41, 38, 0.1);
+
+  /* ------------------------------------------------------------
+     11. DIMENSÕES DE CONTAINERS E LARGURA MÁXIMA
+     ------------------------------------------------------------ */
+  --largura-maxima: 1280px;
+  --largura-larga: 1440px;
+  --largura-leitura: 720px;
+  --padding-container: clamp(1rem, 3vw, 2.5rem);
+
+  /* ------------------------------------------------------------
+     12. TRANSIÇÕES E TEMPOS DE ANIMAÇÃO
+     ------------------------------------------------------------ */
+  --transicao-rapida: 0.15s ease;
+  --transicao-base: 0.25s ease-in-out;
+  --transicao-lenta: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transicao-padrao: var(--transicao-base);
+
+  /* ------------------------------------------------------------
+     13. CAMADAS DE Z-INDEX
+     ------------------------------------------------------------ */
+  --z-base: 1;
+  --z-elevado: 10;
+  --z-dropdown: 100;
+  --z-header: 200;
+  --z-modal: 500;
+  --z-toast: 600;
+
+  /* ------------------------------------------------------------
+     14. ALIASES E COMPATIBILIDADE SEMÂNTICA GLOBAL (Prompt 20)
+     ------------------------------------------------------------ */
+  --fonte-titulo: var(--fonte-display);
+  --cor-branco: var(--cor-superficie);
+  --cor-areia-clara: var(--cor-fundo-secundario);
+  --cor-oliva-profundo: var(--cor-oliva);
+  --cor-texto: var(--cor-texto-principal);
+  --espaco-14: 3.5rem;
+  --radius-full: var(--radius-pill);
+  --raio-sm: var(--radius-sm);
+  --raio-md: var(--radius-md);
+  --raio-lg: var(--radius-lg);
+  --raio-completo: var(--radius-pill);
+  --sombra-sm: var(--sombra-suave);
+  --sombra-md: var(--sombra-card);
+  --sombra-lg: var(--sombra-hover);
+  --transicao-normal: var(--transicao-padrao);
+  --largura-conteudo: var(--largura-maxima);
+}
