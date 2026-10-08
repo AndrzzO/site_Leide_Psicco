@@ -1,0 +1,2 @@
+from pathlib import Path
+p=Path('templates/paginas/sobre_mim.html');s=p.read_text(encoding='utf-8-sig');s=s.replace('descricao_hero="Psicóloga Clínica e Avaliadora Psicológica. Avaliações, laudos, pareceres, relatórios e atendimento clínico para adolescentes e adultos."','descricao_hero="Marileide Silva Leite de Menezes · CRP: 01/28409. Psicóloga Clínica e Avaliadora Psicológica. Avaliações, laudos, pareceres, relatórios e atendimento clínico para adolescentes e adultos."');p.write_text(s,encoding='utf-8')

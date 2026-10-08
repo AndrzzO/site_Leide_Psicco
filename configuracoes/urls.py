@@ -2,12 +2,13 @@
 Roteador principal de URLs do Instituto Mente em Foco.
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+import re
 from django.conf import settings
 from django.conf.urls.static import static
 
 from django.contrib.sitemaps.views import sitemap
-from nucleo.views import robots_txt
+from nucleo.views import robots_txt, admin_indisponivel
 from nucleo.sitemaps import sitemaps
 
 # Configuração customizada dos títulos do Django Admin
@@ -24,7 +25,8 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
     # Rota configurável do painel administrativo
-    path(admin_path, admin.site.urls),
+    re_path(r'^' + re.escape(admin_path.rstrip('/')) + r'(?:/.*)?$', admin_indisponivel),
+    re_path(r'^admin(?:/.*)?$', admin_indisponivel),
 
     # App nucleo (health check, utilitários globais)
     path('', include('nucleo.urls')),
@@ -34,6 +36,7 @@ urlpatterns = [
 
     # Apps modulares para desenvolvimento incremental
     path('servicos/', include('servicos.urls')),
+    path('area-cliente/', include('conteudos.painel_urls')),
     path('conteudos/', include('conteudos.urls')),
     path('contato/', include('contato.urls')),
 ]

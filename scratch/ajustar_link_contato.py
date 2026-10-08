@@ -1,0 +1,2 @@
+from pathlib import Path
+p=Path('templates/componentes/menu_principal.html');s=p.read_text(encoding='utf-8-sig');old='href="{% url \'contato:index\' %}"';new='href="{% if WHATSAPP_LINK %}{{ WHATSAPP_LINK }}{% else %}{% url \'contato:index\' %}{% endif %}" {% if WHATSAPP_LINK %}target="_blank" rel="noopener noreferrer"{% endif %}';assert old in s;s=s.replace(old,new);p.write_text(s,encoding='utf-8')

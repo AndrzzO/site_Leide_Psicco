@@ -1,0 +1,2 @@
+{% extends 'conteudos/painel/base.html' %}
+{% block painel %}<div class="painel-login"><span class="painel-eyebrow">MEUS ARTIGOS</span><h1>Excluir este artigo?</h1><p>“{{ artigo.titulo }}” será removido do Blog. Essa ação não pode ser desfeita.</p><form method="post">{% csrf_token %}<div class="painel-acoes"><button class="btn btn--primario" type="submit">Excluir artigo</button><a href="{% url 'painel:index' %}">Cancelar</a></div></form></div>{% endblock %}

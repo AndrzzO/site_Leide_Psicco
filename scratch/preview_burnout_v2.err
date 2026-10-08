@@ -1,0 +1,23 @@
+[30/Sep/2026 00:19:11] "GET / HTTP/1.1" 200 29389
+[30/Sep/2026 00:19:12] "GET /static/css/base.css HTTP/1.1" 200 10591
+[30/Sep/2026 00:19:12] "GET /static/css/editorial.css HTTP/1.1" 200 9801
+[30/Sep/2026 00:19:12] "GET /media/profissionais/mari-menezes_86869883.jpg HTTP/1.1" 200 315711
+[30/Sep/2026 00:19:12] "GET /static/css/tipografia.css HTTP/1.1" 200 6401
+[30/Sep/2026 00:19:12] "GET /static/css/tokens.css HTTP/1.1" 200 7430
+[30/Sep/2026 00:19:12] "GET /static/css/utilitarios.css HTTP/1.1" 200 1906
+[30/Sep/2026 00:19:12] "GET /static/css/componentes.css HTTP/1.1" 200 26241
+[30/Sep/2026 00:19:12] "GET /static/js/base.js HTTP/1.1" 200 551
+[30/Sep/2026 00:19:12] "GET /static/js/navegacao.js HTTP/1.1" 200 5075
+[30/Sep/2026 00:19:12] "GET /static/css/layout.css HTTP/1.1" 200 4814
+[30/Sep/2026 00:19:12] "GET /static/img/avaliacoes/esterilizacao.webp HTTP/1.1" 200 57576
+[30/Sep/2026 00:19:12] "GET /static/img/avaliacoes/ansiedade.webp HTTP/1.1" 200 62068
+[30/Sep/2026 00:19:12] "GET /static/img/avaliacoes/inss.webp HTTP/1.1" 200 53554
+[30/Sep/2026 00:19:12] "GET /static/img/avaliacoes/judicial.webp HTTP/1.1" 200 47616
+[30/Sep/2026 00:19:12] "GET /static/img/avaliacoes/bariatrica.webp HTTP/1.1" 200 55716
+[30/Sep/2026 00:19:12] "GET /static/img/avaliacoes/burnout-v2.webp HTTP/1.1" 200 56402
+Not Found: /favicon.ico
+[2026-09-30 00:19:12,853] WARNING django.request: Not Found: /favicon.ico
+[30/Sep/2026 00:19:12] "GET /favicon.ico HTTP/1.1" 404 5887
+[30/Sep/2026 00:19:12] "GET /servicos/avaliacao/burnout/ HTTP/1.1" 200 23361
+[30/Sep/2026 00:19:13] "GET /static/img/avaliacoes/burnout-v2-mobile.webp HTTP/1.1" 200 33380
+[30/Sep/2026 00:19:13] "GET /servicos/avaliacao/burnout/ HTTP/1.1" 200 23361

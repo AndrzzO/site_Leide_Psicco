@@ -4,6 +4,7 @@ Views do app contato:
   honeypot contra bots, rate limiting transitório via cache e padrão Post/Redirect/Get.
 """
 import logging
+from urllib.parse import quote, urlsplit
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -40,6 +41,32 @@ def index(request):
                     "Mensagem enviada com sucesso! Entraremos em contato pelos dados informados."
                 )
                 return redirect('contato:index')
+
+            if request.POST.get('destino') == 'whatsapp':
+                from nucleo.context_processors import dados_institucionais
+                link_padrao = dados_institucionais(request)['WHATSAPP_LINK']
+                if link_padrao:
+                    dados = form.cleaned_data
+                    linhas = [f"Olá Dra. Marileide, me chamo {dados['nome']}."]
+                    servico = dados.get('servico_interesse')
+                    linhas.append(f"Quero saber mais a respeito de {servico.nome}." if servico else 'Quero saber mais a respeito dos seus atendimentos.')
+                    if dados.get('mensagem'):
+                        linhas.append(dados['mensagem'])
+                    contatos = []
+                    if dados.get('telefone'):
+                        contatos.append(f"Telefone: {dados['telefone']}")
+                    if dados.get('email'):
+                        contatos.append(f"E-mail: {dados['email']}")
+                    linhas.append('\n'.join(contatos))
+                    numero = urlsplit(link_padrao).path.strip('/')
+                    texto = "\n\n".join(linhas)
+                    resposta = render(request, 'contato/abrir_whatsapp.html', {
+                        'whatsapp_destino': f"https://wa.me/{numero}?text={quote(texto, safe='')}",
+                        'texto_whatsapp': texto,
+                    })
+                    resposta['Cache-Control'] = 'no-store, private'
+                    resposta['Referrer-Policy'] = 'no-referrer'
+                    return resposta
 
             # Salva mensagem legítima no banco
             mensagem_obj = form.save()
@@ -93,6 +120,7 @@ def index(request):
 
     contexto = {
         'form': form,
+        'enviar_whatsapp': True,
         'titulo_pagina': 'Contato e Agendamento | Instituto Mente em Foco',
         'meta_descricao': (
             'Entre em contato com o Instituto Mente em Foco. Atendimento ético e '
@@ -100,3 +128,4 @@ def index(request):
         ),
     }
     return render(request, 'contato/index.html', contexto)
+

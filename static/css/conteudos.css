@@ -232,15 +232,18 @@
 }
 
 .card-destaque-editorial__capa {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: var(--cor-areia-clara, #f0e9dd);
   display: block;
   transition: transform 0.5s ease;
 }
 
 .card-destaque-editorial:hover .card-destaque-editorial__capa {
-  transform: scale(1.03);
+  transform: none;
 }
 
 .card-destaque-editorial__placeholder {
@@ -376,12 +379,13 @@
 .card-artigo-item__capa {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: var(--cor-areia-clara, #f0e9dd);
   transition: transform 0.4s ease;
 }
 
 .card-artigo-item:hover .card-artigo-item__capa {
-  transform: scale(1.04);
+  transform: none;
 }
 
 .card-artigo-item__placeholder {
@@ -671,7 +675,8 @@
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: var(--cor-areia-clara, #f0e9dd);
   display: block;
 }
 
@@ -903,3 +908,11 @@
   font-weight: 500;
   color: var(--cor-oliva);
 }
+
+/* Fonte editorial: dimensões e hierarquia permanecem definidas pelo site. */
+.artigo-corpo-leitura.fonte-montserrat{font-family:'Montserrat',sans-serif}
+.artigo-corpo-leitura.fonte-georgia{font-family:Georgia,serif}
+.artigo-corpo-leitura.fonte-arial{font-family:Arial,sans-serif}
+.artigo-corpo-leitura.fonte-palatino{font-family:'Palatino Linotype',Palatino,serif}
+.artigo-corpo-leitura>div{margin-bottom:1.4em}
+.artigo-corpo-leitura{overflow-wrap:anywhere}

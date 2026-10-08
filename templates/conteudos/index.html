@@ -142,7 +142,7 @@
             </a>
             <div class="card-destaque-editorial__capa-wrap">
                 {% if artigo_destaque.imagem_capa %}
-                <img src="{{ artigo_destaque.imagem_capa.url }}" 
+                <img src="{{ artigo_destaque.imagem_capa.url }}" style="object-position: {{ artigo_destaque.capa_x }}% {{ artigo_destaque.capa_y }}%;" 
                      alt="{{ artigo_destaque.texto_alternativo_imagem|default:artigo_destaque.titulo }}" 
                      class="card-destaque-editorial__capa" 
                      loading="eager"
@@ -202,7 +202,7 @@
 
                     <div class="card-artigo-item__capa-wrap">
                         {% if artigo.imagem_capa %}
-                        <img src="{{ artigo.imagem_capa.url }}" 
+                        <img src="{{ artigo.imagem_capa.url }}" style="object-position: {{ artigo.capa_x }}% {{ artigo.capa_y }}%;" 
                              alt="{{ artigo.texto_alternativo_imagem|default:artigo.titulo }}" 
                              class="card-artigo-item__capa" 
                              loading="lazy"

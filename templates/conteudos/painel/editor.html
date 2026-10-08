@@ -1,0 +1,29 @@
+{% extends 'conteudos/painel/base.html' %}{% load static %}
+{% block painel %}
+<a href="{% url 'painel:index' %}" class="painel-voltar">← Meus artigos</a>
+<div class="painel-cabecalho"><div><span class="painel-eyebrow">ESCRITA & REFLEXÃO</span><h1>{% if artigo.pk %}Continuar uma ideia.{% else %}O que você quer compartilhar?{% endif %}</h1></div></div>
+<form method="post" enctype="multipart/form-data" class="painel-form" id="editor-form">{% csrf_token %}{{ form.non_field_errors }}
+<div class="painel-editor-grid"><div class="painel-papel">
+<div class="painel-campo">{{ form.titulo.label_tag }}{{ form.titulo }}{{ form.titulo.errors }}</div>
+<div class="painel-campo">{{ form.resumo.label_tag }}{{ form.resumo }}{{ form.resumo.errors }}</div>
+<div class="painel-campo">{{ form.fonte.label_tag }}{{ form.fonte }}{{ form.fonte.errors }}</div>
+<div id="editor-tools" class="editor-tools" hidden role="toolbar" aria-label="Formatação do texto"><button type="button" data-command="bold" aria-label="Negrito"><strong>N</strong></button><button type="button" data-command="italic" aria-label="Itálico"><em>I</em></button><button type="button" data-block="h2">Subtítulo</button><button type="button" data-block="p">Parágrafo</button><button type="button" data-command="insertUnorderedList">Lista</button><button type="button" data-block="blockquote">Citação</button><button type="button" data-command="undo">Desfazer</button></div>
+<label id="texto-label" for="id_conteudo">Texto do artigo</label>{{ form.conteudo }}{{ form.conteudo.errors }}
+<div id="editor-visual" class="artigo-corpo-leitura editor-visual" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="texto-label" hidden></div>
+</div><aside class="painel-opcoes"><h2>Preparar publicação</h2>
+<div class="painel-campo">{{ form.categoria.label_tag }}{{ form.categoria }}{{ form.categoria.errors }}</div>
+<div class="painel-campo">{{ form.imagem_capa.label_tag }}{{ form.imagem_capa }}{{ form.imagem_capa.errors }}</div>
+{{ form.capa_x }}{{ form.capa_y }}{{ form.capa_x.errors }}{{ form.capa_y.errors }}
+<div id="capa-ajuste" hidden>
+<p class="capa-instrucao" id="capa-instrucao">Arraste a foto para escolher o enquadramento.</p>
+<div id="capa-quadro" tabindex="0" role="group" aria-label="Enquadramento da capa" aria-describedby="capa-instrucao"><img id="capa-previa" {% if artigo.imagem_capa %}src="{{ artigo.imagem_capa.url }}"{% endif %} alt="Prévia do enquadramento da capa" draggable="false"></div>
+<button type="button" id="capa-centralizar" class="painel-link">Centralizar foto</button>
+<small id="capa-aviso" role="status">Você também pode usar as setas do teclado. O enquadramento será salvo junto com o artigo.</small>
+</div>
+<div class="painel-campo">{{ form.texto_alternativo_imagem.label_tag }}{{ form.texto_alternativo_imagem }}{{ form.texto_alternativo_imagem.errors }}</div>
+<div class="painel-campo">{{ form.permanencia.label_tag }}{{ form.permanencia }}{{ form.permanencia.errors }}</div>
+<div class="painel-campo" id="expiracao">{{ form.apagar_em.label_tag }}{{ form.apagar_em }}{{ form.apagar_em.errors }}<small>Horário de Brasília. O artigo será excluído automaticamente.</small></div>
+<div class="painel-botoes"><button class="btn btn--primario" name="acao" value="publicar" type="submit">{% if artigo.status == 'publicado' %}Salvar publicação{% else %}Publicar artigo{% endif %}</button><button class="btn btn--secundario" name="acao" value="rascunho" type="submit">Salvar como rascunho</button></div><p class="painel-ajuda">A fonte escolhida aparece no texto. Títulos, tamanhos e espaçamentos seguem o estilo do site.</p><p id="editor-status" class="painel-ajuda" role="status">Salve antes de sair desta página.</p>
+</aside></div></form>
+{% endblock %}
+{% block extra_scripts %}<script src="{% static 'js/editor-blog.js' %}" defer></script><script src="{% static 'js/enquadramento-capa.js' %}" defer></script>{% endblock %}

@@ -48,3 +48,7 @@ def renderizar_markdown_seguro(conteudo_md: str) -> str:
     )
 
     return html_sanitizado.strip()
+
+
+def sanitizar_editor(html):
+    return bleach.clean(html or '', tags=['p', 'div', 'br', 'h2', 'h3', 'strong', 'b', 'em', 'i', 'ul', 'ol', 'li', 'blockquote', 'a'], attributes={'a': ['href', 'title']}, protocols=['https', 'http', 'mailto'], strip=True)

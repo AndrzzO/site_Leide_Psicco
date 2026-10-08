@@ -106,3 +106,25 @@
 .site-nav__dropdown>summary{padding-block:.75rem}
 .site-nav__dropdown>summary:after{color:currentColor}
 .site-nav__submenu a[aria-current="page"]{font-weight:600;background:#e8e4d8}
+
+/* Preserva rostos e cordas nos recortes da imagem de esterilização. */
+img[src*="esterilizacao-v2"]{object-position:center top}
+
+/* Fotografias reais extraídas da montagem aprovada em 30/09/2026. */
+.editorial-retrato img{object-position:center 18%}
+.editorial-foto--mari-escrevendo{max-width:374px;width:100%;justify-self:center}
+.editorial-foto--mari-escrevendo img{aspect-ratio:374/479;object-fit:contain}
+.retrato-mari-escrevendo{max-width:374px;margin-inline:auto}
+
+.footer-acesso{margin-top:22px}.footer-acesso a{font-size:11px;letter-spacing:.04em;text-underline-offset:4px}.footer-acesso a:hover,.footer-acesso a:focus-visible{text-decoration:underline}
+
+/* Composição do título inicial em duas linhas, acompanhando a largura da coluna. */
+.editorial-hero__copy{container-type:inline-size}
+.editorial-hero .editorial-hero__copy h1{font-size:clamp(1.75rem,9.4cqw,3.9rem);line-height:1.12;margin:1.5rem 0 1.8rem}
+.editorial-hero__copy h1 em{display:block}
+.editorial-hero__copy .editorial-lead{font-size:clamp(.95rem,2.8cqw,1.125rem);line-height:1.8;max-width:none}
+
+/* Identidade visual fornecida pela proprietária, em PNG transparente. */
+.site-logo .marca-logo{width:210px;height:105px;max-height:none;object-fit:contain;display:block}
+.marca-logo-rodape{display:block;width:280px;max-width:100%;height:auto;margin-bottom:18px}
+@media(max-width:1199px){.site-logo .marca-logo{width:150px;height:75px}}

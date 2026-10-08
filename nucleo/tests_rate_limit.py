@@ -108,156 +108,31 @@ class TestRateLimitContato(TestCase):
 
 
 class TestRateLimitAdminLogin(TestCase):
-    """Testes de rate limiting e proteção contra brute force no login administrativo."""
-
     def setUp(self):
+        self.url = reverse('admin:login')
+        self.user = User.objects.create_superuser('gestor', 'gestor@example.com', 'SenhaForte123!')
+
+    def test_get_livre_e_sucesso_nao_contam_falhas(self):
+        from nucleo.models import BloqueioLogin
+        for _ in range(12):
+            self.assertEqual(self.client.get(self.url).status_code, 200)
+        self.assertFalse(BloqueioLogin.objects.exists())
+        self.assertEqual(self.client.post(self.url, {'username': 'gestor', 'password': 'SenhaForte123!'}).status_code, 302)
+        self.assertEqual(BloqueioLogin.objects.get().falhas, 0)
+
+    def test_dez_falhas_bloqueiam_get_post_sem_verificar_senha(self):
+        from nucleo.models import BloqueioLogin
+        for i in range(10):
+            r = self.client.post(self.url, {'username': 'gestor', 'password': 'errada'})
+            self.assertEqual(r.status_code, 200 if i < 9 else 404)
+        with patch('django.contrib.auth.forms.authenticate') as auth:
+            self.assertEqual(self.client.post(self.url, {'username': 'gestor', 'password': 'SenhaForte123!'}).status_code, 404)
+            auth.assert_not_called()
+        self.assertEqual(self.client.get(self.url).status_code, 404)
+        self.assertEqual(self.client.get(self.url, REMOTE_ADDR='203.0.113.2').status_code, 200)
         cache.clear()
-        self.admin_login_url = reverse('admin:login')
-        self.username = 'gestor_teste'
-        self.password = 'SenhaForte123!@#'
-        self.user = User.objects.create_superuser(
-            username=self.username,
-            email='gestor@instituto.com.br',
-            password=self.password
-        )
-
-    def tearDown(self):
-        cache.clear()
-
-    def test_admin_login_get_livre_sem_contagem(self):
-        """Requisições GET na tela de login administrativo não contam tentativas."""
-        for _ in range(15):
-            response = self.client.get(self.admin_login_url)
-            self.assertEqual(response.status_code, 200)
-
-        permitido, _ = RateLimiter.verificar_login_ip('127.0.0.1')
-        self.assertTrue(permitido)
-
-    def test_admin_login_falha_incrementa_tentativas(self):
-        """Tentativas de login com senha incorreta devem re-renderizar formulário e registrar falha."""
-        response = self.client.post(self.admin_login_url, {
-            'username': self.username,
-            'password': 'SenhaErrada123',
-        })
-        self.assertEqual(response.status_code, 200)
-        self.assertFalse(response.context['user'].is_authenticated)
-
-    @override_settings(ADMIN_LOGIN_IP_LIMIT=3, ADMIN_LOGIN_IP_BLOCK=900)
-    def test_admin_login_bloqueio_por_ip_apos_limite(self):
-        """IP com sucessivas falhas deve receber HTTP 429 na tentativa subsequente."""
-        for _ in range(3):
-            self.client.post(self.admin_login_url, {
-                'username': 'qualquer_usuario',
-                'password': 'senha_errada',
-            })
-
-        # 4ª tentativa deve ser bloqueada com 429
-        response = self.client.post(self.admin_login_url, {
-            'username': self.username,
-            'password': self.password,
-        })
-        self.assertEqual(response.status_code, 429)
-        self.assertEqual(response.headers.get('Retry-After'), '900')
-        self.assertEqual(response.headers.get('Cache-Control'), 'no-store')
-
-    @override_settings(ADMIN_LOGIN_COMBO_LIMIT=2, ADMIN_LOGIN_IP_LIMIT=10, ADMIN_LOGIN_COMBO_BLOCK=600)
-    def test_admin_login_bloqueio_combo_apos_limite(self):
-        """Combinação (IP + username) bloqueada com 429, sem bloquear outro username no mesmo IP."""
-        # 2 falhas para 'gestor_teste'
-        for _ in range(2):
-            self.client.post(self.admin_login_url, {
-                'username': self.username,
-                'password': 'senha_errada',
-            })
-
-        # 3ª tentativa para 'gestor_teste' deve ser bloqueada
-        response_combo = self.client.post(self.admin_login_url, {
-            'username': self.username,
-            'password': 'outra_senha_errada',
-        })
-        self.assertEqual(response_combo.status_code, 429)
-
-        # Tentativa para outro usuário 'outro_usuario' no mesmo IP ainda não atingiu limite combo nem IP
-        response_outro = self.client.post(self.admin_login_url, {
-            'username': 'outro_usuario',
-            'password': 'senha_qualquer',
-        })
-        # Retorna 200 (formulário de login com erro de autenticação, não 429)
-        self.assertEqual(response_outro.status_code, 200)
-
-    @override_settings(ADMIN_LOGIN_COMBO_LIMIT=3, ADMIN_LOGIN_IP_LIMIT=10)
-    def test_admin_login_sucesso_limpa_contador_combo(self):
-        """Login bem-sucedido deve limpar contadores de falhas daquela combinação específica."""
-        # 1 falha prévia
-        self.client.post(self.admin_login_url, {
-            'username': self.username,
-            'password': 'senha_errada',
-        })
-
-        # Login correto (302)
-        response_sucesso = self.client.post(self.admin_login_url, {
-            'username': self.username,
-            'password': self.password,
-        })
-        self.assertEqual(response_sucesso.status_code, 302)
-
-        # Verifica se o combo está limpo
-        permitido, _ = RateLimiter.verificar_login_combo('127.0.0.1', self.username)
-        self.assertTrue(permitido)
-
-    def test_admin_login_username_inexistente_comportamento_identico(self):
-        """Usuário inexistente deve registrar tentativa e exibir a mesma mensagem genérica (anti-enumeração)."""
-        response_inexistente = self.client.post(self.admin_login_url, {
-            'username': 'usuario_que_nao_existe_12345',
-            'password': 'qualquer_senha',
-        })
-        self.assertEqual(response_inexistente.status_code, 200)
-
-        response_existente = self.client.post(self.admin_login_url, {
-            'username': self.username,
-            'password': 'senha_errada',
-        })
-        self.assertEqual(response_existente.status_code, 200)
-
-        # Ambos os formulários contêm mensagem de erro padronizada do Django
-        self.assertTrue(response_inexistente.context['form'].errors)
-        self.assertTrue(response_existente.context['form'].errors)
-
-    @override_settings(ADMIN_LOGIN_IP_LIMIT=2, ADMIN_LOGIN_IP_BLOCK=900)
-    def test_admin_login_origens_diferentes_independentes(self):
-        """Bloqueio em um IP não deve bloquear requisições de outros IPs legítimos."""
-        # Bloqueia IP 10.0.0.1
-        for _ in range(2):
-            self.client.post(
-                self.admin_login_url,
-                {'username': self.username, 'password': 'errada'},
-                REMOTE_ADDR='10.0.0.1'
-            )
-
-        # IP 10.0.0.1 está bloqueado
-        resp_1 = self.client.post(
-            self.admin_login_url,
-            {'username': self.username, 'password': 'errada'},
-            REMOTE_ADDR='10.0.0.1'
-        )
-        self.assertEqual(resp_1.status_code, 429)
-
-        # IP 10.0.0.2 NÃO está bloqueado
-        resp_2 = self.client.post(
-            self.admin_login_url,
-            {'username': self.username, 'password': 'errada'},
-            REMOTE_ADDR='10.0.0.2'
-        )
-        self.assertEqual(resp_2.status_code, 200)
-
-    def test_admin_autenticado_navegacao_sem_rate_limit(self):
-        """Usuário autenticado no Admin navega livremente pelas áreas internas sem rate limit."""
-        self.client.login(username=self.username, password=self.password)
-        admin_index = reverse('admin:index')
-
-        for _ in range(10):
-            response = self.client.get(admin_index)
-            self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.client.get(self.url).status_code, 404)
+        self.assertEqual(BloqueioLogin.objects.get().nivel, 1)
 
 
 class TestIdentificacaoOrigemEProxy(TestCase):

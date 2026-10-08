@@ -1,0 +1,2 @@
+from pathlib import Path
+p=Path('templates/componentes/footer.html');s=p.read_text(encoding='utf-8-sig').replace('<span class="site-footer__nome">{{ NOME_INSTITUTO }}</span>', '''<a href="{% url 'paginas:inicio' %}" aria-label="Instituto Mente em Foco — Página inicial"><img src="{% static 'img/marca/logo-clara.png' %}" class="marca-logo-rodape" alt="Instituto Mente em Foco — Neuropsicologia LTDA" width="1774" height="887" loading="lazy" decoding="async"></a>''');p.write_text(s,encoding='utf-8')

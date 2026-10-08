@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}{% load static %}
+{% block title %}Continuar no WhatsApp{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+{% block content %}
+<section class="editorial-secao"><div class="site-container">
+<h1>Sua mensagem está pronta.</h1>
+<p>Estamos abrindo o WhatsApp da Dra. Marileide. Toque em Enviar no WhatsApp para concluir.</p>
+<p><a id="abrir-whatsapp" class="btn btn--primario" href="{{ whatsapp_destino }}" rel="noreferrer">Abrir WhatsApp com minha mensagem ↗</a></p>
+<details><summary>Conferir a mensagem</summary>{{ texto_whatsapp|linebreaks }}</details>
+<p><a href="{% url 'contato:index' %}">Voltar ao formulário</a></p>
+</div></section>
+{% endblock %}
+{% block extra_scripts %}<script src="{% static 'js/abrir-whatsapp.js' %}" defer></script>{% endblock %}

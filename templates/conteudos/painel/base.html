@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}{% load static %}
+{% block title %}Área reservada | Instituto Mente em Foco{% endblock %}
+{% block meta_robots %}noindex, nofollow, noarchive{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'css/conteudos.css' %}"><link rel="stylesheet" href="{% static 'css/painel.css' %}">{% endblock %}
+{% block content %}
+<section class="painel site-container">
+<div class="painel-topo"><a href="{% url 'painel:index' %}" class="painel-marca">Meu Blog</a>{% if user.is_authenticated %}<form method="post" action="{% url 'painel:sair' %}">{% csrf_token %}<button class="painel-link" type="submit">Sair da conta</button></form>{% endif %}</div>
+{% for message in messages %}<p class="painel-aviso" role="status">{{ message }}</p>{% endfor %}
+{% block painel %}{% endblock %}
+</section>
+{% endblock %}

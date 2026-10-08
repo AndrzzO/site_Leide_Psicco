@@ -20,3 +20,7 @@ tzdata>=2025.1
 # Processamento e validação de imagens nos ImageFields
 Pillow>=11.0,<13.0
 
+
+# Renderização e sanitização dos artigos do Blog
+Markdown>=3.10,<4.0
+bleach>=6.4,<7.0

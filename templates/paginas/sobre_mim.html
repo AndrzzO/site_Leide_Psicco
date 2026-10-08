@@ -17,7 +17,7 @@
 <!-- ============================================================ -->
 <!-- 1. HERO INTERNO: APRESENTAÇÃO MARI MENEZES                   -->
 <!-- ============================================================ -->
-{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="SOBRE MIM" titulo_hero="Prazer, eu sou Mari Menezes." descricao_hero="Psicóloga Clínica e Avaliadora Psicológica. Avaliações, laudos, pareceres, relatórios e atendimento clínico para adolescentes e adultos." cta_texto="Conhecer o atendimento" cta_url="#trajetoria" cta_secundario_texto="Falar pelo WhatsApp" cta_secundario_url=WHATSAPP_LINK imagem_url=imagem_url imagem_alt="Psicóloga Mari Menezes — Instituto Mente em Foco" imagem_ratio="ratio-4-5" placeholder_codigo="IMG-010" placeholder_descricao="Retrato Editorial Mari Menezes" placeholder_ratio="Proporção 4:5" badge_texto="Mari Menezes • Psicóloga Clínica e Avaliadora" %}
+{% include "componentes/hero_interno.html" with breadcrumb=breadcrumb eyebrow="SOBRE MIM" titulo_hero="Prazer, eu sou Mari Menezes." descricao_hero="Marileide Silva Leite de Menezes · CRP: 01/28409. Psicóloga Clínica e Avaliadora Psicológica. Avaliações, laudos, pareceres, relatórios e atendimento clínico para adolescentes e adultos." cta_texto="Conhecer o atendimento" cta_url="#trajetoria" cta_secundario_texto="Falar pelo WhatsApp" cta_secundario_url=WHATSAPP_LINK imagem_url=imagem_url imagem_alt="Mari Menezes sorrindo, sentada à mesa com um caderno." imagem_ratio="ratio-4-3" placeholder_codigo="IMG-010" placeholder_descricao="Retrato Editorial Mari Menezes" placeholder_ratio="Proporção 4:5" badge_texto="Mari Menezes • Psicóloga Clínica e Avaliadora" %}
 
 <!-- ============================================================ -->
 <!-- 2. BIOGRAFIA E VISÃO CLÍNICA EDITORIAL                       -->
@@ -61,10 +61,10 @@
 
             <!-- Coluna de Imagem / Fotografia Editorial do Espaço -->
             <div class="split-editorial__visual">
-                <div class="media-frame ratio-4-3 split-editorial__frame">
+                <div class="media-frame ratio-4-5 split-editorial__frame retrato-mari-escrevendo">
                     {% if profissional and profissional.foto_secundaria %}
                         <img src="{{ profissional.foto_secundaria.url }}"
-                             alt="Consultório e ambiente de acolhimento do Instituto Mente em Foco"
+                             alt="Mari Menezes sorrindo enquanto escreve em um caderno." width="374" height="479"
                              loading="lazy"
                              decoding="async"
                              class="split-editorial__img">

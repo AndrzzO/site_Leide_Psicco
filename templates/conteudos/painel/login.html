@@ -1,0 +1,6 @@
+{% extends 'conteudos/painel/base.html' %}
+{% block painel %}
+<div class="painel-login"><span class="painel-eyebrow">ESPAÇO DA AUTORA</span><h1>Suas palavras.<br>Novas possibilidades.</h1><p>Entre para escrever e compartilhar seus conteúdos.</p>
+<form method="post" class="painel-form">{% csrf_token %}{{ form.non_field_errors }}{% for field in form %}<div class="painel-campo">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>{% endfor %}<button type="submit" class="btn btn--primario">Entrar</button></form>
+<a class="painel-voltar" href="{% url 'paginas:inicio' %}">← Voltar ao site</a></div>
+{% endblock %}

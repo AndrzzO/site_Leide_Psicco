@@ -5,6 +5,7 @@ Modelos do app conteudos:
 """
 import math
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import strip_tags
@@ -90,7 +91,7 @@ class ArtigoQuerySet(models.QuerySet):
             data_publicacao__lte=agora
         ).filter(
             models.Q(categoria__isnull=True) | models.Q(categoria__ativo=True)
-        )
+        ).filter(models.Q(apagar_em__isnull=True) | models.Q(apagar_em__gt=agora))
 
 
 class Artigo(models.Model):
@@ -105,6 +106,13 @@ class Artigo(models.Model):
         (STATUS_RASCUNHO, 'Rascunho'),
         (STATUS_PUBLICADO, 'Publicado'),
     ]
+
+    FONTES = [('montserrat', 'Montserrat'), ('georgia', 'Georgia'), ('arial', 'Arial'), ('palatino', 'Palatino')]
+    capa_x = models.PositiveSmallIntegerField(default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    capa_y = models.PositiveSmallIntegerField(default=50, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    fonte = models.CharField(max_length=20, choices=FONTES, default='montserrat')
+    apagar_em = models.DateTimeField(null=True, blank=True, db_index=True, verbose_name='Apagar automaticamente em')
+    formato_html = models.BooleanField(default=False, editable=False)
 
     titulo = models.CharField(
         max_length=200,
@@ -214,6 +222,7 @@ class Artigo(models.Model):
         verbose_name = "Artigo"
         verbose_name_plural = "Artigos"
         ordering = ['-data_publicacao', '-data_criacao']
+        permissions = [('gerenciar_blog', 'Pode gerenciar o Blog pelo painel reservado')]
 
     def save(self, *args, **kwargs):
         """
@@ -235,6 +244,23 @@ class Artigo(models.Model):
 
         super().save(*args, **kwargs)
 
+    @property
+    def situacao_publica(self):
+        agora = timezone.now()
+        if self.apagar_em and self.apagar_em <= agora:
+            return 'Expirado'
+        if self.status != self.STATUS_PUBLICADO:
+            return 'Rascunho'
+        if not self.data_publicacao or self.data_publicacao > agora:
+            return 'Agendado'
+        if self.categoria_id and not self.categoria.ativo:
+            return 'Categoria inativa'
+        return 'Publicado'
+
+    @property
+    def visivel_no_site(self):
+        return self.situacao_publica == 'Publicado'
+
     def get_absolute_url(self):
         """Retorna a URL pública canônica do artigo."""
         return reverse('conteudos:detalhe', kwargs={'slug': self.slug})
@@ -242,6 +268,9 @@ class Artigo(models.Model):
     @property
     def conteudo_formatado(self):
         """Retorna o conteúdo formatado em HTML seguro e rigorosamente sanitizado via Bleach."""
+        if self.formato_html:
+            from .sanitizacao import sanitizar_editor
+            return sanitizar_editor(self.conteudo)
         return renderizar_markdown_seguro(self.conteudo)
 
     @property

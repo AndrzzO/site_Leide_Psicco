@@ -51,8 +51,8 @@ AVALIACOES = [
       "ansiedade-depressao",
       "inss"
     ],
-    "imagem": "burnout",
-    "alt": "Mulher junto à janela, com um computador fechado sobre a mesa.",
+    "imagem": "burnout-v2",
+    "alt": "Homem com as mãos nas têmporas diante de um notebook, cercado por pessoas com pastas, papéis e um celular.",
     "meta": "Entenda a avaliação psicológica para burnout: investigação do contexto de trabalho, etapas, limites dos documentos e orientações para solicitar atendimento."
   },
   {
@@ -106,8 +106,8 @@ AVALIACOES = [
       "ansiedade-depressao",
       "esterilizacao"
     ],
-    "imagem": "bariatrica",
-    "alt": "Mulher sentada à mesa com um caderno fechado, olhando para o jardim.",
+    "imagem": "bariatrica-v2",
+    "alt": "Duas mulheres conversam em poltronas; uma delas apoia a mão sobre a mão da outra.",
     "meta": "Avaliação psicológica para bariátrica: saiba como são abordados expectativas, preparação, rede de apoio e documentos solicitados pela equipe de cuidado."
   },
   {
@@ -161,8 +161,8 @@ AVALIACOES = [
       "cirurgia-bariatrica",
       "ansiedade-depressao"
     ],
-    "imagem": "esterilizacao",
-    "alt": "Pessoa com um caderno no colo, sentada em uma varanda iluminada.",
+    "imagem": "esterilizacao-v2",
+    "alt": "Homem e mulher lado a lado, de frente, cada um segurando uma corda com nó na altura da pelve.",
     "meta": "Avaliação psicológica para laqueadura e vasectomia com respeito à autonomia. Entenda a finalidade, o processo e como esclarecer a solicitação recebida."
   },
   {
@@ -326,8 +326,8 @@ AVALIACOES = [
       "burnout",
       "cirurgia-bariatrica"
     ],
-    "imagem": "ansiedade",
-    "alt": "Homem sentado em um sofá de linho junto a uma janela iluminada.",
+    "imagem": "ansiedade-v2",
+    "alt": "Mulher e homem de pele escura com as mãos na cabeça, diante de linhas emaranhadas que representam pensamentos em excesso.",
     "meta": "Avaliação psicológica para ansiedade e depressão: entenda a investigação, a diferença em relação à psicoterapia e os próximos passos para buscar cuidado."
   }
 ]

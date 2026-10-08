@@ -109,7 +109,7 @@
         <!-- Imagem de Capa do Artigo -->
         {% if artigo.imagem_capa %}
         <figure class="artigo-capa-wrap">
-            <img src="{{ artigo.imagem_capa.url }}" 
+            <img src="{{ artigo.imagem_capa.url }}" style="object-position: {{ artigo.capa_x }}% {{ artigo.capa_y }}%;" 
                  alt="{{ artigo.texto_alternativo_imagem|default:artigo.titulo }}" 
                  itemprop="image" 
                  loading="eager"
@@ -122,7 +122,7 @@
         {% endif %}
 
         <!-- Conteúdo do Artigo (Renderizado com sanitização segura) -->
-        <div class="artigo-corpo-leitura" itemprop="articleBody">
+        <div class="artigo-corpo-leitura fonte-{{ artigo.fonte }}" itemprop="articleBody">
             {{ artigo.conteudo_formatado|safe }}
         </div>
 
@@ -194,7 +194,7 @@
 
                 <div class="card-artigo-item__capa-wrap">
                     {% if rel.imagem_capa %}
-                    <img src="{{ rel.imagem_capa.url }}" 
+                    <img src="{{ rel.imagem_capa.url }}" style="object-position: {{ rel.capa_x }}% {{ rel.capa_y }}%;" 
                          alt="{{ rel.texto_alternativo_imagem|default:rel.titulo }}" 
                          class="card-artigo-item__capa" 
                          loading="lazy"

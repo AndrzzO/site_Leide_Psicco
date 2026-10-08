@@ -1,0 +1,37 @@
+const {chromium} = require('C:/Users/andre/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+(async()=>{
+ let password=''; for await (const chunk of process.stdin) password+=chunk;
+ const browser=await chromium.launch({headless:true,channel:'msedge'});
+ const page=await browser.newPage({viewport:{width:1440,height:1000}});
+ const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://127.0.0.1:8010/area-cliente/entrar/');
+ await page.screenshot({path:'scratch/screenshots_reformulacao/blog-login.png',fullPage:true});
+ await page.locator('#id_username').fill('Marileides140@email.com');
+ await page.locator('#id_password').fill(password.trim());
+ await page.getByRole('button',{name:'Entrar',exact:true}).click();
+ await page.waitForURL('**/area-cliente/');
+ await page.getByRole('link',{name:'Escrever artigo +'}).click();
+ await page.locator('#id_titulo').fill('Verificação temporária do editor');
+ await page.getByLabel('Apresentação breve').fill('Este artigo existe apenas durante a verificação automática.');
+ await page.locator('#editor-visual').fill('Um espaço para acolher as palavras e compartilhar reflexões.');
+ await page.getByLabel('Fonte do texto').selectOption('georgia');
+ await page.screenshot({path:'scratch/screenshots_reformulacao/blog-editor-desktop.png',fullPage:true});
+ await page.setViewportSize({width:390,height:844});
+ await page.screenshot({path:'scratch/screenshots_reformulacao/blog-editor-mobile.png',fullPage:true});
+ if(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth)) throw new Error('Overflow mobile');
+ await page.getByRole('button',{name:'Publicar artigo',exact:true}).click();
+ await page.waitForURL('**/area-cliente/');
+ const item=page.locator('.painel-item').filter({hasText:'Verificação temporária do editor'});
+ await item.getByRole('link',{name:'Ver no site'}).click();
+ await page.locator('.artigo-corpo-leitura.fonte-georgia').waitFor();
+ await page.screenshot({path:'scratch/screenshots_reformulacao/blog-artigo-mobile.png',fullPage:true});
+ await page.goto('http://127.0.0.1:8010/area-cliente/');
+ await page.locator('.painel-item').filter({hasText:'Verificação temporária do editor'}).getByRole('link',{name:'Excluir',exact:true}).click();
+ await page.getByRole('button',{name:'Excluir artigo',exact:true}).click();
+ await page.waitForURL('**/area-cliente/');
+ await page.getByRole('button',{name:'Sair da conta'}).click();
+ await page.waitForURL('**/area-cliente/entrar/');
+ console.log(JSON.stringify({login:'ok',publicacao:'ok',exclusao:'ok',logout:'ok',mobile:'sem overflow',errors}));
+ await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});
+

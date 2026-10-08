@@ -1,5 +1,6 @@
                 <form action="{{ form_action|default:'/contato/' }}" method="post" class="form-contato" novalidate>
                     {% csrf_token %}
+                    {% if enviar_whatsapp and WHATSAPP_LINK %}<input type="hidden" name="destino" value="whatsapp">{% endif %}
 
                     <!-- Honeypot contra robôs / bots (invisível para tecnologias assistivas) -->
                     <div style="display:none !important; position:absolute; left:-9999px; visibility:hidden;" aria-hidden="true">
@@ -95,7 +96,8 @@
 
                     <!-- Botão de Envio -->
                     <button type="submit" class="btn btn--primario form-btn-submit">
-                        <span>{{ botao_texto|default:'Enviar mensagem' }}</span>
+                        <span>{% if enviar_whatsapp and WHATSAPP_LINK %}Continuar no WhatsApp{% else %}{{ botao_texto|default:'Enviar mensagem' }}{% endif %}</span>
                         <span class="btn__seta" aria-hidden="true">→</span>
                     </button>
+                    {% if enviar_whatsapp and WHATSAPP_LINK %}<p class="form-label__dica">Seus dados serão incluídos na mensagem. Confira no WhatsApp e toque em Enviar para concluir.</p>{% endif %}
                 </form>

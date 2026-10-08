@@ -147,8 +147,7 @@ class CategoriasSitemap(Sitemap):
         agora = timezone.now()
         return CategoriaArtigo.objects.filter(
             ativo=True,
-            artigos__status=Artigo.STATUS_PUBLICADO,
-            artigos__data_publicacao__lte=agora
+            artigos__in=Artigo.objects.publicados()
         ).distinct()
 
     def location(self, obj):

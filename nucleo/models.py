@@ -362,3 +362,14 @@ class RedeSocial(models.Model):
 
     def __str__(self):
         return f"{self.nome} ({self.url})"
+
+
+class BloqueioLogin(models.Model):
+    """Estado durável compartilhado pelos dois logins, sem armazenar o IP em claro."""
+    origem = models.CharField(max_length=32, unique=True)
+    falhas = models.PositiveIntegerField(default=0)
+    nivel = models.PositiveIntegerField(default=0)
+    bloqueado_ate = models.DateTimeField(null=True, blank=True)
+    permanente = models.BooleanField(default=False)
+    reserva_ate = models.DateTimeField(null=True, blank=True)
+    reserva_token = models.CharField(max_length=32, blank=True)

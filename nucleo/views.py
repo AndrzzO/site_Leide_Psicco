@@ -73,9 +73,26 @@ def tratar_erro_403(request, exception=None):
 
 def tratar_erro_404(request, exception=None):
     """Handler para erro 404 (Página Não Encontrada)."""
+    if getattr(request, '_admin_desativado', False):
+        from django.http import HttpResponseNotFound
+        response = HttpResponseNotFound('404 Not Found', content_type='text/plain; charset=utf-8')
+        response['Cache-Control'] = 'no-store, private'
+        response['X-Robots-Tag'] = 'noindex, nofollow, noarchive'
+        return response
     return render(request, 'erros/404.html', status=404)
 
 
 def tratar_erro_500(request):
     """Handler para erro 500 (Erro Interno do Servidor)."""
     return render(request, 'erros/500.html', status=500)
+
+
+from django.views.decorators.csrf import csrf_exempt
+
+
+@csrf_exempt
+def admin_indisponivel(request):
+    """Endpoint desativado: nenhum método executa ações administrativas."""
+    from django.http import Http404
+    request._admin_desativado = True
+    raise Http404('Página não encontrada.')

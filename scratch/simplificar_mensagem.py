@@ -1,0 +1,2 @@
+from pathlib import Path
+p=Path('contato/views.py');s=p.read_text(encoding='utf-8-sig');s=s.replace('                    resposta = redirect(f"https://wa.me/{numero}?text={quote(chr(10).join([linha + chr(10) for linha in linhas]).strip(), safe=\'\')}")', '                    texto = "\\n\\n".join(linhas)\n                    resposta = redirect(f"https://wa.me/{numero}?text={quote(texto, safe=\'\')}")');p.write_text(s,encoding='utf-8')

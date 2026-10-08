@@ -6,7 +6,7 @@
             <!-- Coluna 1: Identidade e Conceito -->
             <div class="site-footer__coluna site-footer__coluna--marca">
                 <div class="site-footer__marca">
-                    <span class="site-footer__nome">{{ NOME_INSTITUTO }}</span>
+                    <a href="{% url 'paginas:inicio' %}" aria-label="Instituto Mente em Foco — Página inicial"><img src="{% static 'img/marca/logo-clara.png' %}" class="marca-logo-rodape" alt="Instituto Mente em Foco — Neuropsicologia LTDA" width="1774" height="887" loading="lazy" decoding="async"></a>
                     <span class="site-footer__profissional">{{ NOME_PROFISSIONAL }}</span>
                 </div>
                 <p class="site-footer__frase">
@@ -28,6 +28,7 @@
                         <li><a href="{% url 'contato:index' %}">Contato & Agendamento</a></li>
                         <li><a href="{% url 'paginas:politica_privacidade' %}">Política de Privacidade</a></li>
                         <li><a href="{% url 'paginas:politica_cookies' %}">Política de Cookies</a></li>
+                        <li class="footer-acesso"><a href="{% url 'painel:login' %}" rel="nofollow">Área reservada</a></li>
                     </ul>
                 </nav>
             </div>

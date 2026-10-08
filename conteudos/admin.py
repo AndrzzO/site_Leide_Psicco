@@ -82,6 +82,7 @@ class ArtigoAdmin(admin.ModelAdmin):
                 "status",
                 "destaque",
                 "data_publicacao",
+                "apagar_em",
             ),
             "description": "Apenas artigos com status 'Publicado' e data de publicação menor ou igual ao momento atual aparecem no site público. Artigos 'Rascunho' são privados do Admin."
         }),
@@ -89,6 +90,7 @@ class ArtigoAdmin(admin.ModelAdmin):
             "fields": (
                 "resumo",
                 "conteudo",
+                "fonte",
             ),
             "description": "Utilize Markdown seguro. Use ## para subtítulos de seção (H2) e ### para tópicos (H3). Não use # (H1), pois o H1 é exclusivo do título da página. Tags script e atributos maliciosos são automaticamente removidos por sanitização estrita."
         }),

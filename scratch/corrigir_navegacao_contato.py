@@ -1,0 +1,4 @@
+from pathlib import Path
+p=Path('templates/componentes/menu_principal.html');s=p.read_text(encoding='utf-8-sig');s=s.replace('href="{% if WHATSAPP_LINK %}{{ WHATSAPP_LINK }}{% else %}{% url \'contato:index\' %}{% endif %}" {% if WHATSAPP_LINK %}target="_blank" rel="noopener noreferrer"{% endif %}', 'href="{% url \'contato:index\' %}"');p.write_text(s,encoding='utf-8')
+for file in ['header.html','menu_mobile.html']:
+ p=Path('templates/componentes')/file;s=p.read_text(encoding='utf-8-sig');start=s.index('{% if WHATSAPP_LINK %}');other=s.index('{% else %}',start);end=s.index('{% endif %}',other);replacement=s[other+len('{% else %}'):end].replace("{% url 'contato:index' %}","{% url 'contato:index' %}?assunto=consulta#formulario-contato");s=s[:start]+replacement+s[end+len('{% endif %}'):];p.write_text(s,encoding='utf-8')

@@ -80,7 +80,7 @@ class HomeViewTests(TestCase):
         conteudo = response.content.decode('utf-8')
         # Verifica ocorrência única da tag h1
         self.assertEqual(conteudo.count('<h1'), 1, "A Home deve conter rigorosamente uma tag <h1>.")
-        self.assertContains(response, 'Psicóloga Clínica e <em>Avaliadora Psicológica</em>')
+        self.assertContains(response, 'Psicologia Clínica e <em>Avaliação neuropsicológica</em>')
 
     def test_eyebrow_oficial_presente(self):
         """O conceito tríplice oficial deve estar no eyebrow do Hero."""
@@ -159,7 +159,7 @@ class HomeViewTests(TestCase):
         response = self.client.get(reverse('paginas:inicio'))
         self.assertContains(response, 'css/editorial.css')
         self.assertContains(response, 'js/navegacao.js')
-        self.assertContains(response, 'img/avaliacoes/burnout.webp')
+        self.assertContains(response, 'img/avaliacoes/burnout-v2.webp')
 
     def test_ausencia_dados_ficticios(self):
         """A Home não deve conter depoimentos fictícios, números inventados ou CRP falso."""
@@ -373,3 +373,5 @@ class SobreMimPaginaTests(TestCase):
         self.assertNotIn('PENDENTE_DEFINICAO', conteudo)
         self.assertNotIn('Universidade Federal', conteudo)
         self.assertNotIn('+500 pacientes', conteudo)
+
+
